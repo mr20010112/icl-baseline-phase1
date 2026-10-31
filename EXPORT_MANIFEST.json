@@ -1,0 +1,4807 @@
+{
+  "dependencies": {
+    "installed_state": "not shipped; operator init generates .claude/.agents/.aris and rebases .mcp.json",
+    "skills": "optional local skills omitted; local-overrides.json has empty lists; native init needs only vendor",
+    "vendor/aris": "init/doctor/validate verify every upstream-lock entry"
+  },
+  "determinism": "Sorted payload and hashes; SOURCE_DATE_EPOCH fixes export/Git dates; Git identity comes from git config.",
+  "exclusions": [
+    {
+      "path": "reports/** (except the protocol-bound paper)",
+      "reason": "owner history and results"
+    },
+    {
+      "path": "runs/** (except .gitkeep)",
+      "reason": "no execution evidence is shipped"
+    },
+    {
+      "path": ".aris/**, .claude/**, .agents/**, .github/**",
+      "reason": "init generates host installation and state"
+    },
+    {
+      "path": "skills/**",
+      "reason": "optional owner-specific agent workflows; baseline CLI and native init need no local skill overrides"
+    },
+    {
+      "path": "idea-stage/**, refine-logs/**, research-wiki/**, analysis/**, paper/**",
+      "reason": "outside baseline reproduction scope"
+    },
+    {
+      "path": "handoffs/** except third-party/** and remote/**",
+      "reason": "private role and review history"
+    },
+    {
+      "path": "contracts/** except README.md, .registry.json, baseline/v1.yaml, baseline/v2.yaml and validated limit-successor chain",
+      "reason": "phase-1 frozen lineage, including sanctioned limit amendments"
+    },
+    {
+      "path": "baseline/checks/**, baseline/legacy-evidence.json, baseline/README.md",
+      "reason": "unreferenced local checks and historical evidence"
+    },
+    {
+      "path": "experiments/** except baseline-config.json, baseline-seed{42,43,44}.json and selected limit-deviation manifests/jobs/configs",
+      "reason": "only phase-1 jobs and their sanctioned limit copies"
+    },
+    {
+      "path": "**/.git/**, **/__pycache__/**, **/*.py[cod], **/.pytest_cache/**",
+      "reason": "repository metadata and caches"
+    },
+    {
+      "path": "**/.env*, **/*.private.json (except upstream-pinned public *.example)",
+      "reason": "private configuration; public pinned templates retained unchanged"
+    },
+    {
+      "path": "all other source paths",
+      "reason": "explicit allowlist; not required for this standalone baseline"
+    },
+    {
+      "path": "**/*.lock except byte-verified pinned vendor lockfiles",
+      "reason": "operator/runtime lock files are not export payload"
+    },
+    {
+      "path": "docs/workflow.md",
+      "reason": "contains machine-local absolute paths; operator guide governs exported workflow"
+    },
+    {
+      "path": "tests/test_bpp_adapter.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_bpp_draw_adapter.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_bpp_draw_jobs.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_bpp_draw_training.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_bpp_jobs.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_bpp_process_interop.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_bpp_weights.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_contextflow_adapter.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_contextflow_draw_adapter.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_bpp.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_client_metrics.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_contextflow.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_contextflow_draw.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_data.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_draw_parity.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_draw_runner.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_export.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_jobs.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_materialize.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_operator_paths.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_regenerate.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_registry_values.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_phase2_run_job.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_shared_client.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_shared_config_portability.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_shared_draw_tasks.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_shared_history.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_shared_paths.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    },
+    {
+      "path": "tests/test_shared_schedule.py",
+      "reason": "phase-2-only tests excluded from phase 1"
+    }
+  ],
+  "execution": "No training, evaluation, data/weight downloads or external model calls performed by exporter.",
+  "exported_at": "2026-10-31T06:34:42+00:00",
+  "files": [
+    {
+      "bytes": 344,
+      "path": ".gitignore",
+      "sha256": "b1bb0d30290a4ec2e38f4380813599e5696f00095d43d8a28a6c98f3b4887f00"
+    },
+    {
+      "bytes": 868,
+      "path": ".mcp.json",
+      "sha256": "f49657e18bf9ebed2951320d17e69529de83e6ca5c9ff10c0b061445e8f15a5a"
+    },
+    {
+      "bytes": 6928,
+      "path": "README.md",
+      "sha256": "20dcdd5e7f4b99fb1dd48e536c81292f8821bb6ee02717896b4ac561f564f155"
+    },
+    {
+      "bytes": 375001,
+      "path": "baseline/data/libero-hf-manifest.json",
+      "sha256": "43e586a9d84a7ef9fde70c66169fd8da2a2fc4ade4568ffd7a77fd3d45c22fec"
+    },
+    {
+      "bytes": 11161,
+      "path": "baseline/runner/README.md",
+      "sha256": "c967c3347fda6f640351f6d470d5f78705675425a0ff65ecdbd9a48ba740d4e8"
+    },
+    {
+      "bytes": 36886,
+      "path": "baseline/runner/contextflow_repro.py",
+      "sha256": "4ea029da748d0d8be45b8946bcac983306e53428f71cfe2527a3297ab704a46c"
+    },
+    {
+      "bytes": 4730,
+      "path": "baseline/runner/eval_with_probe.py",
+      "sha256": "a8ced05fe4e048aee634c5866421531e273a44a37f01bc2710e2fdb224e7605f"
+    },
+    {
+      "bytes": 3154,
+      "path": "baseline/runner/serve_with_probe.py",
+      "sha256": "8234e1facf0d18bd6064489059f80d12859ad93c5dd2c8836c79cc5ca74e0489"
+    },
+    {
+      "bytes": 3893,
+      "path": "baseline/runner/verify_libero_data.py",
+      "sha256": "bdaed75aa83b6569082d78bf4689b2775f3b91341efd9c109978a2e6bc350be5"
+    },
+    {
+      "bytes": 677,
+      "path": "configs/budget.json",
+      "sha256": "57c6f8bfc4f6598fb7e1a286bad4724320381b7aa92ea30c3703fdf975cf52c3"
+    },
+    {
+      "bytes": 531,
+      "path": "configs/checks.json",
+      "sha256": "6b6f3ec48df09fbbda86e44615991ecc6a14f89d1e9162e6f522e52cd3ee4c34"
+    },
+    {
+      "bytes": 69,
+      "path": "configs/local-overrides.json",
+      "sha256": "5b9d856ce45161b2c55fd26a348db5f9f3dcad97c06beaeb1afc924b626761dc"
+    },
+    {
+      "bytes": 2735,
+      "path": "configs/models.json",
+      "sha256": "006eeb6db0ee6de3dffc5bc25225d0657670d3d3be2c65da169abee950c5a750"
+    },
+    {
+      "bytes": 6667,
+      "path": "configs/research.json",
+      "sha256": "523f9379ee05e357f9aaf0671d803a81abcfa68aa6e69c42452c065c142dea1d"
+    },
+    {
+      "bytes": 73,
+      "path": "configs/resources.json",
+      "sha256": "219037d8c5deb18de45ff6bce6da155eebee98c90a10316c790f17569ea97d7d"
+    },
+    {
+      "bytes": 88801,
+      "path": "configs/upstream-lock.json",
+      "sha256": "4d8acd05cc593a03af090438cc97f5fc0e65e39764cca79b4aca14ff1f0d0a72"
+    },
+    {
+      "bytes": 551,
+      "path": "contracts/.registry.json",
+      "sha256": "b76190940c76471fc4152285b55eff5c2a246b2ce169cb80c2e8bbab6c6c62ad"
+    },
+    {
+      "bytes": 342,
+      "path": "contracts/README.md",
+      "sha256": "b34d5e91c1a3e62638e988d23e1254f97e1e5eeab70ee9bf07f16f25130cd4ed"
+    },
+    {
+      "bytes": 11166,
+      "path": "contracts/baseline/v1.yaml",
+      "sha256": "41ff4f96121093c32e66caa395c902eeddfbc3bc224f3690910e566ac17c879e"
+    },
+    {
+      "bytes": 14519,
+      "path": "contracts/baseline/v2.yaml",
+      "sha256": "9882ba4ce1d605535c55b15c7921fb6b24064297b5fa8f713735a8d81854a333"
+    },
+    {
+      "bytes": 8365,
+      "path": "docs/agent-rules.md",
+      "sha256": "b0d38fa2ea9841750fc8e65d5a28ea41039ae6388a1a6749acd66099ad770ce9"
+    },
+    {
+      "bytes": 4066,
+      "path": "docs/architecture.md",
+      "sha256": "07ca7cfd04c295f61d4b68181c70afdfd15c64f256176841d9360ab6f62e712d"
+    },
+    {
+      "bytes": 3468,
+      "path": "docs/assumptions.md",
+      "sha256": "77d90cc7414c04d7a43a5dd9a28d64978a1ce5138c0bf89d91581e2a5ee2f0e6"
+    },
+    {
+      "bytes": 3648,
+      "path": "docs/configuration.md",
+      "sha256": "7a6a885c9f8eb681be723f8cdbebe8a3867e3880a9f5dd61a02c07024afae455"
+    },
+    {
+      "bytes": 1762,
+      "path": "docs/operator-limit-authorization.md",
+      "sha256": "062f497a8b6226ba3a4e6a1d41860e667c3a999b681207ed8ca4518520a0f6fc"
+    },
+    {
+      "bytes": 4831,
+      "path": "docs/requirements-mapping.md",
+      "sha256": "23dda01d37f3354471424c64be7f3399d2e4f48415504afbfb1c7286c7134896"
+    },
+    {
+      "bytes": 20617,
+      "path": "docs/source/AI科研指南.md",
+      "sha256": "3e481017bb4cb2ca89ac9abbb43c5b6bb7b88fde36b495989642ff93a4e87e96"
+    },
+    {
+      "bytes": 4715,
+      "path": "docs/upstream-review.md",
+      "sha256": "c513e57730e24d66faaf8142fb4252718d6965e273b029b9e8db2e8565f884f5"
+    },
+    {
+      "bytes": 1107,
+      "path": "examples/toy/README.md",
+      "sha256": "e1f6dd7c41bf0dbdb16ad63625e818809655c108c068a2f3cb45fe06623718de"
+    },
+    {
+      "bytes": 250,
+      "path": "examples/toy/config.json",
+      "sha256": "62074c379fe17fbf6004f23db1b6a5cd4f8c746b4d036e754cff692ae9bf2fe7"
+    },
+    {
+      "bytes": 2780,
+      "path": "examples/toy/contract.yaml",
+      "sha256": "e5ad35a5b1d747702d6d7432368769ac073f87939591da997bf141850a826b06"
+    },
+    {
+      "bytes": 193,
+      "path": "examples/toy/data-spec.json",
+      "sha256": "490492b5f191d4eba67a28c4573ef62078afa962f1b1b8a2fcdead82494b11f7"
+    },
+    {
+      "bytes": 685,
+      "path": "examples/toy/job.json",
+      "sha256": "fdc3c5891aad39e11b7426d349530deb9acd684f50f2b8afc30b777bd8140a58"
+    },
+    {
+      "bytes": 4683,
+      "path": "examples/toy/train.py",
+      "sha256": "0719941c0bedbd5031f393ab7dc930308990b83041db7a6b8317b230263ca71f"
+    },
+    {
+      "bytes": 2318,
+      "path": "experiments/baseline-config.json",
+      "sha256": "fbfe765c0f58b4780d56095649b647872e366822ef2563c92f6aa3868c6a14e7"
+    },
+    {
+      "bytes": 1529,
+      "path": "experiments/baseline-seed42.json",
+      "sha256": "731ecd7502bf6767b208c99282bce1cfff0088cb0747c8929e09a26e27d0d730"
+    },
+    {
+      "bytes": 1529,
+      "path": "experiments/baseline-seed43.json",
+      "sha256": "fdfee22d76cad55d4129ff076797543b5168091a28525018949343cae6c3cdcc"
+    },
+    {
+      "bytes": 1529,
+      "path": "experiments/baseline-seed44.json",
+      "sha256": "33a50a02d74f80f4fde3772b8c3be4821b7a115f7bee60b27ccae61152221b05"
+    },
+    {
+      "bytes": 2047,
+      "path": "handoffs/remote/README.md",
+      "sha256": "d06b1db9de01a56f9f5cd43068bba8db8f9df8fd75e83846cf0401c673b61d1c"
+    },
+    {
+      "bytes": 52727,
+      "path": "handoffs/third-party/README.md",
+      "sha256": "54a8b0c1eb97e3455a47d6c470e1df52491bb7ab9e87cb65b83f56629d5c636d"
+    },
+    {
+      "bytes": 89184,
+      "path": "reports/imported-icl/source/literature/robot-icl/sources/step35-root/contextflow.txt",
+      "sha256": "1152159e626fa4a0f68a639b5f2b22708e2a20c402676ab7fb4275ec9518d223"
+    },
+    {
+      "bytes": 0,
+      "path": "runs/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 3444,
+      "path": "templates/analysis-question.md",
+      "sha256": "38f23c05e7b3cfb1e2244596a6fbccc72d69052ff7f3f961b4f82948ccf38eda"
+    },
+    {
+      "bytes": 523,
+      "path": "templates/analysis.example.json",
+      "sha256": "bd3db6cb3ab380474de84d5eb9803c10f971ae48666fd440a12f4bd8129933a5"
+    },
+    {
+      "bytes": 760,
+      "path": "templates/baseline-analysis.example.json",
+      "sha256": "7621a85579838afc0f4b073cd40e2339d313de33b9ff28be324ea47bf933bfb2"
+    },
+    {
+      "bytes": 412,
+      "path": "templates/baseline-preflight.example.json",
+      "sha256": "f7b58f48b02609d6bdecc98cdef7d26c0754356a597a164933ebdf78c5eaef89"
+    },
+    {
+      "bytes": 2912,
+      "path": "templates/baseline-reproduction.md",
+      "sha256": "c341257054716415e900963fd8f0b0137225259b87f5854c48c6199e75afc031"
+    },
+    {
+      "bytes": 377,
+      "path": "templates/candidate-review.example.json",
+      "sha256": "0b062cfaed484738e79372fcce1575c5938bdef5979688500045ed2844e47c99"
+    },
+    {
+      "bytes": 284,
+      "path": "templates/claim.example.json",
+      "sha256": "d3c591cdbd8b7e789647657b09e02b999953289e2ffd3a199528c2c5c302d7c9"
+    },
+    {
+      "bytes": 1625,
+      "path": "templates/contract.example.yaml",
+      "sha256": "624e2037c9cae0ed49de4d025602bee23d229698a85cbfeffb7c05cc4d43745b"
+    },
+    {
+      "bytes": 2298,
+      "path": "templates/idea-card.md",
+      "sha256": "2c311beba483e89951743e5c558e323891e068432b2ec107604f3e6f1e1ecc67"
+    },
+    {
+      "bytes": 388,
+      "path": "templates/idea.example.json",
+      "sha256": "14851db753402f2b66b26e7704f2bf1ad1d1e2d191e0a7b62036177cef2470f3"
+    },
+    {
+      "bytes": 2615,
+      "path": "templates/literature-record.md",
+      "sha256": "21052eeda74bfeb6390a27b59e0862e60190e386519abb19b5e846c34a28b297"
+    },
+    {
+      "bytes": 604,
+      "path": "templates/method-implementation-map.md",
+      "sha256": "624063d080b3ae1c1ff6f28c12594e772a8b1dcecc51df41aed5c2b98633619d"
+    },
+    {
+      "bytes": 4845,
+      "path": "templates/protocol-fields.md",
+      "sha256": "0e7e44997a84389db3b53b03917a51a794e5b62005910d93c91f4e43e3d6141d"
+    },
+    {
+      "bytes": 446,
+      "path": "templates/selection.example.json",
+      "sha256": "647790fc955658ba1329b8f3bb552ba0097235d67cc135ea901868f238bf5cc2"
+    },
+    {
+      "bytes": 15364,
+      "path": "tests/test_amend_limits.py",
+      "sha256": "41008e52ce3f2bfc465f6c0d8c657eb378b80e4138ee20105c217e05372356a8"
+    },
+    {
+      "bytes": 9964,
+      "path": "tests/test_baseline_evidence.py",
+      "sha256": "5cfcfdbdda7cf81ef5483c7e819d46e7760834bfd6aa088f3ae929b96daf466d"
+    },
+    {
+      "bytes": 25140,
+      "path": "tests/test_contextflow_runner.py",
+      "sha256": "74c3c4a3d2bdfe0083161b43339f827289cab031477cfa6e1b48a39fde1bd169"
+    },
+    {
+      "bytes": 4192,
+      "path": "tests/test_contract_provenance.py",
+      "sha256": "43730c61145da5ac5913f6702e777acd81da3f17f8fe0c880273cee80413325f"
+    },
+    {
+      "bytes": 2565,
+      "path": "tests/test_delegation.py",
+      "sha256": "60a24ff0fa209e46464a22017d2bc43d0f16d18db592199b93044ba8b67ffbb7"
+    },
+    {
+      "bytes": 2655,
+      "path": "tests/test_execution_binding.py",
+      "sha256": "3c3424afb75e72d39b6d238ebf6dd65fab272e55fd3522961ad3c3c16e3befb1"
+    },
+    {
+      "bytes": 18684,
+      "path": "tests/test_export_third_party.py",
+      "sha256": "dc2cc1290bb53178d0c251c12a841e2e7642f8132ace8850e6b15784fa533fb3"
+    },
+    {
+      "bytes": 8895,
+      "path": "tests/test_installation.py",
+      "sha256": "3109f7564b36eb4ebe3089c508952cfb506cd765e0a0a7434c7bddcec918e169"
+    },
+    {
+      "bytes": 4061,
+      "path": "tests/test_model_routes.py",
+      "sha256": "40ec4bfe05ddc1638727aa81de70086d3d434bdd60cda6d4a2f9241bd6bd6398"
+    },
+    {
+      "bytes": 2145,
+      "path": "tests/test_novelty.py",
+      "sha256": "c900d3920b8607ffb321f61f098d58acbddc9cd60d28f799adc769eb909417c6"
+    },
+    {
+      "bytes": 7024,
+      "path": "tests/test_project_workflow.py",
+      "sha256": "69de424b9846b4bde1ec9c0805444d0f30da374252ac18fd23873ea9171f6158"
+    },
+    {
+      "bytes": 19353,
+      "path": "tests/test_review_batch.py",
+      "sha256": "80a9e5c06cecfa144ecfcfe1456ee9105dddfa27bd98679a3851c68f63df54f2"
+    },
+    {
+      "bytes": 3818,
+      "path": "tests/test_review_execution_flow.py",
+      "sha256": "4080493675f5e49576f4240199be1e996f0e82f466fec2d6a8a01411ca506055"
+    },
+    {
+      "bytes": 11121,
+      "path": "tests/test_selection.py",
+      "sha256": "a51716c3b21c6638bb9d1b1bd8e4415add27d6023cabd9c342581c937ce29951"
+    },
+    {
+      "bytes": 8682,
+      "path": "tests/test_signals_results.py",
+      "sha256": "bab9d5836c9de6038cf10ab0255c612b50a35aa44fed2a1cd8dced2ce733829d"
+    },
+    {
+      "bytes": 27836,
+      "path": "tests/test_workflow.py",
+      "sha256": "a4ef958ba902ee0ecf7469b829cec56d5c3a99615c7c8f07d8cd5c95e6fbd00f"
+    },
+    {
+      "bytes": 26528,
+      "path": "tools/amend_limits.py",
+      "sha256": "e22a4318b8e8c53a5e2bc284c06a7a58c077de58bde1bee164add52c35bcf9e8"
+    },
+    {
+      "bytes": 16617,
+      "path": "tools/contracts.py",
+      "sha256": "4ef082e84deed4df4b73a51f7455c305d2722d8ae9edf4c8925453ad2b0f5215"
+    },
+    {
+      "bytes": 26635,
+      "path": "tools/evidence.py",
+      "sha256": "c0671b3d8ebffd97b2e0c8c23b12f3c4d5d62498e73ba887ebbc24880b5135ae"
+    },
+    {
+      "bytes": 47300,
+      "path": "tools/export_third_party.py",
+      "sha256": "69cc6b41d57a6cabc0797366e5ab6d4afdd16c172263227c32673bc64f4b559d"
+    },
+    {
+      "bytes": 21873,
+      "path": "tools/gates.py",
+      "sha256": "203c1170ca4d91be392b0dcc65de571c63b1477f1b9abd1c61dd6698cd1ea48c"
+    },
+    {
+      "bytes": 11731,
+      "path": "tools/installation.py",
+      "sha256": "8f92e17ed3780ba1a0ec6f6b26da2ee8c43dd7e310c5cccdd6091be695e7f04d"
+    },
+    {
+      "bytes": 20169,
+      "path": "tools/model_routes.py",
+      "sha256": "2c41b94f807150106d368b09dfe560391d320059dbd1adf75d3b01da2b4aadf6"
+    },
+    {
+      "bytes": 1780,
+      "path": "tools/package.py",
+      "sha256": "28e899069890d644174b420463caf4ad9d229562c16bb37e5e26f58b16c149ab"
+    },
+    {
+      "bytes": 7990,
+      "path": "tools/project_workflow.py",
+      "sha256": "8c4d66b059170e7398c49b0a603e865605145ce88d699ad9117a2ff405acab31"
+    },
+    {
+      "bytes": 22351,
+      "path": "tools/research.py",
+      "sha256": "6417e36b402ed120baa03f95a69cbfda956c3479359d3d5167b4b047b2de70c3"
+    },
+    {
+      "bytes": 9744,
+      "path": "tools/results.py",
+      "sha256": "a99d927f81d0b7ce63d75bacfd77c44070e28dd0b68433d4db004e94783d4844"
+    },
+    {
+      "bytes": 13458,
+      "path": "tools/review_batch.py",
+      "sha256": "1976c694c0b55dc2820a12c7440c369dcd5a6146d48c6e074bee53c67308c403"
+    },
+    {
+      "bytes": 9468,
+      "path": "tools/run_evidence.py",
+      "sha256": "225a548c6fa2146e91babef714ea23af21439fefd15a437c7681ac4dc91b7316"
+    },
+    {
+      "bytes": 29641,
+      "path": "tools/runtime.py",
+      "sha256": "0474af8dd5a4cade91e61b5df388afae216e7596d96a7c797cea10f2f4be401c"
+    },
+    {
+      "bytes": 12054,
+      "path": "tools/selection.py",
+      "sha256": "cb2efd7990b47fbcd59646ea0767d5694ee9a2f90ff63f5c7b5b874e663cac8a"
+    },
+    {
+      "bytes": 2693,
+      "path": "tools/verify.py",
+      "sha256": "87b5a4812f67536175090df5532293d3f26d8e68aea807e2c3421c1f725d02a4"
+    },
+    {
+      "bytes": 850,
+      "path": "tools/verify_upstream.py",
+      "sha256": "b6a8207f08ce8d338de008741f2fac51e5efe4f2732025c248f8c6501ef0c172"
+    },
+    {
+      "bytes": 1151,
+      "path": "vendor/aris/.claude-plugin/marketplace.json",
+      "sha256": "d3bbfe86e970443cad53e3d4c1e0853726d3f526e54d891c73f7dcb873114e8c"
+    },
+    {
+      "bytes": 703,
+      "path": "vendor/aris/.claude-plugin/plugin.json",
+      "sha256": "2105d8087918b1c143c5b971886a28842eb90c023f6e9e07fe4caeda2a07dc6e"
+    },
+    {
+      "bytes": 830,
+      "path": "vendor/aris/.codex-plugin/plugin.json",
+      "sha256": "a5b0d35d61c1352bf14b9f6ac3501f0b0c0f5e25e5907601efdcf8af4e80cecc"
+    },
+    {
+      "bytes": 1329,
+      "path": "vendor/aris/.env.example",
+      "sha256": "7b34f1c898929eb709e1e5f09e701348c45d1ceaebdef5c0732aaa632a3b21cc"
+    },
+    {
+      "bytes": 283,
+      "path": "vendor/aris/.gitattributes",
+      "sha256": "e0670a4436402d4fefe33d13b7786d49a9e54f7e2f9703b4b30b24897b1f3b85"
+    },
+    {
+      "bytes": 564,
+      "path": "vendor/aris/.github/agents/aris-reviewer-claude.agent.md",
+      "sha256": "cb78b6b1570d3ed3bf9e0b78a12d0b45cd201c7ca0ed0b61a22186c0d44dccc2"
+    },
+    {
+      "bytes": 541,
+      "path": "vendor/aris/.github/agents/aris-reviewer-openai.agent.md",
+      "sha256": "c6d983e1e2df98e498cde979211169ac7a3640261bc61d0c64d64403df23e09c"
+    },
+    {
+      "bytes": 1062,
+      "path": "vendor/aris/.github/workflows/check-skills-inventory.yml",
+      "sha256": "4bd7a6e6680e849975227a47e9a8ede6dffc5b27f9dc08d44163fb5dd9cb2c37"
+    },
+    {
+      "bytes": 1448,
+      "path": "vendor/aris/.github/workflows/lint-skills-helpers.yml",
+      "sha256": "18bff0d74d787c3238c243ffb9893723d3cba53a4f0848f03864221e45cdbddc"
+    },
+    {
+      "bytes": 822,
+      "path": "vendor/aris/.github/workflows/test-install-aris-ps1.yml",
+      "sha256": "01d09c4693a379ff56b781e318522e5d48be6148764820109f4820bd7fc3a6dd"
+    },
+    {
+      "bytes": 1903,
+      "path": "vendor/aris/.github/workflows/test-suite.yml",
+      "sha256": "08434dedcdc9885d8a936e4c9152ff7efb89e26c62150d47567869f4a415b09a"
+    },
+    {
+      "bytes": 1700,
+      "path": "vendor/aris/.github/workflows/verify-codex-policy-audit.yml",
+      "sha256": "54df4c03f213e3f736c44996c475518ae1ac48c03b523bf851e92a65c5295fa2"
+    },
+    {
+      "bytes": 1110,
+      "path": "vendor/aris/.gitignore",
+      "sha256": "ab5043f7d74b6c09b068f16eb0e4bd028773881d7fc26a1374b7915e39efb2e0"
+    },
+    {
+      "bytes": 18741,
+      "path": "vendor/aris/AGENT_GUIDE.md",
+      "sha256": "5fd17eb026cb98b182c7f330860094b4481f5d782b6375b9f4d5212bc00a6159"
+    },
+    {
+      "bytes": 1998,
+      "path": "vendor/aris/CONTRIBUTING.md",
+      "sha256": "f8a464d769308fed89acf11ba6e2b20552a6e9008c5669ec8522acb0fe296363"
+    },
+    {
+      "bytes": 1860,
+      "path": "vendor/aris/CONTRIBUTING_CN.md",
+      "sha256": "46f12ab3121765765167bc66fbea239fbcd30d3b31cbe884290fe6ea17871e47"
+    },
+    {
+      "bytes": 1067,
+      "path": "vendor/aris/LICENSE",
+      "sha256": "e30cf5dd5f49b4f9b656590e23d782b4756c924a9f0ff0162b3e7b5d87006bf5"
+    },
+    {
+      "bytes": 236002,
+      "path": "vendor/aris/README.md",
+      "sha256": "5732c5aaf8fb48d570cc31a932445e1b1a3edd75e2d10efac5d911290aee02c1"
+    },
+    {
+      "bytes": 198308,
+      "path": "vendor/aris/README_CN.md",
+      "sha256": "3d2c4ad94807d6f6769cdd510fe9c4382fb27583f4b0acee88b197a8efdee311"
+    },
+    {
+      "bytes": 12295,
+      "path": "vendor/aris/SETUP_GUIDE.md",
+      "sha256": "50a9d67d000462806d20b3192c2f89416039b1968696270c3dc69554ef947ae6"
+    },
+    {
+      "bytes": 11957,
+      "path": "vendor/aris/SETUP_GUIDE_CN.md",
+      "sha256": "feeb7337c913d946f67ba2125b9d9e082f4e5a376118297692b905f0a3ac45a1"
+    },
+    {
+      "bytes": 1467,
+      "path": "vendor/aris/agents/aris-fanout-leaf.md",
+      "sha256": "f45c1e1eb4f077e2a717f7fed159e01d7a18373fe7f1a92e598bcb2306f056a2"
+    },
+    {
+      "bytes": 8084,
+      "path": "vendor/aris/aris-monitor/README.md",
+      "sha256": "1a5b4749943beefee52ec7b0b2efd43b3312ad22963925a2f31290799b78fb8a"
+    },
+    {
+      "bytes": 95117,
+      "path": "vendor/aris/aris-monitor/assets/screenshot.png",
+      "sha256": "45f9dae192eeb42236959de084f4576ff1beb034dd48cf9d9e1206828abe12a6"
+    },
+    {
+      "bytes": 6072,
+      "path": "vendor/aris/aris-monitor/focus-tty.sh",
+      "sha256": "20b7c520744ebf9a666eb6d44f7620496f1679229492e9ac451cf2201fc9bb3b"
+    },
+    {
+      "bytes": 4144,
+      "path": "vendor/aris/aris-monitor/focus.py",
+      "sha256": "1c97005ed5cb8f2a83c37a13d8e282bd385d12a87bd713ea6db2f2ec25940ddb"
+    },
+    {
+      "bytes": 1795,
+      "path": "vendor/aris/aris-monitor/run.sh",
+      "sha256": "9d3c8646e311b1989e90142d9b7060f67b7446a9e74365ddf3674be343acd401"
+    },
+    {
+      "bytes": 17936,
+      "path": "vendor/aris/aris-monitor/scanner.py",
+      "sha256": "9020cf529449a535db5f317a2ec45be4e8b5cc636a593c0f6bb61a88d317a94e"
+    },
+    {
+      "bytes": 2451,
+      "path": "vendor/aris/aris-monitor/ticker.py",
+      "sha256": "5128f37cb2612985694f44329091b74c885272f9cf5f4fd78ca9443c80c8bf90"
+    },
+    {
+      "bytes": 15287,
+      "path": "vendor/aris/aris-monitor/widget.py",
+      "sha256": "7badae1229c21fd93eada5a7830a0f673aeda441f953784cddfd076894fc8c8b"
+    },
+    {
+      "bytes": 378993,
+      "path": "vendor/aris/assets/claude-fleet-preview.png",
+      "sha256": "fee49a687aa43a0f6eae45f7410d786e5768c0be73d54f3c770ce3f7a446550a"
+    },
+    {
+      "bytes": 758275,
+      "path": "vendor/aris/assets/community_showcase_7_10_codex.png",
+      "sha256": "5e03da05aee68902c088d9a1df54c618b7e6205068de85488e19011f239a4933"
+    },
+    {
+      "bytes": 174085,
+      "path": "vendor/aris/assets/community_showcase_8_10.png",
+      "sha256": "a7ede3c1de5c1799690014227ad09f91b0be4786f1ca99ecb9754925bfb68e8c"
+    },
+    {
+      "bytes": 650182,
+      "path": "vendor/aris/assets/feishu_interactive.jpg",
+      "sha256": "c64b44f7135ed1914634ba5b2101dbca5ef20ace86d07f49c79852895ce48eeb"
+    },
+    {
+      "bytes": 3143810,
+      "path": "vendor/aris/assets/feishu_push.png",
+      "sha256": "63909a8a80965186aba745522beccb0c7a11b949da34645ec3386cc664819313"
+    },
+    {
+      "bytes": 983150,
+      "path": "vendor/aris/assets/paper_illustration_demo.png",
+      "sha256": "8170e42e34789269dad533d6e916f218d3a7efe7a07a008ce8fe022763420747"
+    },
+    {
+      "bytes": 2880,
+      "path": "vendor/aris/commands/setup.md",
+      "sha256": "933055a86fba5528ce887f2ddd8c879e57c593c702ec405e37c4da3cacfbd5e8"
+    },
+    {
+      "bytes": 8525922,
+      "path": "vendor/aris/community_papers/UAV-CC.pdf",
+      "sha256": "027b384acbd7c96fd3f2eaa7d82ca918a55e29b3d2a1e0be69b4b0f38ea86a61"
+    },
+    {
+      "bytes": 13616,
+      "path": "vendor/aris/docs/ALI_CODING_PLAN_GUIDE.md",
+      "sha256": "d70dc3253148a5a8b2feeddc96542ee43cc15353d41976fe64a77e99ad0311be"
+    },
+    {
+      "bytes": 16305,
+      "path": "vendor/aris/docs/ANTIGRAVITY_ADAPTATION.md",
+      "sha256": "67270bdf40aef363ba9e2f35f60250bc641019db80148e720f4d34993879a4ce"
+    },
+    {
+      "bytes": 13792,
+      "path": "vendor/aris/docs/ANTIGRAVITY_ADAPTATION_CN.md",
+      "sha256": "583f3ffe392c77d1ec3a78911343bf5c48662e7d40e8edcb7127160516976dfe"
+    },
+    {
+      "bytes": 415,
+      "path": "vendor/aris/docs/ARIS-Code-README_CN.md",
+      "sha256": "2bce9d278bf19a6bd641b72eb488674836b3580843d1a99b5a2fc62b43cea676"
+    },
+    {
+      "bytes": 401,
+      "path": "vendor/aris/docs/ARIS-Code-README_EN.md",
+      "sha256": "00cf684cc3f002c01e0629c930af4b9332fd4833763753d11b4bc4da999f7cd9"
+    },
+    {
+      "bytes": 65974,
+      "path": "vendor/aris/docs/ARIS_INTRO.html",
+      "sha256": "a2c825605ae21b2d94e30c5dc23a1ab3ed80552a48df7d7c7393e493ef6b7aba"
+    },
+    {
+      "bytes": 33696,
+      "path": "vendor/aris/docs/ARIS_INTRO.md",
+      "sha256": "ce0f3a54dbaeac53249e8567270f3ca3594388950f521d7f36db57303f8bd752"
+    },
+    {
+      "bytes": 3545,
+      "path": "vendor/aris/docs/ARIS_INTRO.review.json",
+      "sha256": "938d79b1f68285935121fe3ea300d27ebae0840e624baab39e07ee34bf320c04"
+    },
+    {
+      "bytes": 3247,
+      "path": "vendor/aris/docs/CODEX_CLAUDE_REVIEW_GUIDE.md",
+      "sha256": "b63516dd298351ba9d11e3126dffbc705bfe5b8a1fa0b5b4acda6e9dbc1bcc60"
+    },
+    {
+      "bytes": 3195,
+      "path": "vendor/aris/docs/CODEX_CLAUDE_REVIEW_GUIDE_CN.md",
+      "sha256": "5013869d0386b76af4e03546f154a2787b0bcbe4d93cc8bf2ad284849406f546"
+    },
+    {
+      "bytes": 9794,
+      "path": "vendor/aris/docs/CODEX_GEMINI_REVIEW_GUIDE.md",
+      "sha256": "4da68c23fa2f9e7657614d3048130acb45b9b99d9ba262e965fc22f6f77d4cff"
+    },
+    {
+      "bytes": 9384,
+      "path": "vendor/aris/docs/CODEX_GEMINI_REVIEW_GUIDE_CN.md",
+      "sha256": "bc825a22ff7c794997285aa7c09fdfb432d4e13f7e06f3e2305f5bff9f39f507"
+    },
+    {
+      "bytes": 3249,
+      "path": "vendor/aris/docs/CODEX_POLICY_AUDIT.md",
+      "sha256": "b66f57c9168c69db5af98d8c2207410757c65e017f17628ea30ccc29ab9fa691"
+    },
+    {
+      "bytes": 13917,
+      "path": "vendor/aris/docs/COPILOT_CLI_ADAPTATION.md",
+      "sha256": "8d37cd574d52d46ed1d0bd7acb067235ea9e5a58401c35e704bf8feeea196e53"
+    },
+    {
+      "bytes": 11848,
+      "path": "vendor/aris/docs/CURSOR_ADAPTATION.md",
+      "sha256": "d4e68cb02bf4f963972e06b33bb37af0060622e6d90deee8dc7cfd064ae47dc2"
+    },
+    {
+      "bytes": 9215,
+      "path": "vendor/aris/docs/CUSTOMIZATION.md",
+      "sha256": "6bb4cfe2c50a0f9b124c080867176f1ef3bd12cee87d1aa21cf124bd5245c0eb"
+    },
+    {
+      "bytes": 8578,
+      "path": "vendor/aris/docs/CUSTOMIZATION_CN.md",
+      "sha256": "2deb35a4be29ab877520a43a3573c019a62f5eed4c873d74a82dec6a4c0c8339"
+    },
+    {
+      "bytes": 2846,
+      "path": "vendor/aris/docs/GPU_SETUP.md",
+      "sha256": "457d59650b09e2080943b3dd49d27e47c38257dd5787e522dd0d3ed62c5f2681"
+    },
+    {
+      "bytes": 2713,
+      "path": "vendor/aris/docs/GPU_SETUP_CN.md",
+      "sha256": "f0328a4a2919bfa5661b45e48af53feec36ecd74afc0ef2d32ad4c5c34c5b142"
+    },
+    {
+      "bytes": 7526,
+      "path": "vendor/aris/docs/LLM_API_MIX_MATCH_GUIDE.md",
+      "sha256": "476d849c55c7339a5fd686a1a4817727ab183e9c10d88c1f62519fd508dc2802"
+    },
+    {
+      "bytes": 6456,
+      "path": "vendor/aris/docs/MANUAL_REVIEW_GUIDE.md",
+      "sha256": "7e90194aa1383ec2600765da51cec5e302c778f76a42e0d1c0aaccd0c9749c92"
+    },
+    {
+      "bytes": 5969,
+      "path": "vendor/aris/docs/MANUAL_REVIEW_GUIDE_CN.md",
+      "sha256": "898d31552cea281e38e8a4d45683b42a00aeb39794588e2dd90ba49a9a1992d8"
+    },
+    {
+      "bytes": 6066,
+      "path": "vendor/aris/docs/MINIMAX_MCP_GUIDE.md",
+      "sha256": "02496ac78351d0d43a5cd95d198e35299479b38caeee2c7a1d47ddf0cc2ed9fb"
+    },
+    {
+      "bytes": 12084,
+      "path": "vendor/aris/docs/MODELSCOPE_GUIDE.md",
+      "sha256": "95bccc7bd3c3bb59e7deb2b1b7ba53a2d587b454bfe53f569703ef9cf8c6662d"
+    },
+    {
+      "bytes": 7968,
+      "path": "vendor/aris/docs/MODEL_COMBINATIONS.md",
+      "sha256": "aeed3b01f9038aefe2d4cbcafb9a3721e5a9350f5ae0136ade0d8c190e425216"
+    },
+    {
+      "bytes": 8129,
+      "path": "vendor/aris/docs/MODEL_COMBINATIONS_CN.md",
+      "sha256": "a6dfdce0d47350164229d11fbe421b5bf23c67dfc9378eac10700b131c2abf2e"
+    },
+    {
+      "bytes": 6942,
+      "path": "vendor/aris/docs/MiniMax-GLM-Configuration.md",
+      "sha256": "8548e15d73b07815d6d4881dc2b0a25263f02fd3b711a617d0e82d8b7a9693bb"
+    },
+    {
+      "bytes": 7665,
+      "path": "vendor/aris/docs/NARRATIVE_REPORT_EXAMPLE.md",
+      "sha256": "e3cdd66c75d6c037eef9631da6a8f72c82089176f4fd6e03f63efb24b6e54bc1"
+    },
+    {
+      "bytes": 2212,
+      "path": "vendor/aris/docs/OPENCLAW_ADAPTATION.md",
+      "sha256": "a9c60c6a60aabf205753b453fdbd166c5cb2e322cc5b17798373c90d3f656b8d"
+    },
+    {
+      "bytes": 10347,
+      "path": "vendor/aris/docs/OPENROUTER_GUIDE.md",
+      "sha256": "fce8766f3c127e41ffe63c8c8bfc8969bae4d9b525789bd598610816ef38b9ce"
+    },
+    {
+      "bytes": 10108,
+      "path": "vendor/aris/docs/OPENROUTER_GUIDE_CN.md",
+      "sha256": "5f5e1c51ee1a97e96fd4621c463bcf6f8a0799a2253a272d94764f7fafa6eb32"
+    },
+    {
+      "bytes": 8900,
+      "path": "vendor/aris/docs/PROJECT_FILES_GUIDE.md",
+      "sha256": "1029bc47aeca117ffd76dca93b5a082b0db4285115b633cc370c1ef1ed24c607"
+    },
+    {
+      "bytes": 8404,
+      "path": "vendor/aris/docs/PROJECT_FILES_GUIDE_CN.md",
+      "sha256": "95350f17c1bf535f8546ac99d07757881f8fe912e20586663bd1476dabf7eec3"
+    },
+    {
+      "bytes": 8081,
+      "path": "vendor/aris/docs/RESUBMIT_AND_TALK.md",
+      "sha256": "c2329e069ad52b8a3c3f19be5751dd09013673b5cedf18da6e7841de9898ad58"
+    },
+    {
+      "bytes": 7987,
+      "path": "vendor/aris/docs/RESUBMIT_AND_TALK_CN.md",
+      "sha256": "363db52038d379de427c7d7afa6cb5ed42d17932aa7d625f480987aac3632eba"
+    },
+    {
+      "bytes": 17978,
+      "path": "vendor/aris/docs/SESSION_RECOVERY_GUIDE.md",
+      "sha256": "22d9346aee6c066297127b17f7c903138160c517baea48e43c37e6caa6c41d86"
+    },
+    {
+      "bytes": 16892,
+      "path": "vendor/aris/docs/SESSION_RECOVERY_GUIDE_CN.md",
+      "sha256": "5f203ea61dab12fa4aff36ce4f97022b2c89f0cfb191113e20600192f01660f2"
+    },
+    {
+      "bytes": 22010,
+      "path": "vendor/aris/docs/SKILLS_CATALOG.md",
+      "sha256": "4a9f8b723d97ef9e17f6c88549977c5b5095447b03559b3aea0f281278190ce4"
+    },
+    {
+      "bytes": 11331,
+      "path": "vendor/aris/docs/TRAE_ARIS_RUNBOOK_CN.md",
+      "sha256": "f97aad017836867fdfff74e0bfa92ec436b90e0a4a85f41d1671563f81802539"
+    },
+    {
+      "bytes": 11295,
+      "path": "vendor/aris/docs/TRAE_ARIS_RUNBOOK_EN.md",
+      "sha256": "8b5747d64804e8736de75ef58f63b59f356dcda93dc200111fc8f5ad0fc6489d"
+    },
+    {
+      "bytes": 7240,
+      "path": "vendor/aris/docs/WATCHDOG_GUIDE.md",
+      "sha256": "a374dbc93bea75f42e63d2169fe11307369a8e3527e3ed6764409044bad70b16"
+    },
+    {
+      "bytes": 7029,
+      "path": "vendor/aris/docs/WATCHDOG_GUIDE_CN.md",
+      "sha256": "fe3baf6865af19c5d7d8034542b88047954424f6398fe34e0e078e0c5790030c"
+    },
+    {
+      "bytes": 324679,
+      "path": "vendor/aris/docs/aris-code-banner.png",
+      "sha256": "d8b37b1f6e0413a931fc532945aa8f0deb3a560df6f60f4a399ae1ba69176e1b"
+    },
+    {
+      "bytes": 437661,
+      "path": "vendor/aris/docs/aris-code-screenshot.png",
+      "sha256": "7d7a25cbf4337856905cad804364d7f8be206318593809f363d897b219b381be"
+    },
+    {
+      "bytes": 1940978,
+      "path": "vendor/aris/docs/aris-movie-director-method.png",
+      "sha256": "ca1aedeeb70c1ab619c89c5dca30815c386dd08032ae91544ea9d80cf5e17487"
+    },
+    {
+      "bytes": 2282536,
+      "path": "vendor/aris/docs/aris_intro_slides.pdf",
+      "sha256": "37c4f73de95ed3c6a504c95c1372bff247078bb10b7eeb68b899eb71c4836148"
+    },
+    {
+      "bytes": 7194,
+      "path": "vendor/aris/docs/aris_logo.svg",
+      "sha256": "0d0bbce1971fac0f1e0f51fefe295ece9b6034690a8e5ceb6f54adb6cf2c74e5"
+    },
+    {
+      "bytes": 90892,
+      "path": "vendor/aris/docs/auto_review_score_curve.png",
+      "sha256": "74be1f0cdb177bfd5c84d072607ee577d9d65aa73837ea5a71a2bb2ee2a649b1"
+    },
+    {
+      "bytes": 1831727,
+      "path": "vendor/aris/docs/blogs/continuous_dlm_2026h1_survey.html",
+      "sha256": "71089a7a22d3bd1b6d73928971a240b731edd3c015c58c1f1cd278cf1487fa03"
+    },
+    {
+      "bytes": 53943,
+      "path": "vendor/aris/docs/hero_combined.svg",
+      "sha256": "ba8ba7dcaa551d6db2ed777b7e219d11ac508a7efb606a624aa96539de3a64c3"
+    },
+    {
+      "bytes": 9536,
+      "path": "vendor/aris/docs/hero_idea.svg",
+      "sha256": "aa7ab53cec8f7f78dd44390cc31a49ccb24ab71a5f7c95c7d7fa3eadf2948d8d"
+    },
+    {
+      "bytes": 6767,
+      "path": "vendor/aris/docs/hero_implement.svg",
+      "sha256": "149a7ffefe7c5a239daefc011ada0fd645c65b8a894e267dace5c8b6a0cb1381"
+    },
+    {
+      "bytes": 10858,
+      "path": "vendor/aris/docs/hero_interaction.svg",
+      "sha256": "a6c4d3563a46f7302bf92a41667be64b2bb9d6d19a7525895aae50017ae437fa"
+    },
+    {
+      "bytes": 4825,
+      "path": "vendor/aris/docs/hf_daily_paper_1.svg",
+      "sha256": "ebc41e2d6efe59dd33d0dcbf5863dfd16c82dcc9bf4927e502a61d77aada3d01"
+    },
+    {
+      "bytes": 8998,
+      "path": "vendor/aris/docs/integrations/FEISHU.md",
+      "sha256": "bfc6fc8998bdc553fb2d760ea90a03028ffa4215537fb7e0fe4e52cfc0ea669a"
+    },
+    {
+      "bytes": 8800,
+      "path": "vendor/aris/docs/integrations/FEISHU_CN.md",
+      "sha256": "0c583c289879730977b89f2b42d59fb075a94b9de20463f5576b4e46c7a06aff"
+    },
+    {
+      "bytes": 2958,
+      "path": "vendor/aris/docs/integrations/OBSIDIAN.md",
+      "sha256": "f2603b51b2d1a76cc372df998ba7565ec6afc55b80f50a8ad667f7df3c1edab6"
+    },
+    {
+      "bytes": 2873,
+      "path": "vendor/aris/docs/integrations/OBSIDIAN_CN.md",
+      "sha256": "4c9d776e0352108e84078db928ee78ac7fddfd78c55f8f1713ff1fa20c112bc1"
+    },
+    {
+      "bytes": 4679,
+      "path": "vendor/aris/docs/integrations/VAST_GPU_GUIDE.md",
+      "sha256": "3d30582549a72cf2c5ff85a6dcac48177013c5a44dfd47194a0e4a6523625500"
+    },
+    {
+      "bytes": 4512,
+      "path": "vendor/aris/docs/integrations/VAST_GPU_GUIDE_CN.md",
+      "sha256": "b75a35ca889caa7bc67f225bb6ef7f2ee469565c6e23af6740192124c2d20fb2"
+    },
+    {
+      "bytes": 2831,
+      "path": "vendor/aris/docs/integrations/ZOTERO.md",
+      "sha256": "e9014dc6cb15e008eb2d720ac917287c07bdf695ec105c50f76a0c8203666a2d"
+    },
+    {
+      "bytes": 2694,
+      "path": "vendor/aris/docs/integrations/ZOTERO_CN.md",
+      "sha256": "e9e5f0df5d1dac1e7cd8e484a77b9e613603fa5cea7e757a12478b2d244837b8"
+    },
+    {
+      "bytes": 94144,
+      "path": "vendor/aris/docs/tutorials/3d_generation_tutorial.html",
+      "sha256": "f9ab9923fec8fc06fea8e6b023545d7b5d1ad861a9a12caf34e3c4d50f5e3d2a"
+    },
+    {
+      "bytes": 64843,
+      "path": "vendor/aris/docs/tutorials/3d_generation_tutorial.md",
+      "sha256": "beab28036da8f28744b8d64815a669d0fce44c978bd869145e41b15860659ccc"
+    },
+    {
+      "bytes": 1663,
+      "path": "vendor/aris/docs/tutorials/3d_generation_tutorial.review.json",
+      "sha256": "c79cb0fa5764e9b4257a162002d0e5941e3452d2198f63a8b510c17a6fe81959"
+    },
+    {
+      "bytes": 100769,
+      "path": "vendor/aris/docs/tutorials/3d_generation_tutorial_en.html",
+      "sha256": "5b4b0634c1c8f2a6ff2eb1d8b06ea05fdc1da94f8d38322099238adf207010c5"
+    },
+    {
+      "bytes": 70465,
+      "path": "vendor/aris/docs/tutorials/3d_generation_tutorial_en.md",
+      "sha256": "9caec9665d59cc27afa1d1593863904b12b36b74df9446dff5440621e7923272"
+    },
+    {
+      "bytes": 8735,
+      "path": "vendor/aris/docs/tutorials/README.md",
+      "sha256": "94148c359e49f505f5b061c0a684848a310f328a8cb72c948d6b0925417a616f"
+    },
+    {
+      "bytes": 105774,
+      "path": "vendor/aris/docs/tutorials/agent_foundations_tutorial.html",
+      "sha256": "3b5dd4781a93ab6c4615c6bf3b50f191655cbc75b60532daea34f7ae925ec170"
+    },
+    {
+      "bytes": 74041,
+      "path": "vendor/aris/docs/tutorials/agent_foundations_tutorial.md",
+      "sha256": "a329ddea9be664b99a53f2b46fbe530838614228ddebbe7b43450f15eb8b12ad"
+    },
+    {
+      "bytes": 10832,
+      "path": "vendor/aris/docs/tutorials/agent_foundations_tutorial.review.json",
+      "sha256": "0b688cdfc83f18825d194bf0f3ba07e507591ef2fd81223642ede072a84600d1"
+    },
+    {
+      "bytes": 111549,
+      "path": "vendor/aris/docs/tutorials/agent_foundations_tutorial_en.html",
+      "sha256": "9e30682a7020e1ef52b2507b310fd3a7fe69b003033a885599b7b19d388608cd"
+    },
+    {
+      "bytes": 79511,
+      "path": "vendor/aris/docs/tutorials/agent_foundations_tutorial_en.md",
+      "sha256": "1b1053abea299e0de1f646724a1d612f24612034b2b2b9a32a988d1cf8da8728"
+    },
+    {
+      "bytes": 110356,
+      "path": "vendor/aris/docs/tutorials/agentic_rl_tutorial.html",
+      "sha256": "003e176e5cf6894f19cf2dac8367579fc926569512a6da5b146b00aefba0a458"
+    },
+    {
+      "bytes": 77810,
+      "path": "vendor/aris/docs/tutorials/agentic_rl_tutorial.md",
+      "sha256": "d3d476658bea0760566d2cc9d6eaf72ceaab67d8c81d3eeaa4442473092e8e6e"
+    },
+    {
+      "bytes": 5878,
+      "path": "vendor/aris/docs/tutorials/agentic_rl_tutorial.review.json",
+      "sha256": "b2422f2a80514928a046c12cc40d37b314f6386741d4529bc1cb534abccf9f66"
+    },
+    {
+      "bytes": 115421,
+      "path": "vendor/aris/docs/tutorials/agentic_rl_tutorial_en.html",
+      "sha256": "460aadaa11f0ab2bb995b2a964e600578524d51e04832d772f127bde07182871"
+    },
+    {
+      "bytes": 82844,
+      "path": "vendor/aris/docs/tutorials/agentic_rl_tutorial_en.md",
+      "sha256": "9dd920e9292be2a57353c0f123d48af9f77fab2a9e3c60a7606b1cfd297d6f9c"
+    },
+    {
+      "bytes": 48972,
+      "path": "vendor/aris/docs/tutorials/attention_tutorial.html",
+      "sha256": "882db6004af7754648603c68ce9716d55f5ff95dc77536aafda30a7be47a1502"
+    },
+    {
+      "bytes": 30353,
+      "path": "vendor/aris/docs/tutorials/attention_tutorial.md",
+      "sha256": "8d8d5146c1a9a924cd5e29973b7419d9fe14f5009c392db4b4ad6ff3a12ab1e0"
+    },
+    {
+      "bytes": 1931,
+      "path": "vendor/aris/docs/tutorials/attention_tutorial.review.json",
+      "sha256": "15e1d9ff9ce2e27688191b2991877799842f317b0e4605586ff19c40a679f728"
+    },
+    {
+      "bytes": 51461,
+      "path": "vendor/aris/docs/tutorials/attention_tutorial_en.html",
+      "sha256": "0f3d4f9022cf66528b853a0727cf8e3f2c4d9f1a149d829198a0273bffab5b83"
+    },
+    {
+      "bytes": 32810,
+      "path": "vendor/aris/docs/tutorials/attention_tutorial_en.md",
+      "sha256": "ecb6fe924cee8db5b2dd0daa4fb81c3866ec6b47ceadaa73ba0011378eb07e67"
+    },
+    {
+      "bytes": 117760,
+      "path": "vendor/aris/docs/tutorials/diffusion_distillation_tutorial.html",
+      "sha256": "03dbb13b83f3e6dd33576f45a34eebac96b56c6cbce6702835bd20de3e68e923"
+    },
+    {
+      "bytes": 86225,
+      "path": "vendor/aris/docs/tutorials/diffusion_distillation_tutorial.md",
+      "sha256": "cdf8cbf0098fd69e5a36cbd5b787d6415815106fdc3159de14661b50323e5b7c"
+    },
+    {
+      "bytes": 8437,
+      "path": "vendor/aris/docs/tutorials/diffusion_distillation_tutorial.review.json",
+      "sha256": "2d8365327bb9130c2e08bbf0d77409b99083340e3ff959646e322e20738d92aa"
+    },
+    {
+      "bytes": 122658,
+      "path": "vendor/aris/docs/tutorials/diffusion_distillation_tutorial_en.html",
+      "sha256": "23633fc40a715486404687cddb8c80cbdddfd97724164ad1d9a72c7b14f30c23"
+    },
+    {
+      "bytes": 90430,
+      "path": "vendor/aris/docs/tutorials/diffusion_distillation_tutorial_en.md",
+      "sha256": "cceb6c61f1f5be01eacd4f25cf2ef79067c1093da76e75e4a92df0a3e3c84877"
+    },
+    {
+      "bytes": 105849,
+      "path": "vendor/aris/docs/tutorials/diffusion_foundations_tutorial.html",
+      "sha256": "dbbe1ea3c3689c18be5f79920785d5098f3cef3b9d13448fdd709ba1683df207"
+    },
+    {
+      "bytes": 77130,
+      "path": "vendor/aris/docs/tutorials/diffusion_foundations_tutorial.md",
+      "sha256": "95c1efc6f929678361bb3b54ef684da7def546002107412458fd14673ebbef67"
+    },
+    {
+      "bytes": 4352,
+      "path": "vendor/aris/docs/tutorials/diffusion_foundations_tutorial.review.json",
+      "sha256": "3c70f0c7bc7e4d78a48e281e09f46476a57a21ae742cdf35789b3def55ed01b1"
+    },
+    {
+      "bytes": 110296,
+      "path": "vendor/aris/docs/tutorials/diffusion_foundations_tutorial_en.html",
+      "sha256": "d5d164255ad9015250529fb4f229c14497ac6ecd867fbf3a2fe251543b2c8925"
+    },
+    {
+      "bytes": 81245,
+      "path": "vendor/aris/docs/tutorials/diffusion_foundations_tutorial_en.md",
+      "sha256": "5f3b3e8403e8abdc6cbd6ec2c8d893bc9c2919733358f4837062708d53549727"
+    },
+    {
+      "bytes": 108459,
+      "path": "vendor/aris/docs/tutorials/diffusion_post_training_tutorial.html",
+      "sha256": "5ec14ee6cb6c77d58a76bdf5ec1796fff21aa64ab106483eb176f422c5ba68f9"
+    },
+    {
+      "bytes": 77060,
+      "path": "vendor/aris/docs/tutorials/diffusion_post_training_tutorial.md",
+      "sha256": "95b47c84420904cb38b68b156d25372d305084281e28fec71d19c405801efef8"
+    },
+    {
+      "bytes": 4062,
+      "path": "vendor/aris/docs/tutorials/diffusion_post_training_tutorial.review.json",
+      "sha256": "5af1efdc5779f814e5aab5a87d2ec61b1886aaa032aa4759d0762ef3847a5d86"
+    },
+    {
+      "bytes": 113716,
+      "path": "vendor/aris/docs/tutorials/diffusion_post_training_tutorial_en.html",
+      "sha256": "9d81a5dc3ac7ec3b2b44a28e963e635ae4c7cdd91f4c54c053709b190cdd864f"
+    },
+    {
+      "bytes": 81943,
+      "path": "vendor/aris/docs/tutorials/diffusion_post_training_tutorial_en.md",
+      "sha256": "6143ed98abc28b9f37f4b33126bbd73399f59e75b12a5c4dcc82769593d96ceb"
+    },
+    {
+      "bytes": 106604,
+      "path": "vendor/aris/docs/tutorials/distributed_training_tutorial.html",
+      "sha256": "31b169b223aab131b16a7460cf1573890a2a5796d4907f76308b69f605900b35"
+    },
+    {
+      "bytes": 74991,
+      "path": "vendor/aris/docs/tutorials/distributed_training_tutorial.md",
+      "sha256": "86087779b70e3bcaf4b22536bdf96eae5fd0d9e07675f4b9c61122ce67ee0af7"
+    },
+    {
+      "bytes": 5623,
+      "path": "vendor/aris/docs/tutorials/distributed_training_tutorial.review.json",
+      "sha256": "1487e32d3e07b7a219268479a2a1538415882c21e29e96f328fbe0232c5c5bd9"
+    },
+    {
+      "bytes": 110171,
+      "path": "vendor/aris/docs/tutorials/distributed_training_tutorial_en.html",
+      "sha256": "0e838f855b9ecc4a91b9afc7cd5d1b08861364bd1fbf8cf2aa5ed53a20af79fd"
+    },
+    {
+      "bytes": 78147,
+      "path": "vendor/aris/docs/tutorials/distributed_training_tutorial_en.md",
+      "sha256": "9ee6b9a3603bcd089bca124fa44f3bdb41d7b5604595f3a506cb9ff601bcd999"
+    },
+    {
+      "bytes": 40266,
+      "path": "vendor/aris/docs/tutorials/flow_matching_tutorial.html",
+      "sha256": "ce6c167a4c2293ab4494b8be9ee6b72c8538b28e6aafe8574f548a6c59b57b12"
+    },
+    {
+      "bytes": 24162,
+      "path": "vendor/aris/docs/tutorials/flow_matching_tutorial.md",
+      "sha256": "ab4358901d204fec676df6ce3b8559be4e69fec3833f764bcfc937b113eea281"
+    },
+    {
+      "bytes": 1485,
+      "path": "vendor/aris/docs/tutorials/flow_matching_tutorial.review.json",
+      "sha256": "8416b67538df085890ca96bc10dc763b275cd1002cbe7e7d26051f3d718da6f6"
+    },
+    {
+      "bytes": 41469,
+      "path": "vendor/aris/docs/tutorials/flow_matching_tutorial_en.html",
+      "sha256": "8571bd00292e41f87b5a1575b218faabb344f46278e142553222a84fc5e2685f"
+    },
+    {
+      "bytes": 25348,
+      "path": "vendor/aris/docs/tutorials/flow_matching_tutorial_en.md",
+      "sha256": "90243d531e3f172dc24c2345e6ada197471f80f92dd45892bc0d002afa86c3f0"
+    },
+    {
+      "bytes": 100407,
+      "path": "vendor/aris/docs/tutorials/image_generation_systems_tutorial.html",
+      "sha256": "70fd8b1b37ee3ff18cb1b3ffcf83a30a966ac6aa728b848cb79ec2c582c1f90f"
+    },
+    {
+      "bytes": 72209,
+      "path": "vendor/aris/docs/tutorials/image_generation_systems_tutorial.md",
+      "sha256": "76785ba96660960ae6f5caf7e252e7da39ef38867ad61c2750d98f248e53d625"
+    },
+    {
+      "bytes": 2524,
+      "path": "vendor/aris/docs/tutorials/image_generation_systems_tutorial.review.json",
+      "sha256": "8eb2e92e4926fe9afeaa1b7d31b1841868facf3305f4b2c49ed3354a7330d4a1"
+    },
+    {
+      "bytes": 105493,
+      "path": "vendor/aris/docs/tutorials/image_generation_systems_tutorial_en.html",
+      "sha256": "42a4f8d8a84f8b2c50a4ef6f2adc91d030c0951b1556bfac6066b44a19aefb2b"
+    },
+    {
+      "bytes": 76946,
+      "path": "vendor/aris/docs/tutorials/image_generation_systems_tutorial_en.md",
+      "sha256": "ef1c753cbe28e852ebfe465a39ec257bc3cadab4915b843627143ce1a7056b13"
+    },
+    {
+      "bytes": 126440,
+      "path": "vendor/aris/docs/tutorials/kl_divergence_rlhf_tutorial.html",
+      "sha256": "52eccb3009fd814191190ecb8a58a76de0f4cfde6fd901565d34173c8ed62b12"
+    },
+    {
+      "bytes": 95454,
+      "path": "vendor/aris/docs/tutorials/kl_divergence_rlhf_tutorial.md",
+      "sha256": "f0b8b5e62023c40790eecc3c8e2e1afdf9fceea26ffa5b9859d0d4382cb7ea4a"
+    },
+    {
+      "bytes": 3970,
+      "path": "vendor/aris/docs/tutorials/kl_divergence_rlhf_tutorial.review.json",
+      "sha256": "d51af08a161ab37394510ff45aa27f213639afd158320780db8da3fecaa27b9e"
+    },
+    {
+      "bytes": 132925,
+      "path": "vendor/aris/docs/tutorials/kl_divergence_rlhf_tutorial_en.html",
+      "sha256": "af3b4dc44f4e276defc9bca03183ed0b7cf39d956346ec638ee7a214e8d1783c"
+    },
+    {
+      "bytes": 101263,
+      "path": "vendor/aris/docs/tutorials/kl_divergence_rlhf_tutorial_en.md",
+      "sha256": "4477782e0f503450db748cc46a12ddd9361df1fbcdcf2f996d8fee58f4761b73"
+    },
+    {
+      "bytes": 94453,
+      "path": "vendor/aris/docs/tutorials/kv_cache_speculative_decoding_tutorial.html",
+      "sha256": "aba97c1687f65b3c1e566163fe762ba9df9050027622e6219fed646bc2599b59"
+    },
+    {
+      "bytes": 68472,
+      "path": "vendor/aris/docs/tutorials/kv_cache_speculative_decoding_tutorial.md",
+      "sha256": "688b47c5bdc93b69a749ced6c2c6139c00a0f1b08b091aea38463c16e5ab94db"
+    },
+    {
+      "bytes": 5638,
+      "path": "vendor/aris/docs/tutorials/kv_cache_speculative_decoding_tutorial.review.json",
+      "sha256": "5ab2db5412c0012803dcfa274e51e42347dcd405805f7ad447d48b8b7cc7091a"
+    },
+    {
+      "bytes": 98011,
+      "path": "vendor/aris/docs/tutorials/kv_cache_speculative_decoding_tutorial_en.html",
+      "sha256": "e79ce3565ffc954d88e70efa0167ef2356cb615cbb53edc0f1cd09fe1876b2c9"
+    },
+    {
+      "bytes": 71658,
+      "path": "vendor/aris/docs/tutorials/kv_cache_speculative_decoding_tutorial_en.md",
+      "sha256": "3357e2dd8dc0b865cf18f49e60842241679e7af6c296d7d80820b6f6c1ebc292"
+    },
+    {
+      "bytes": 120439,
+      "path": "vendor/aris/docs/tutorials/llm_opd_tutorial.html",
+      "sha256": "b0cb0c23cc11d6f18bde1d01ef80a28bdcd5c2172db229533b2c3fc1a5cb8c4d"
+    },
+    {
+      "bytes": 89118,
+      "path": "vendor/aris/docs/tutorials/llm_opd_tutorial.md",
+      "sha256": "621b0792bede0b06654b0341b652bb5055eeac2b24c258e58c2f63ace770bed7"
+    },
+    {
+      "bytes": 6700,
+      "path": "vendor/aris/docs/tutorials/llm_opd_tutorial.review.json",
+      "sha256": "5b293c23c7498bb736eb5b16f518c5b5f51f86b0bf6a96fde9387d9d32f56c10"
+    },
+    {
+      "bytes": 127804,
+      "path": "vendor/aris/docs/tutorials/llm_opd_tutorial_en.html",
+      "sha256": "102565ab7d857c4fcf0fdf5916f023b205becc0f579485582d898925a357a546"
+    },
+    {
+      "bytes": 95550,
+      "path": "vendor/aris/docs/tutorials/llm_opd_tutorial_en.md",
+      "sha256": "70c85782439f0b5a5c6c9b6dff2637a7911ad95b525b9969d90ba883502953d8"
+    },
+    {
+      "bytes": 92866,
+      "path": "vendor/aris/docs/tutorials/long_context_rope_yarn_mla_tutorial.html",
+      "sha256": "75dd3ea273ea091bfc5cbd96f6566f27388e89cdc51e74973dff60fcf7cae32c"
+    },
+    {
+      "bytes": 65082,
+      "path": "vendor/aris/docs/tutorials/long_context_rope_yarn_mla_tutorial.md",
+      "sha256": "cf9958df2aff90f900727a9cd8fa0b82b5b5cb28354087aa59f52b9b62e6c24d"
+    },
+    {
+      "bytes": 4908,
+      "path": "vendor/aris/docs/tutorials/long_context_rope_yarn_mla_tutorial.review.json",
+      "sha256": "3bfa2d82494168a73aea55ae964d127c617bc205d96e3a28d4fe9e68716f576e"
+    },
+    {
+      "bytes": 101939,
+      "path": "vendor/aris/docs/tutorials/long_context_rope_yarn_mla_tutorial_en.html",
+      "sha256": "3ab2b4541f9654376cf00250aec10971b1f2fd461f35e02df1e149cf12d18d69"
+    },
+    {
+      "bytes": 73378,
+      "path": "vendor/aris/docs/tutorials/long_context_rope_yarn_mla_tutorial_en.md",
+      "sha256": "d8ebcc89a3ac6a7b354d7603a4d0f5f495fe5b539c64ca49e48ae38c72c84075"
+    },
+    {
+      "bytes": 83916,
+      "path": "vendor/aris/docs/tutorials/moe_tutorial.html",
+      "sha256": "213309f37d002e0310f6010bf34aa5d1f02e68a8f315799f7d843e35c72df931"
+    },
+    {
+      "bytes": 57965,
+      "path": "vendor/aris/docs/tutorials/moe_tutorial.md",
+      "sha256": "e860589270ed447981c868a7e0f0ba51ac8917a8908580825403af8205baf3b1"
+    },
+    {
+      "bytes": 3142,
+      "path": "vendor/aris/docs/tutorials/moe_tutorial.review.json",
+      "sha256": "86023d282e4b7f53ec9d963ca02f2b4bc60187b41e5d58de168c0f7d1251462d"
+    },
+    {
+      "bytes": 89569,
+      "path": "vendor/aris/docs/tutorials/moe_tutorial_en.html",
+      "sha256": "68d1fd68aa924affc77821fe148ce6621510e62f6e4f116d5ad6b3fc7b0b4017"
+    },
+    {
+      "bytes": 63245,
+      "path": "vendor/aris/docs/tutorials/moe_tutorial_en.md",
+      "sha256": "c0214eed718070285a8feb2b8e346bced55b9baf4f51f408da869d5ef6b9a65f"
+    },
+    {
+      "bytes": 127785,
+      "path": "vendor/aris/docs/tutorials/multi_agent_long_horizon_tutorial.html",
+      "sha256": "a97adbc354b67249320a839e66e74888ad97aa404073dd846003989d6d151078"
+    },
+    {
+      "bytes": 90502,
+      "path": "vendor/aris/docs/tutorials/multi_agent_long_horizon_tutorial.md",
+      "sha256": "b0be93d29409b81e5bf5e3e896e8ee3b9ae84d0c1a17e72e5ca46476f1d5c065"
+    },
+    {
+      "bytes": 4265,
+      "path": "vendor/aris/docs/tutorials/multi_agent_long_horizon_tutorial.review.json",
+      "sha256": "0e21e83ed00dc683641f651c309abf2d0d20bda296bacb115fb733a5bf1bcf6f"
+    },
+    {
+      "bytes": 134254,
+      "path": "vendor/aris/docs/tutorials/multi_agent_long_horizon_tutorial_en.html",
+      "sha256": "8ea49f009ca3bcb243f8f34bc5ddafa03f7db938136c343c4e4e65b3e72b41f0"
+    },
+    {
+      "bytes": 96489,
+      "path": "vendor/aris/docs/tutorials/multi_agent_long_horizon_tutorial_en.md",
+      "sha256": "8ac31a10efb058f7fd711607186b1277254cb908ceb627bd733c50e049d9b289"
+    },
+    {
+      "bytes": 90962,
+      "path": "vendor/aris/docs/tutorials/quantization_tutorial.html",
+      "sha256": "909c88556910b8b424fea43ee36472b91bf4574b5e31082432e8476b1aedf80a"
+    },
+    {
+      "bytes": 63694,
+      "path": "vendor/aris/docs/tutorials/quantization_tutorial.md",
+      "sha256": "f04948e0f203c2972cb16b925ae326b7e46f34e691c037df51dbabe54f88a301"
+    },
+    {
+      "bytes": 2440,
+      "path": "vendor/aris/docs/tutorials/quantization_tutorial.review.json",
+      "sha256": "c88b0cfbdb752f44568812675bd150e2b832ee19fb7dcc10e34f1ba346bf6380"
+    },
+    {
+      "bytes": 94119,
+      "path": "vendor/aris/docs/tutorials/quantization_tutorial_en.html",
+      "sha256": "3f3f30b79d31889fbf824687629a266bd59da179aa497d2fdf447d7333141d8c"
+    },
+    {
+      "bytes": 66292,
+      "path": "vendor/aris/docs/tutorials/quantization_tutorial_en.md",
+      "sha256": "a4b453729283fdc4cc0fdb167b8620e68d87510a092dd1861915ed5965818231"
+    },
+    {
+      "bytes": 88247,
+      "path": "vendor/aris/docs/tutorials/reasoning_models_tutorial.html",
+      "sha256": "a3e87d170eb8f7a0ce173e03209f5178c2d38a06d2ff8f0812cf8e7eeda93316"
+    },
+    {
+      "bytes": 61999,
+      "path": "vendor/aris/docs/tutorials/reasoning_models_tutorial.md",
+      "sha256": "549e2f7e241c94ec0b8f2203727ae759afe568daa1c62d507051768725890e63"
+    },
+    {
+      "bytes": 4235,
+      "path": "vendor/aris/docs/tutorials/reasoning_models_tutorial.review.json",
+      "sha256": "ec7638c9b5696c19d2a97d6bfae0d6e7c0cacfbb50112b53b528dc7b050e08c1"
+    },
+    {
+      "bytes": 92080,
+      "path": "vendor/aris/docs/tutorials/reasoning_models_tutorial_en.html",
+      "sha256": "23da1baecd2e11808dba41a70160fdc8f9e092fb1236cb7a04cbfee90032ee01"
+    },
+    {
+      "bytes": 65610,
+      "path": "vendor/aris/docs/tutorials/reasoning_models_tutorial_en.md",
+      "sha256": "0aefca37b314b59a1cc8e7548f79d120508f4fc5d1fc5b34f33210f9f9e6213e"
+    },
+    {
+      "bytes": 84835,
+      "path": "vendor/aris/docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.html",
+      "sha256": "ea7c8e251c3fa93a9d45cf32b33c14055f5941930908913fda65009ffa65500c"
+    },
+    {
+      "bytes": 60384,
+      "path": "vendor/aris/docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.md",
+      "sha256": "67ea410d68e2504164d7d17556f41bf5c4535ebf520c2790b433851a034a78ad"
+    },
+    {
+      "bytes": 3667,
+      "path": "vendor/aris/docs/tutorials/rlhf_dpo_grpo_ppo_tutorial.review.json",
+      "sha256": "66f9961a456933b27732d1465577bb829723f549b97dca08a3aa8848dd110a8b"
+    },
+    {
+      "bytes": 89184,
+      "path": "vendor/aris/docs/tutorials/rlhf_dpo_grpo_ppo_tutorial_en.html",
+      "sha256": "52b4256e3f56286111bf6ef6d0d1627770f1f7345a4047e24368139f81af20b9"
+    },
+    {
+      "bytes": 64448,
+      "path": "vendor/aris/docs/tutorials/rlhf_dpo_grpo_ppo_tutorial_en.md",
+      "sha256": "0740c1296ea5c2902e4cab332899d30786c1f175d2420b5a53c4587fb7ec65c0"
+    },
+    {
+      "bytes": 103142,
+      "path": "vendor/aris/docs/tutorials/self_evolving_agents_tutorial.html",
+      "sha256": "4b182c44ea33759e51c01ab4413ff056b1275622122924e8f37767511fec3ce1"
+    },
+    {
+      "bytes": 72513,
+      "path": "vendor/aris/docs/tutorials/self_evolving_agents_tutorial.md",
+      "sha256": "b863a1d3abfdb3512a3e5907947e3bb9281a00ddf4546199218fb469c965296e"
+    },
+    {
+      "bytes": 4726,
+      "path": "vendor/aris/docs/tutorials/self_evolving_agents_tutorial.review.json",
+      "sha256": "9b59e3c131882f60bb39b71006a8455d38810b48071869e38da89709f4d2eb1c"
+    },
+    {
+      "bytes": 107623,
+      "path": "vendor/aris/docs/tutorials/self_evolving_agents_tutorial_en.html",
+      "sha256": "6666dfef7c92461ef597d813a4401e4b62456681363323c34825d4b73e9801b7"
+    },
+    {
+      "bytes": 76661,
+      "path": "vendor/aris/docs/tutorials/self_evolving_agents_tutorial_en.md",
+      "sha256": "65f5baf62206b2506086becf7b79fc11d4a8dc9ff113bb5f2ae933595131abb5"
+    },
+    {
+      "bytes": 89694,
+      "path": "vendor/aris/docs/tutorials/vae_vqvae_vqgan_tutorial.html",
+      "sha256": "06bed704a1f29f85adb63a50ba2170041d0b1d64716592cd6b3d26627bfb5bd7"
+    },
+    {
+      "bytes": 63092,
+      "path": "vendor/aris/docs/tutorials/vae_vqvae_vqgan_tutorial.md",
+      "sha256": "826ba28b7bb7ff38ca137ceebd48b0f4395a58dfb4081bb9f874234f2a61899c"
+    },
+    {
+      "bytes": 4352,
+      "path": "vendor/aris/docs/tutorials/vae_vqvae_vqgan_tutorial.review.json",
+      "sha256": "a36433c93f166b138e3b3619cfa61282b7b17b08e5711e87a648903c0b38db0d"
+    },
+    {
+      "bytes": 93817,
+      "path": "vendor/aris/docs/tutorials/vae_vqvae_vqgan_tutorial_en.html",
+      "sha256": "7b5ccedb07c97913356dcb1123ba4468768a9a86b95b2767042c2c6c3895e716"
+    },
+    {
+      "bytes": 66885,
+      "path": "vendor/aris/docs/tutorials/vae_vqvae_vqgan_tutorial_en.md",
+      "sha256": "e6f6353f05d0ca8087a60c811e411690589bfc2fb7bb61ab2388feaa93fb835b"
+    },
+    {
+      "bytes": 91345,
+      "path": "vendor/aris/docs/tutorials/video_generation_tutorial.html",
+      "sha256": "0ed3813a15698129fc10855efce85e05b9f4e47a3d9c8a4c8c17332b1d2c60c7"
+    },
+    {
+      "bytes": 65178,
+      "path": "vendor/aris/docs/tutorials/video_generation_tutorial.md",
+      "sha256": "4aaa64ff3f54473df8980186427f4215f75c5d6dbe3e8196316ef72b9a7c4643"
+    },
+    {
+      "bytes": 4640,
+      "path": "vendor/aris/docs/tutorials/video_generation_tutorial.review.json",
+      "sha256": "de25510899b68b448e80921c5751d96ba47a6e4ebc8c2303fdba1d819e003a93"
+    },
+    {
+      "bytes": 98214,
+      "path": "vendor/aris/docs/tutorials/video_generation_tutorial_en.html",
+      "sha256": "2041f976b9a4809621ff005a959bda08d45fa71e4628190ecc0c3ce003710a7b"
+    },
+    {
+      "bytes": 71688,
+      "path": "vendor/aris/docs/tutorials/video_generation_tutorial_en.md",
+      "sha256": "4fa0ce035daf77d9b135b7c0d4e328c1f5977598cc414e89c98dcf067ed9f3a0"
+    },
+    {
+      "bytes": 106174,
+      "path": "vendor/aris/docs/tutorials/vlm_multimodal_tutorial.html",
+      "sha256": "e0b4ef0203bbb15351cd59007ebc9af69949a3082be46420614bb713fa413da5"
+    },
+    {
+      "bytes": 75430,
+      "path": "vendor/aris/docs/tutorials/vlm_multimodal_tutorial.md",
+      "sha256": "f9cc9510bdd535499bcf756290f8ccf31a6785c97df3fa1dabb9e9c1bf74541f"
+    },
+    {
+      "bytes": 4705,
+      "path": "vendor/aris/docs/tutorials/vlm_multimodal_tutorial.review.json",
+      "sha256": "0ff93eeed034c9fb235b32af203b1d3c332f5960028f13723df91270b80588da"
+    },
+    {
+      "bytes": 112201,
+      "path": "vendor/aris/docs/tutorials/vlm_multimodal_tutorial_en.html",
+      "sha256": "de94a06112489d4183306239dd56dcaf396f9254cd4f05ac6be09d479d395ac8"
+    },
+    {
+      "bytes": 81025,
+      "path": "vendor/aris/docs/tutorials/vlm_multimodal_tutorial_en.md",
+      "sha256": "de321e4d3dec5699eff7277bb4b2558d3a0c6dd7c5bc5186a9f166ef71be609a"
+    },
+    {
+      "bytes": 180249,
+      "path": "vendor/aris/docs/wechat_group.jpg",
+      "sha256": "b35f2c482c82c6fb14d8cfa3a329848b9139d2f700cb582f66bc60d15db144c8"
+    },
+    {
+      "bytes": 5133,
+      "path": "vendor/aris/mcp-servers/antigravity-exec/README.md",
+      "sha256": "cfdf1ce35ce7fe8be1186bc571bb6c4d23cabc4571925412c048b1cc5346a7ae"
+    },
+    {
+      "bytes": 797,
+      "path": "vendor/aris/mcp-servers/antigravity-exec/aris-antigravity-review.md",
+      "sha256": "620f5f2547e4bf69e764463d6d8f4500ef2720020e24835cc2df76f17a7b1c05"
+    },
+    {
+      "bytes": 22600,
+      "path": "vendor/aris/mcp-servers/antigravity-exec/server.py",
+      "sha256": "68d61eed22933a5751d57de803b91eabf068d8c1756727f4f535a664c43c68e6"
+    },
+    {
+      "bytes": 6794,
+      "path": "vendor/aris/mcp-servers/claude-review/README.md",
+      "sha256": "ae371f97f5baa2c48ea1108193fab900312f2fcec041248ba433266b3aaee94c"
+    },
+    {
+      "bytes": 1566,
+      "path": "vendor/aris/mcp-servers/claude-review/run_with_claude_aws.sh",
+      "sha256": "cbf321427afdcfa29f8d864b576494858ff3cdcfd444dd1a9a17d4ed83ab6ddc"
+    },
+    {
+      "bytes": 30073,
+      "path": "vendor/aris/mcp-servers/claude-review/server.py",
+      "sha256": "1ac505e110780c501c2ab879d280ad64f37db1c13c5d09650945552dc7b3615a"
+    },
+    {
+      "bytes": 3016,
+      "path": "vendor/aris/mcp-servers/codex-exec/README.md",
+      "sha256": "d63fb1061e110613e39a3fb12e6aae1e51801bd35237925448fbf8231177e04a"
+    },
+    {
+      "bytes": 19157,
+      "path": "vendor/aris/mcp-servers/codex-exec/server.py",
+      "sha256": "4de7d09e53813c4a2c1b3f301fa22979612d598eb875626483ed22918bf566f0"
+    },
+    {
+      "bytes": 2032,
+      "path": "vendor/aris/mcp-servers/codex-image2/README.md",
+      "sha256": "b86a3ae4e1a12fc1fa02669b35142edfaf952d1016457087aa3c2ea7e7759fea"
+    },
+    {
+      "bytes": 31716,
+      "path": "vendor/aris/mcp-servers/codex-image2/server.py",
+      "sha256": "c697f730950cfb50d48dbc523f0109f0f941a57a2e2106dc6641a4a58364867b"
+    },
+    {
+      "bytes": 20,
+      "path": "vendor/aris/mcp-servers/feishu-bridge/requirements.txt",
+      "sha256": "2a2c17c400824a8bad12b99d25b382aa33e7f0b330c5c6a5161b88f59dbf36e4"
+    },
+    {
+      "bytes": 7483,
+      "path": "vendor/aris/mcp-servers/feishu-bridge/server.py",
+      "sha256": "74b25c27efc6c5b8c418e8768e6e846ae92ad477541185e4741d86b7e94fd10b"
+    },
+    {
+      "bytes": 11086,
+      "path": "vendor/aris/mcp-servers/gemini-review/README.md",
+      "sha256": "7b3f0e7b8e60177b8aecb463b36fbbf593a810ba2c5c8b264a14e2bb1f4e9466"
+    },
+    {
+      "bytes": 66634,
+      "path": "vendor/aris/mcp-servers/gemini-review/server.py",
+      "sha256": "9666c7b28971c85f88a35169a67e6c727d61e2a0a52871ce801695a1af12dda2"
+    },
+    {
+      "bytes": 7559,
+      "path": "vendor/aris/mcp-servers/grok-exec/README.md",
+      "sha256": "78e25ea16c061aa138860f7b72becc9ce8753e86625b6fc1e7bbcdcaf97fc32c"
+    },
+    {
+      "bytes": 23015,
+      "path": "vendor/aris/mcp-servers/grok-exec/server.py",
+      "sha256": "c53b39217e5b423c1b671946996be5fa3a712034e82524ca7e7a0d8e9fa95819"
+    },
+    {
+      "bytes": 17,
+      "path": "vendor/aris/mcp-servers/llm-chat/requirements.txt",
+      "sha256": "1c9327746b9637a24f178ee83c5825c5a1ff49aec60d30aec5c75fd71592af3a"
+    },
+    {
+      "bytes": 27970,
+      "path": "vendor/aris/mcp-servers/llm-chat/server.py",
+      "sha256": "cf30212cab124abdb94cc6c00d328d606e25e93aa9b0d75954a8e9699c4f73ed"
+    },
+    {
+      "bytes": 5136,
+      "path": "vendor/aris/mcp-servers/manual-review/README.md",
+      "sha256": "1bbfae96e20ec13b1594e1a17c934c197241978069cbac84c1bfdfc0d7d3aa80"
+    },
+    {
+      "bytes": 34471,
+      "path": "vendor/aris/mcp-servers/manual-review/server.py",
+      "sha256": "51072ee853dc73748895dabf9ad77a7b5de29a79758fae502b819720cbe8cbf1"
+    },
+    {
+      "bytes": 13898,
+      "path": "vendor/aris/mcp-servers/manual-review/ui.html",
+      "sha256": "4c1c0dd2052cd29c1e972a541fcef20b3e1fa9b5c941c007bca17698ef14dd52"
+    },
+    {
+      "bytes": 17,
+      "path": "vendor/aris/mcp-servers/minimax-chat/requirements.txt",
+      "sha256": "1c9327746b9637a24f178ee83c5825c5a1ff49aec60d30aec5c75fd71592af3a"
+    },
+    {
+      "bytes": 13014,
+      "path": "vendor/aris/mcp-servers/minimax-chat/server.py",
+      "sha256": "506aa8a6f0bae7d07e6fec015952ea65232388e4b9e745f7d46885e9726d1c3f"
+    },
+    {
+      "bytes": 5137,
+      "path": "vendor/aris/skills/ablation-planner/SKILL.md",
+      "sha256": "ce51bfff265e5f0a6e8fd03333bfa8dee679e728e0d325830988ca5bd31307da"
+    },
+    {
+      "bytes": 9161,
+      "path": "vendor/aris/skills/alphaxiv/SKILL.md",
+      "sha256": "f313e596afbfc7e88a10def82c9438d0715942cc4e945480a27c809b099c3585"
+    },
+    {
+      "bytes": 1660,
+      "path": "vendor/aris/skills/analyze-results/SKILL.md",
+      "sha256": "2b97b8ae1a279ac8a7db14e7d7bea67934c88352d55c95e20fcfb681a8640930"
+    },
+    {
+      "bytes": 9289,
+      "path": "vendor/aris/skills/arxiv/SKILL.md",
+      "sha256": "474be36fb19d0dd99ddc8c6fa2d684836a45dca9d02051d98b5c79ac979307ed"
+    },
+    {
+      "bytes": 42360,
+      "path": "vendor/aris/skills/auto-paper-improvement-loop/SKILL.md",
+      "sha256": "022629e450b95e67ce40597d9c31176c0cc64a0dee6632eceadf2323236f46ae"
+    },
+    {
+      "bytes": 9243,
+      "path": "vendor/aris/skills/auto-review-loop-llm/SKILL.md",
+      "sha256": "1659cd8dccc2edf8a68124d34daa7cce8a54658918cb90e7cdc9c93d3124b98a"
+    },
+    {
+      "bytes": 13037,
+      "path": "vendor/aris/skills/auto-review-loop-minimax/SKILL.md",
+      "sha256": "70f4952522747030f4ee8011c0e29c7670a289bd0bff73fffbcb9bac232a4102"
+    },
+    {
+      "bytes": 75537,
+      "path": "vendor/aris/skills/auto-review-loop/SKILL.md",
+      "sha256": "2a553de8f498aa8224b0bc941a3c4c4dba351d5c61ebf48beaecb6a24aaa4a60"
+    },
+    {
+      "bytes": 32168,
+      "path": "vendor/aris/skills/citation-audit/SKILL.md",
+      "sha256": "8b6264f06c8b5d5889651bd059301bb4e8e5efd29565d8dd1740e3d5e21c6159"
+    },
+    {
+      "bytes": 36593,
+      "path": "vendor/aris/skills/citation-crosscheck/SKILL.md",
+      "sha256": "8556f29c677b93d465df6b7309914e0b1c387213f73d132b5182fa4d0af42758"
+    },
+    {
+      "bytes": 84510,
+      "path": "vendor/aris/skills/citation-crosscheck/scripts/cx_verify.py",
+      "sha256": "ae731cb5bfbc26bfa12f007516e4b0b8591c9384d4512d1d5c4d74737d3f250f"
+    },
+    {
+      "bytes": 11296,
+      "path": "vendor/aris/skills/claims-drafting/SKILL.md",
+      "sha256": "7afad61907eed73e9535ab83604f110e5bd9afbf1b593f6fb3826c6e5bedb244"
+    },
+    {
+      "bytes": 8683,
+      "path": "vendor/aris/skills/comm-lit-review/SKILL.md",
+      "sha256": "9fefbc15dae68a19176f6d7e78c348979a23b2a2363291b7ef81081c6dfb770d"
+    },
+    {
+      "bytes": 8235,
+      "path": "vendor/aris/skills/deepxiv/SKILL.md",
+      "sha256": "19d6b9a334f56398be97f68727feaf7689134e5294f7d9507a2d071b1eeed148"
+    },
+    {
+      "bytes": 14175,
+      "path": "vendor/aris/skills/dse-loop/SKILL.md",
+      "sha256": "ae8e147011f7c1a6add208b6cecb218d03a83949fba0ef9b0b1936e4b0ee18bf"
+    },
+    {
+      "bytes": 6732,
+      "path": "vendor/aris/skills/embodiment-description/SKILL.md",
+      "sha256": "8833b4569435077554d51ac59f79c8b4ceca64b777f129b1e8eaa328be9bb9a2"
+    },
+    {
+      "bytes": 8672,
+      "path": "vendor/aris/skills/exa-search/SKILL.md",
+      "sha256": "c9ffd1e95004f591d6bc17e1a5bf16864f0c0230f446d60c6fc2b3890afb71de"
+    },
+    {
+      "bytes": 13750,
+      "path": "vendor/aris/skills/experiment-audit/SKILL.md",
+      "sha256": "6a8b6817a30e1bef03ad2bd679155ce39c2b0977bca38874485f7f5c1fd2567c"
+    },
+    {
+      "bytes": 19701,
+      "path": "vendor/aris/skills/experiment-bridge/SKILL.md",
+      "sha256": "a32f8eb12e015d6aa2b93c3183343ea435612bfc5b06474cbf8ddebe8273c65c"
+    },
+    {
+      "bytes": 9728,
+      "path": "vendor/aris/skills/experiment-plan/SKILL.md",
+      "sha256": "c5b53692ff95b0b55e80702e33afc79d9fe8d4f55a69e2a39714013f97ac595e"
+    },
+    {
+      "bytes": 20108,
+      "path": "vendor/aris/skills/experiment-queue/SKILL.md",
+      "sha256": "6da32285f905d77664334bba7f7bbc2c069814ff5c3bc266ecc00f6c77d77208"
+    },
+    {
+      "bytes": 4562,
+      "path": "vendor/aris/skills/experiment-queue/scripts/build_manifest.py",
+      "sha256": "2fe0d13d2bba863e9bbde65f8a746f1c0f46b7e2c08e16107786fad6980a5820"
+    },
+    {
+      "bytes": 15116,
+      "path": "vendor/aris/skills/experiment-queue/scripts/queue_manager.py",
+      "sha256": "9b53e554bda3fec88d9d293e323e26f531d8c074b7544a8ca7b4c3b529ab0129"
+    },
+    {
+      "bytes": 6172,
+      "path": "vendor/aris/skills/feishu-notify/SKILL.md",
+      "sha256": "1a6c2e7a92b4f10c25cb7a9c647919a9dcc9b1fc9a6c99a86e73d757c8a6edbf"
+    },
+    {
+      "bytes": 5000,
+      "path": "vendor/aris/skills/figure-description/SKILL.md",
+      "sha256": "4c69bc650a67d1688f44c909c49be98ffe74ea427b3859edb3c3357ec5730136"
+    },
+    {
+      "bytes": 12080,
+      "path": "vendor/aris/skills/figure-spec/SKILL.md",
+      "sha256": "f5b4b8e806a0131b3aef787a7bbfbb395cdfb814a56d3acf2f454bfa4289ee49"
+    },
+    {
+      "bytes": 29876,
+      "path": "vendor/aris/skills/figure-spec/scripts/figure_renderer.py",
+      "sha256": "02b4e01e46b51aeca12722ddd7b21bb7da3c3b175bba5d129c45d671fb07a0bc"
+    },
+    {
+      "bytes": 11000,
+      "path": "vendor/aris/skills/firecrawl-search/SKILL.md",
+      "sha256": "927f66090591c44daa6da6cc3cf7547bd8a305aba02694fb9ecbc4046dcfe19a"
+    },
+    {
+      "bytes": 9550,
+      "path": "vendor/aris/skills/formula-derivation/SKILL.md",
+      "sha256": "c428e321dd2df66aff35475ed7b56e0924db596b3ec94e6819abe72c7c9a4e4c"
+    },
+    {
+      "bytes": 9051,
+      "path": "vendor/aris/skills/gemini-search/SKILL.md",
+      "sha256": "a8778e4e1dacae68691d13342a9a33200ade427beb777a4defbbb91dfcb030e3"
+    },
+    {
+      "bytes": 36109,
+      "path": "vendor/aris/skills/grant-proposal/SKILL.md",
+      "sha256": "71a72399833e41e7497497166ecad986f66a0c3ffdbd177b9fa531dfb9c86db2"
+    },
+    {
+      "bytes": 35181,
+      "path": "vendor/aris/skills/idea-creator/SKILL.md",
+      "sha256": "4752ae46d1a67c181838f0dbe15812e36d384751b1e5c9e3d7b8abb608cb58b2"
+    },
+    {
+      "bytes": 15971,
+      "path": "vendor/aris/skills/idea-discovery-robot/SKILL.md",
+      "sha256": "fe77e38c3ecc10983e4d0faa8e514f90837c02038d8cdf0d34524416a0d605ee"
+    },
+    {
+      "bytes": 28404,
+      "path": "vendor/aris/skills/idea-discovery/SKILL.md",
+      "sha256": "3ff798ce7c0f501eea9daf1cdee79ad4b02a506a107685103ce8ea349b8c0a80"
+    },
+    {
+      "bytes": 17170,
+      "path": "vendor/aris/skills/integrity-forensics/SKILL.md",
+      "sha256": "33cdf3f4fd2a8dea073a73e2cba870576c576b1d201efa3d0a4bde2e7e7256ed"
+    },
+    {
+      "bytes": 14586,
+      "path": "vendor/aris/skills/interview-cheatsheet/SKILL.md",
+      "sha256": "b2151195b67458b5cf33f79c3db274ad1d19da7183f3a07e8bcdf1ae362366bd"
+    },
+    {
+      "bytes": 7907,
+      "path": "vendor/aris/skills/invention-structuring/SKILL.md",
+      "sha256": "551c6d34c7a34cac0820f5afddcfa62969f93461a4b1f7a75b798f9f8e546a95"
+    },
+    {
+      "bytes": 6816,
+      "path": "vendor/aris/skills/jurisdiction-format/SKILL.md",
+      "sha256": "7683f58c4ad6465b4c4dd4f360876b12b0132777ca4ba40c1e48b777f4b40bb9"
+    },
+    {
+      "bytes": 6230,
+      "path": "vendor/aris/skills/keenable-search/SKILL.md",
+      "sha256": "c37659e338982b7f4559df21734d4140cfae5199a69a9a2a2ac13d48660bd780"
+    },
+    {
+      "bytes": 26120,
+      "path": "vendor/aris/skills/kill-argument/SKILL.md",
+      "sha256": "96a106531c294c17b5b136009b04ecf96f85633e6e1339c5c2868ee1c40486ff"
+    },
+    {
+      "bytes": 22797,
+      "path": "vendor/aris/skills/lean-formalize/SKILL.md",
+      "sha256": "e4f9fc9d1158ded51ff956ee521107ee32a2bc7c6000395e60ec4f52cc910ffe"
+    },
+    {
+      "bytes": 14165,
+      "path": "vendor/aris/skills/lean-formalize/references/adversarial-review.md",
+      "sha256": "258e718bb63b96a8d169ef6914f637d53e59949481f3d95932c652793a1636ce"
+    },
+    {
+      "bytes": 10625,
+      "path": "vendor/aris/skills/lean-formalize/references/lean-working-loop.md",
+      "sha256": "33368e31eb1dc748deffa51e9ecde2040f885a87503f4569baf7c518f543ba0a"
+    },
+    {
+      "bytes": 6332,
+      "path": "vendor/aris/skills/lean-formalize/references/verification-and-handoff.md",
+      "sha256": "13c498361096ebeacfbf80e9bb51b8324599ac415e699f40befb948f97492a48"
+    },
+    {
+      "bytes": 16323,
+      "path": "vendor/aris/skills/mermaid-diagram/SKILL.md",
+      "sha256": "8f42b38a1deaa7b98d782136cadbd5142aeb02ed773f08aa8c0df8af0631b5a0"
+    },
+    {
+      "bytes": 8983,
+      "path": "vendor/aris/skills/meta-apply/SKILL.md",
+      "sha256": "725cef0195f0b5eebee5161e80c8aff68102a294d3c2a9fcbb327eac803eba15"
+    },
+    {
+      "bytes": 24917,
+      "path": "vendor/aris/skills/meta-optimize/SKILL.md",
+      "sha256": "fb9df9d814e14bb81eccc4824759e79bef1621379993ab99e7bc2bcd3f721596"
+    },
+    {
+      "bytes": 5050,
+      "path": "vendor/aris/skills/monitor-experiment/SKILL.md",
+      "sha256": "0527977308bb7b26139ffb56cd2d45ecc72a9dd2961073ad51fac4aac106961d"
+    },
+    {
+      "bytes": 8331,
+      "path": "vendor/aris/skills/novelty-check/SKILL.md",
+      "sha256": "a1f257297405c9948f570d51672f50b0176177001e74118c926b149c9ccb9af4"
+    },
+    {
+      "bytes": 9771,
+      "path": "vendor/aris/skills/openalex/SKILL.md",
+      "sha256": "4c853b646987c4472a8360e044ad232aa9731dcfb60c7183073e8e5f3e6ac9c1"
+    },
+    {
+      "bytes": 11122,
+      "path": "vendor/aris/skills/overleaf-sync/SKILL.md",
+      "sha256": "f3c1f35a77a81ebf902eb2e9434cb61e7494e0152b8d29fe337e75d2d7524557"
+    },
+    {
+      "bytes": 15356,
+      "path": "vendor/aris/skills/paper-claim-audit/SKILL.md",
+      "sha256": "3cf3ecdf14899aa011c7f5baf5efcba7a67e940a65e7938170426f4af2b032ea"
+    },
+    {
+      "bytes": 10070,
+      "path": "vendor/aris/skills/paper-compile/SKILL.md",
+      "sha256": "ca064e9b7dffe80d9c3bcabb060f81c651e4926eb1c069a04c6416a8e58fed93"
+    },
+    {
+      "bytes": 14778,
+      "path": "vendor/aris/skills/paper-figure/SKILL.md",
+      "sha256": "7d115c37bc7de777a12ccc0211d44305d513a017d6a07e8ac8dd7d2e99dab21f"
+    },
+    {
+      "bytes": 19831,
+      "path": "vendor/aris/skills/paper-illustration-image2/SKILL.md",
+      "sha256": "f2f19c40d9bb28d471eb596345d65361f989971b58b636ef1efb7718ceac04c8"
+    },
+    {
+      "bytes": 8745,
+      "path": "vendor/aris/skills/paper-illustration-image2/scripts/paper_illustration_image2.py",
+      "sha256": "bc97f5b1ae14ffaff10c24240b6e93f3c1282ffd340d4756ea80477649f32890"
+    },
+    {
+      "bytes": 33241,
+      "path": "vendor/aris/skills/paper-illustration/SKILL.md",
+      "sha256": "af9307d178b8242c9a8d2e94c1264add91d5aa2bbc6444556b51b501c1918e65"
+    },
+    {
+      "bytes": 21748,
+      "path": "vendor/aris/skills/paper-plan/SKILL.md",
+      "sha256": "538ee69ed17d740366e69bc7b83271297f9770e21b033605b1a230dbf6a394f8"
+    },
+    {
+      "bytes": 9948,
+      "path": "vendor/aris/skills/paper-poster-html/DESIGN_FINAL.md",
+      "sha256": "1e1931569efe301a05ce815c238f48b05b7f27a92a7d179f84ebe1d5e22fdf25"
+    },
+    {
+      "bytes": 8942,
+      "path": "vendor/aris/skills/paper-poster-html/IMPLEMENTATION_CONVENTIONS.md",
+      "sha256": "59cdf8fafb92a22efa93971b647e05386f46c473909c752674d65990b8886483"
+    },
+    {
+      "bytes": 1069,
+      "path": "vendor/aris/skills/paper-poster-html/LICENSES/posterly-MIT.txt",
+      "sha256": "0f097b552f2be95d202723d681c73a1dec10d64d0afea3ee0a0eaf63def9a5be"
+    },
+    {
+      "bytes": 3288,
+      "path": "vendor/aris/skills/paper-poster-html/NOTICE.md",
+      "sha256": "058090d55f2c7d143f70b4e3020cb7bcb8349480edd9dbf46921e05067862ab1"
+    },
+    {
+      "bytes": 19486,
+      "path": "vendor/aris/skills/paper-poster-html/SKILL.md",
+      "sha256": "745cfde9da124cbd236b398749d790510916138d329a5ca4a21c75e15163b483"
+    },
+    {
+      "bytes": 0,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/_posterly/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7377,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/_posterly/canvas.py",
+      "sha256": "11503d98ebc2b817c34d3d05e85c169c8b9ccee55cc0d19ff4c6d488f39c36ec"
+    },
+    {
+      "bytes": 24692,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/_posterly/measure.py",
+      "sha256": "ffaab446329621f5621fa29fd7e0cabb38a5be1a31e92be6acd36b818de416e3"
+    },
+    {
+      "bytes": 21014,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/_posterly/polish.py",
+      "sha256": "d401dbf27ee198a35b4d4a83aaf1df2c23e148f353557b66599f88155f9df96b"
+    },
+    {
+      "bytes": 21616,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/_posterly/preflight.py",
+      "sha256": "ca81022db3d92b9b3f3414128378df55bc2aba6560681d4d930e1e3426e31d32"
+    },
+    {
+      "bytes": 8239,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/_posterly/render.py",
+      "sha256": "0ba4bcb874e0648b9058a1ae0b0168dc16f4c8ee382f005f69326d45acf9034b"
+    },
+    {
+      "bytes": 616,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/_posterly/textutil.py",
+      "sha256": "a2b32524cf004810d46bb442b6f418ff7445b3aff4d7995a8bf6b7784de36c3e"
+    },
+    {
+      "bytes": 5683,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/_posterly/verify_final.py",
+      "sha256": "bb2c737496d49d5028e7c8798f2aa39837c0f72677fa6b444c5710dac6e3d283"
+    },
+    {
+      "bytes": 36805,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/asset_check.py",
+      "sha256": "84f6b34560c903ddf8d6748ad70858ec00734f03a590d5705914c6ce53c6e37c"
+    },
+    {
+      "bytes": 26003,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/extract_pdf_figures.py",
+      "sha256": "5f2f48392c69a50d7e894ad5ac2462e4e6971e266a8ab9f760f786e00c222910"
+    },
+    {
+      "bytes": 10123,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/poster_check.py",
+      "sha256": "a048eeba87444be279b8b0fb3796079419546315ed10b460778bc82c752e4db6"
+    },
+    {
+      "bytes": 9306,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/preprocess_figures.py",
+      "sha256": "74d18140aab1ba5e10d0f26fb21c99cc2b7293fb4f2ab6a9d891d91d4328ad47"
+    },
+    {
+      "bytes": 7670,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/render_preview.py",
+      "sha256": "5114c27fb2fc0703c2a3c749f2b84cfd6d6cc29051b44572e99db87b7ca8ea52"
+    },
+    {
+      "bytes": 20482,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/run_gates.py",
+      "sha256": "807d59964259e1eff1a6bd13af2f34b3c1d1404316d1a3a32558b420308fb7e3"
+    },
+    {
+      "bytes": 53183,
+      "path": "vendor/aris/skills/paper-poster-html/scripts/style_check.py",
+      "sha256": "029eff049907ea1a8ca4ee65ca8d10fe26d09591d6d96684fc6cb14e90879530"
+    },
+    {
+      "bytes": 31274,
+      "path": "vendor/aris/skills/paper-poster-html/templates/COMPONENTS.md",
+      "sha256": "382e60604f4bbe9a8aa96272348f34314089de847760c1897a6f701b5984f8b8"
+    },
+    {
+      "bytes": 10442,
+      "path": "vendor/aris/skills/paper-poster-html/templates/README.md",
+      "sha256": "366923d0de663296a2e3aca8479775423ac280b126d9d9272aa0041413dca309"
+    },
+    {
+      "bytes": 41841,
+      "path": "vendor/aris/skills/paper-poster-html/templates/landscape_4col.html",
+      "sha256": "1e72098d28541968bcd7b3960be70d545b86680998c6976f545615d5b7b735d8"
+    },
+    {
+      "bytes": 44680,
+      "path": "vendor/aris/skills/paper-poster-html/templates/landscape_hero.html",
+      "sha256": "fd82519f94a25397fbb799af6b5ec887140763980f39b42598a6ad27a470ed93"
+    },
+    {
+      "bytes": 40424,
+      "path": "vendor/aris/skills/paper-poster-html/templates/portrait_2col.html",
+      "sha256": "c6031ab64807f04d5db19ef5aa2d57bc49db0853e1a98c18de38f81b804e1779"
+    },
+    {
+      "bytes": 431,
+      "path": "vendor/aris/skills/paper-poster-html/templates/tokens/acl.json",
+      "sha256": "e9c2bcef6c7433f9ca79437bae729b513f59ff61b8b843c575a205be52f2e4e8"
+    },
+    {
+      "bytes": 432,
+      "path": "vendor/aris/skills/paper-poster-html/templates/tokens/cvpr.json",
+      "sha256": "921e1c08dabf2f10531c87a4a10bd9228642afc2e089ed3d3a9fcef3ea24288c"
+    },
+    {
+      "bytes": 435,
+      "path": "vendor/aris/skills/paper-poster-html/templates/tokens/generic.json",
+      "sha256": "229084d6c166d589b3c3ec2cf024c4e6341c91eea45b07fb84bd7be8c1e6bf82"
+    },
+    {
+      "bytes": 432,
+      "path": "vendor/aris/skills/paper-poster-html/templates/tokens/iclr.json",
+      "sha256": "b176829c14d8fbaa7b0eb49873ce7b9cb3150aad13990b4eecaa2c825582a65b"
+    },
+    {
+      "bytes": 432,
+      "path": "vendor/aris/skills/paper-poster-html/templates/tokens/icml.json",
+      "sha256": "078dbb6101e8579559ba24a41582af0b3b8dbc3f487a8fb9676ca5ba41b5e345"
+    },
+    {
+      "bytes": 435,
+      "path": "vendor/aris/skills/paper-poster-html/templates/tokens/neurips.json",
+      "sha256": "f59567e68fa011eae86ec58d85abe564d6acce5174896a755e7588e3da33954c"
+    },
+    {
+      "bytes": 828,
+      "path": "vendor/aris/skills/paper-poster/SKILL.md",
+      "sha256": "7dec9b7f9bc2d12df23148cd38f51ea344b0b23370051ef6e03779ed41e97260"
+    },
+    {
+      "bytes": 24121,
+      "path": "vendor/aris/skills/paper-slides/SKILL.md",
+      "sha256": "b20083823df5238ad94f6ff4431481ef65424a876fdd09102c1a936f0e5fde1a"
+    },
+    {
+      "bytes": 21676,
+      "path": "vendor/aris/skills/paper-talk/SKILL.md",
+      "sha256": "54c73cc91084ad64aa8bdb53887c58178146d4c608916818b2156161a8cbcb2a"
+    },
+    {
+      "bytes": 39230,
+      "path": "vendor/aris/skills/paper-write/SKILL.md",
+      "sha256": "53624e8dc937ba4c9074417032c4aeb1cbb945eeb46cd191df55d89a5cec2a6a"
+    },
+    {
+      "bytes": 57748,
+      "path": "vendor/aris/skills/paper-write/templates/IEEEtran.bst",
+      "sha256": "314f0ece704568faf827011bac498650691b2b5ee06320720830e782416d5a5f"
+    },
+    {
+      "bytes": 281957,
+      "path": "vendor/aris/skills/paper-write/templates/IEEEtran.cls",
+      "sha256": "da751920a317ed318b7b5cd7fa585a6cc7d28502d457856382e9be24b10a3bd7"
+    },
+    {
+      "bytes": 1924,
+      "path": "vendor/aris/skills/paper-write/templates/iclr2026.tex",
+      "sha256": "1e4c20b3c5b7445966194151d33c3e2023e828e621be8baf7ffb234b987cfc23"
+    },
+    {
+      "bytes": 2003,
+      "path": "vendor/aris/skills/paper-write/templates/icml2025.tex",
+      "sha256": "d346d4b5b96276a4e04ccd7590ad158cce4aabcc090281dca7c4b0900d11530b"
+    },
+    {
+      "bytes": 2124,
+      "path": "vendor/aris/skills/paper-write/templates/ieee_conference.tex",
+      "sha256": "a3dc3a175a7dd1512f4a2fdb844a0a482a9e919162e37dc27373d501fbafafbc"
+    },
+    {
+      "bytes": 2557,
+      "path": "vendor/aris/skills/paper-write/templates/ieee_journal.tex",
+      "sha256": "bdff7ff0aa376d8a46675bdb6e96c4dd715463360735706aa5fbaa5f834b7604"
+    },
+    {
+      "bytes": 1279,
+      "path": "vendor/aris/skills/paper-write/templates/math_commands.tex",
+      "sha256": "3efe4556b2c33b4a93c1b6e86b99b9a3ecbd9c9565ccc06bf8a1f51293470dc6"
+    },
+    {
+      "bytes": 1829,
+      "path": "vendor/aris/skills/paper-write/templates/neurips2025.tex",
+      "sha256": "fef6448048e58b748d67f438dce6fcfedcc49467542a951d1986dc5b81ca256c"
+    },
+    {
+      "bytes": 51878,
+      "path": "vendor/aris/skills/paper-writing/SKILL.md",
+      "sha256": "597ad9adc415326297196f09879021e1c4731c1648fd1a8af77fa269bafabe52"
+    },
+    {
+      "bytes": 6937,
+      "path": "vendor/aris/skills/patent-novelty-check/SKILL.md",
+      "sha256": "5b5b3b198b573ab7db471abbba200d8f1ea4907f83e99da63bfc10e112431ef2"
+    },
+    {
+      "bytes": 15255,
+      "path": "vendor/aris/skills/patent-pipeline/SKILL.md",
+      "sha256": "041781ddf20f2e797d247d72ac52dfd1feefcbd863e52080ee890498bd3d1737"
+    },
+    {
+      "bytes": 7904,
+      "path": "vendor/aris/skills/patent-review/SKILL.md",
+      "sha256": "f72e5f9a4a7c72ef778a667e062ac8834befeb8ba37c0e0945bd2f51436995f9"
+    },
+    {
+      "bytes": 5342,
+      "path": "vendor/aris/skills/pixel-art/SKILL.md",
+      "sha256": "e65d74863168eeefb0405c6da9db1858bd7940d4bda40af9d3e85acffba5dc8c"
+    },
+    {
+      "bytes": 5538,
+      "path": "vendor/aris/skills/prior-art-search/SKILL.md",
+      "sha256": "8793fb26c522de4c44a64b68df81e5d12718a99866c639658261cea680bd58b2"
+    },
+    {
+      "bytes": 56673,
+      "path": "vendor/aris/skills/proof-checker/SKILL.md",
+      "sha256": "36b0d62ed059b489db549c7e96d51c5bc4a1cf11a9c7061405e05be8eba75b1f"
+    },
+    {
+      "bytes": 1147,
+      "path": "vendor/aris/skills/proof-orchestrator/NOTICE.md",
+      "sha256": "a496eb4ac401ae1fcfcd0958f47e585c1949e4cf43553517468fcdf73fc17124"
+    },
+    {
+      "bytes": 18956,
+      "path": "vendor/aris/skills/proof-orchestrator/SKILL.md",
+      "sha256": "a413ff855b0d297671b443e66e6a0ae64caa0a23ed2cbff5b5037cea4f7c8de5"
+    },
+    {
+      "bytes": 4503,
+      "path": "vendor/aris/skills/proof-orchestrator/references/audit-output-contract.md",
+      "sha256": "cff8da1ef42794c64aba244decb19895b97ae912651e023c5c0b54a110e3eb7e"
+    },
+    {
+      "bytes": 3479,
+      "path": "vendor/aris/skills/proof-orchestrator/references/deepseek-routing.md",
+      "sha256": "f2a99c54b25a0c2274073412a3f40e97058d06e57a8b4397566695c4d094d495"
+    },
+    {
+      "bytes": 7841,
+      "path": "vendor/aris/skills/proof-orchestrator/references/dispatch-prompts.md",
+      "sha256": "a32693defd4ec03fe7c23a813d3e7a6b5b868ce34ac3ffe34b798ad624f469b7"
+    },
+    {
+      "bytes": 5327,
+      "path": "vendor/aris/skills/proof-orchestrator/references/notation-audit.md",
+      "sha256": "8db3079a9209d9c71b977d448cff1abe33c5cf6414b1923735c813c9fc56e757"
+    },
+    {
+      "bytes": 4430,
+      "path": "vendor/aris/skills/proof-orchestrator/references/proof-audit-rubric.md",
+      "sha256": "fb962314da5291f5376da55f502f94a9337f380b481cf12208d6b586341b86bf"
+    },
+    {
+      "bytes": 1825,
+      "path": "vendor/aris/skills/proof-orchestrator/references/stress-tests.md",
+      "sha256": "5d865f4bc1df6d872103b6da7cfb2a24c6b8d40432c6228e94285e136fe48614"
+    },
+    {
+      "bytes": 8374,
+      "path": "vendor/aris/skills/proof-writer/SKILL.md",
+      "sha256": "9642682885568ebf2bb87421ee81d856c031b4adc0fe3aadd7b79b6fafbac46f"
+    },
+    {
+      "bytes": 7947,
+      "path": "vendor/aris/skills/qzcli/SKILL.md",
+      "sha256": "328953e6e4a21f8a38e979f9729818721af387724b799cb7cc96e072d0012d2f"
+    },
+    {
+      "bytes": 25728,
+      "path": "vendor/aris/skills/rebuttal/SKILL.md",
+      "sha256": "52ec75bf57fb3ffe6ffdc8c468f69815a12dba4679b0a4f9ac2acb64ebadcb03"
+    },
+    {
+      "bytes": 22895,
+      "path": "vendor/aris/skills/render-html/SKILL.md",
+      "sha256": "83d2608faaa09c1faf135c4c4a26415fcf9f96e98ed1d1884b207b6c1f1514d3"
+    },
+    {
+      "bytes": 40953,
+      "path": "vendor/aris/skills/render-html/scripts/render_html.py",
+      "sha256": "f563872737d1fafbc38ea6a6de85451063daa196b219e163dcb32c3abeb6d58f"
+    },
+    {
+      "bytes": 21148,
+      "path": "vendor/aris/skills/render-html/scripts/templates/academic.html",
+      "sha256": "af3a2f998091edd2804b9e64eab21bf77b6caa57349fcfbbe767b1a8d16380cc"
+    },
+    {
+      "bytes": 8371,
+      "path": "vendor/aris/skills/render-html/scripts/templates/dashboard.html",
+      "sha256": "156e0825a131279debe55d1b91d7aa7c5f85e755458414932110687c9c3b3779"
+    },
+    {
+      "bytes": 32637,
+      "path": "vendor/aris/skills/research-implement-feature/SKILL.md",
+      "sha256": "a20e019ace930eb62cd23a8924f754de686bdcfa1f03ffa24cee8d220ffe2fc6"
+    },
+    {
+      "bytes": 45319,
+      "path": "vendor/aris/skills/research-lit/SKILL.md",
+      "sha256": "3800da1ad62b7d04f9e2b9e2868a3670bff1e47c0542d80b98a8fa9445ec7f79"
+    },
+    {
+      "bytes": 24299,
+      "path": "vendor/aris/skills/research-pipeline/SKILL.md",
+      "sha256": "0c9bd1676c8c2b0af0e36abda0669395fac41ab5eea49cd2aa60226585683125"
+    },
+    {
+      "bytes": 7020,
+      "path": "vendor/aris/skills/research-refine-pipeline/SKILL.md",
+      "sha256": "0469fd8b982f04538f9e1067b4b31d86541fa3d6e1569df8cf9644ec1bdd2182"
+    },
+    {
+      "bytes": 34664,
+      "path": "vendor/aris/skills/research-refine/SKILL.md",
+      "sha256": "c58649772c1cca2fc3e9d32622be279b42491991ab96301b30acb3722b45af6b"
+    },
+    {
+      "bytes": 13815,
+      "path": "vendor/aris/skills/research-review/SKILL.md",
+      "sha256": "71982b92a7790229076204d7b7264bf5d31e9053169ec140ca0c6cca849ab7ab"
+    },
+    {
+      "bytes": 20553,
+      "path": "vendor/aris/skills/research-wiki/SKILL.md",
+      "sha256": "564eea3ad9e8763ba2120605e61b18260b201976e9d6035643d8f65982052c06"
+    },
+    {
+      "bytes": 34242,
+      "path": "vendor/aris/skills/resubmit-pipeline/SKILL.md",
+      "sha256": "7c2805b261ef5a4b7b24db1a1445c7c776832fceae67fbebaab742af4c9bc416"
+    },
+    {
+      "bytes": 17854,
+      "path": "vendor/aris/skills/result-to-claim/SKILL.md",
+      "sha256": "b12d10bdb51440f65e4112e6643712f172a7e37c1e15066e15d81eaee5838a8f"
+    },
+    {
+      "bytes": 12848,
+      "path": "vendor/aris/skills/run-experiment/SKILL.md",
+      "sha256": "4d481ce95d8bcadb93b095c3dd9bda51d68b6edea6b710316d6c0c74bb5bcfa8"
+    },
+    {
+      "bytes": 10943,
+      "path": "vendor/aris/skills/semantic-scholar/SKILL.md",
+      "sha256": "41be9cd7d08d2d795d4fe0c87d23288712febd2807b8d4d38a2ea9c54ebb31e8"
+    },
+    {
+      "bytes": 13161,
+      "path": "vendor/aris/skills/serverless-modal/SKILL.md",
+      "sha256": "e8444d7c5e4cb53f400602a96bf9fbb8c682b85ffda8c24bcceb19cc3337e31f"
+    },
+    {
+      "bytes": 16967,
+      "path": "vendor/aris/skills/shared-references/acceptance-gate.md",
+      "sha256": "acfe2e790d97445396ff4eb605b91e4de756082d617b89cf9278bff76dc25623"
+    },
+    {
+      "bytes": 13572,
+      "path": "vendor/aris/skills/shared-references/assurance-contract.md",
+      "sha256": "4320cc8f8614f95914a1b8594759a8e0264f9e8ba02b7dca8305acab0c43b282"
+    },
+    {
+      "bytes": 4516,
+      "path": "vendor/aris/skills/shared-references/capture-antipatterns.md",
+      "sha256": "419b914ade074842b815bff5133c18993a31305ca36e40b08918856777857378"
+    },
+    {
+      "bytes": 20131,
+      "path": "vendor/aris/skills/shared-references/citation-discipline.md",
+      "sha256": "01fc1cf751d7e0e6bef04897df6ef1bcf1e1b20e5b56d9f208e020cc48ba6725"
+    },
+    {
+      "bytes": 10567,
+      "path": "vendor/aris/skills/shared-references/compute-env-contract.md",
+      "sha256": "293606bcf6281712e0f5e1a05be9b67e001f2e5b567e2a956e2099de9c648974"
+    },
+    {
+      "bytes": 8352,
+      "path": "vendor/aris/skills/shared-references/effort-contract.md",
+      "sha256": "c1cb84a099d7d465ce71e0fc6c8fe7449c8273072b4cb977e0e58744d767f482"
+    },
+    {
+      "bytes": 3248,
+      "path": "vendor/aris/skills/shared-references/evidence-precheck.md",
+      "sha256": "919a437a2e4a618ff6bcac6c03b7ec12bde3fef33d1a2aea25c9d98fcbd5e2d2"
+    },
+    {
+      "bytes": 2355,
+      "path": "vendor/aris/skills/shared-references/experiment-integrity.md",
+      "sha256": "22150fbdc5867e7790c88f968bccb367079c2db4c190ddce980709aea7e76f60"
+    },
+    {
+      "bytes": 19084,
+      "path": "vendor/aris/skills/shared-references/external-cadence.md",
+      "sha256": "d0d8e92c9c8f5e60555c8ddf32cf15c78d0bdc61a367ef35d8b0fef8dab906f3"
+    },
+    {
+      "bytes": 21698,
+      "path": "vendor/aris/skills/shared-references/fan-out-pattern.md",
+      "sha256": "e7322641c88b77e62d9cc2848cea0e99600492744fe65453d51abbb099255068"
+    },
+    {
+      "bytes": 7468,
+      "path": "vendor/aris/skills/shared-references/injection-hygiene.md",
+      "sha256": "80295bfe5d6389890464529b41d47cb1a9ffb4d571b558b6226ef39ace9f0440"
+    },
+    {
+      "bytes": 26858,
+      "path": "vendor/aris/skills/shared-references/integration-contract.md",
+      "sha256": "2a182e6ab3cd8e035b92874bcd8173b421ed6d403b280b3df3a49fa5d488e0f3"
+    },
+    {
+      "bytes": 5005,
+      "path": "vendor/aris/skills/shared-references/output-composition.md",
+      "sha256": "8de81708431091a21a641be5f91db7958bb9f9a4b85d4fe03f52c5b496948651"
+    },
+    {
+      "bytes": 2215,
+      "path": "vendor/aris/skills/shared-references/output-language.md",
+      "sha256": "7b326400dca5130ce4beedf72fc2010680afe96eb56a6ab21210d323adc9a52e"
+    },
+    {
+      "bytes": 2354,
+      "path": "vendor/aris/skills/shared-references/output-manifest.md",
+      "sha256": "28e29bc8e53c52afe4eeeb590df8893282a3bbced08e105e154ad228b6cd1922"
+    },
+    {
+      "bytes": 4807,
+      "path": "vendor/aris/skills/shared-references/output-versioning.md",
+      "sha256": "73a4269b537be728b0ecc35789f11fa6d1fafa6d0430d07ad2738f064b1e4da3"
+    },
+    {
+      "bytes": 9352,
+      "path": "vendor/aris/skills/shared-references/patent-format-cn.md",
+      "sha256": "e5be6c2c6fab3c84c795b53ca419198192b95f2c1ccd63833b5d0510a8f93c1f"
+    },
+    {
+      "bytes": 6542,
+      "path": "vendor/aris/skills/shared-references/patent-format-ep.md",
+      "sha256": "8cf58ac775fe524c230cd7f371abd0ce25eb774029129bc336f884026c58ba23"
+    },
+    {
+      "bytes": 6151,
+      "path": "vendor/aris/skills/shared-references/patent-format-us.md",
+      "sha256": "13f179cc70fc8664f356d5258bdaa52a4cc577496e385e5ac5cdd421a12f4f65"
+    },
+    {
+      "bytes": 9032,
+      "path": "vendor/aris/skills/shared-references/patent-writing-principles.md",
+      "sha256": "8c8dc8250948bd0741b792d350e3afdc686ed194a1bf02359fb0e55b81468d1d"
+    },
+    {
+      "bytes": 5455,
+      "path": "vendor/aris/skills/shared-references/prior-art-databases.md",
+      "sha256": "8225843987fbabb5f11788c19ed8a739f10691319865485d5cb876e7bc2a3cb7"
+    },
+    {
+      "bytes": 6694,
+      "path": "vendor/aris/skills/shared-references/resumable-runs.md",
+      "sha256": "bf522bfed126b0db96dfb22ab84f0011ba6f79bedc4f6a28a3a40f67500abb61"
+    },
+    {
+      "bytes": 4174,
+      "path": "vendor/aris/skills/shared-references/review-scope-limits.md",
+      "sha256": "e383dbaa57aed6f8fd2c2bb6bcaefc6806648126d11b21cb6c39eeeec76100f6"
+    },
+    {
+      "bytes": 23757,
+      "path": "vendor/aris/skills/shared-references/review-tracing.md",
+      "sha256": "fcf521283ee275708ca6f1a34ad836ca7e9c913f69e49fdd735a13d6f3ad964d"
+    },
+    {
+      "bytes": 9712,
+      "path": "vendor/aris/skills/shared-references/reviewer-backends.md",
+      "sha256": "e0aea16315faaec6ea468272aed7bf9d4a1b1d5261302a8ba357a9dce7bd9c33"
+    },
+    {
+      "bytes": 3473,
+      "path": "vendor/aris/skills/shared-references/reviewer-independence.md",
+      "sha256": "fbbfcb6e7ff53010b596e8e01ce456d1906734f5bd198745f76ccd62787af3e3"
+    },
+    {
+      "bytes": 52492,
+      "path": "vendor/aris/skills/shared-references/reviewer-routing.md",
+      "sha256": "9668f548d6ed5ecbbf3d9f350e370dfc6623ad0567e9e7050ccc01b69d3b29d1"
+    },
+    {
+      "bytes": 5710,
+      "path": "vendor/aris/skills/shared-references/skill-governance.md",
+      "sha256": "2da8e745ce5dc511206ab3a6a378a26d3bc6e4ca035c1f763f7a0b1793155c73"
+    },
+    {
+      "bytes": 4515,
+      "path": "vendor/aris/skills/shared-references/taste-calibration.md",
+      "sha256": "245e12a52b6c013022ddbcd8c682e4e5290bda6e38ecc6f14d7b2eaeb2988af8"
+    },
+    {
+      "bytes": 5582,
+      "path": "vendor/aris/skills/shared-references/venue-checklists.md",
+      "sha256": "712396be66d4db85f0038c5ff5479a5fc66db03bc7175c8ed931f7284802f4e2"
+    },
+    {
+      "bytes": 6503,
+      "path": "vendor/aris/skills/shared-references/wiki-helper-resolution.md",
+      "sha256": "0f4f408e97ed06f9d6d9775d9a1eb4008f6a76b8e728fe05321cca44a593529a"
+    },
+    {
+      "bytes": 14939,
+      "path": "vendor/aris/skills/shared-references/writing-principles.md",
+      "sha256": "25c71f6b76fad1a198b47b4eae9b1d101561578cc0a8767e91706957829f0abe"
+    },
+    {
+      "bytes": 2927,
+      "path": "vendor/aris/skills/skills-codex-claude-review/README.md",
+      "sha256": "94cf9511d9603dcbf0f3b791f6ec418fef49798feb6a4d8d47ff891593d1490c"
+    },
+    {
+      "bytes": 2871,
+      "path": "vendor/aris/skills/skills-codex-claude-review/README_CN.md",
+      "sha256": "3041a03aa503011bc91a23dd92f9f47d196c95ebed5b5c3f32937e3a41bec926"
+    },
+    {
+      "bytes": 36359,
+      "path": "vendor/aris/skills/skills-codex-claude-review/auto-paper-improvement-loop/SKILL.md",
+      "sha256": "b0a8a6a64f8ac0403bc75d25aaec2d8add7dfba987a11c52de95a581e231d4bf"
+    },
+    {
+      "bytes": 30452,
+      "path": "vendor/aris/skills/skills-codex-claude-review/auto-review-loop/SKILL.md",
+      "sha256": "cd2e877606a8b3eb2d636edff19f8ff068a2ef021928abcd17ece0fbfff2917b"
+    },
+    {
+      "bytes": 6788,
+      "path": "vendor/aris/skills/skills-codex-claude-review/novelty-check/SKILL.md",
+      "sha256": "6727fe56d02e44611a0a4a8be090532c223d0f753034544cbdd2d5c5ba9ec0fd"
+    },
+    {
+      "bytes": 14208,
+      "path": "vendor/aris/skills/skills-codex-claude-review/paper-figure/SKILL.md",
+      "sha256": "1e2ec8dfeff340a6b42adac53a096b2f6b9ef628d579f94230e4b113cdebb1fe"
+    },
+    {
+      "bytes": 13183,
+      "path": "vendor/aris/skills/skills-codex-claude-review/paper-plan/SKILL.md",
+      "sha256": "273a99d453145e2da7c5361137c163c77034992d9d03d7f2499779e134a74d9e"
+    },
+    {
+      "bytes": 27669,
+      "path": "vendor/aris/skills/skills-codex-claude-review/paper-write/SKILL.md",
+      "sha256": "f30d2b055883fcb9b34d7904c8690d1a1c8ecd2ee444e25b9ceaaa165833478f"
+    },
+    {
+      "bytes": 32172,
+      "path": "vendor/aris/skills/skills-codex-claude-review/research-refine/SKILL.md",
+      "sha256": "9cb8f40b527028e4dd71321f70f4a76e5e432dd140d4c7be582cc480ae8f2579"
+    },
+    {
+      "bytes": 9509,
+      "path": "vendor/aris/skills/skills-codex-claude-review/research-review/SKILL.md",
+      "sha256": "250861cd3cb6b1a650cfcd1fcdac0a468582b44f9b645f24670aae5fae0729c0"
+    },
+    {
+      "bytes": 7136,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/README.md",
+      "sha256": "f639f6b08067cedef15c0a92b7ff6f9cc70d0078fdd7ecb351b69fe547cef64f"
+    },
+    {
+      "bytes": 7052,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/README_CN.md",
+      "sha256": "24bb0cbbdd1862e6b6b308c308fdd2b43c168b4e1b6185260be23b6911342028"
+    },
+    {
+      "bytes": 17170,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/auto-paper-improvement-loop/SKILL.md",
+      "sha256": "418edbee8d6c61bff9ab871fd84a06f2ae37eb129df7b815b52f9778c2ee75b2"
+    },
+    {
+      "bytes": 15066,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/auto-review-loop/SKILL.md",
+      "sha256": "b98a321c39d4285ff8383b76881077466ca2b45d6f4cc9cf4dddd8524e7d1771"
+    },
+    {
+      "bytes": 31605,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/grant-proposal/SKILL.md",
+      "sha256": "8e834ea2ce5fc82591140bf57d7a723a5e74b6232039fb793fe3d9f8a025a72c"
+    },
+    {
+      "bytes": 16164,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/idea-creator/SKILL.md",
+      "sha256": "eabd84c6e6b0ad5d02cda0c24582d73417306a187530bf5c9b366019416ceeb2"
+    },
+    {
+      "bytes": 15426,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/idea-discovery-robot/SKILL.md",
+      "sha256": "dd0e7f33bff7b7a16fd4fca3bca1b475e3acd7ce24de68af6fdd20ad778c7e29"
+    },
+    {
+      "bytes": 12967,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/idea-discovery/SKILL.md",
+      "sha256": "618a9f8aa7ea804e162d8e1ab3b10ee1e393a966107401fcc661b2a1d8f7de78"
+    },
+    {
+      "bytes": 6110,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/novelty-check/SKILL.md",
+      "sha256": "5ef22b3605664b41a42ecaea22175e26aba19dda59eb701dca7ba602b8181e49"
+    },
+    {
+      "bytes": 12514,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/paper-figure/SKILL.md",
+      "sha256": "5dc702aa809cf4a53f906167f292643fb76748ee66998aa4da3e1e945ee134d2"
+    },
+    {
+      "bytes": 10966,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/paper-plan/SKILL.md",
+      "sha256": "74cb50a2ca3f09611eb557af7d10b4511ecb6762535366178d8f925599e44a38"
+    },
+    {
+      "bytes": 5157,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/paper-poster-html/SKILL.md",
+      "sha256": "618fa29802098c59bcb3ad449b2db00b50f7f72bf09343b443809664e527bac3"
+    },
+    {
+      "bytes": 20305,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/paper-slides/SKILL.md",
+      "sha256": "3cca23fa611bacd9c0838de2eed702a320163a429e90079227f6387bc5c8fdd4"
+    },
+    {
+      "bytes": 22091,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/paper-write/SKILL.md",
+      "sha256": "1b37c50aaa69fad1814e319911a7e65af3189586403e15016371a10e07a740c4"
+    },
+    {
+      "bytes": 13387,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/paper-writing/SKILL.md",
+      "sha256": "dac8f71654be7fd575e968a701d1e6d821bfc7b0be0278becb6eb7fc63b4283f"
+    },
+    {
+      "bytes": 29410,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/research-refine/SKILL.md",
+      "sha256": "e70c912082ebe40709b3684e254e823e61536a992d50694ae1a7c7a6e8982772"
+    },
+    {
+      "bytes": 7273,
+      "path": "vendor/aris/skills/skills-codex-gemini-review/research-review/SKILL.md",
+      "sha256": "098ddea8057fa492b7abcad890be4ce2d1fbd6b3d6f7c2383d1499480d88c04f"
+    },
+    {
+      "bytes": 5092,
+      "path": "vendor/aris/skills/skills-codex/README.md",
+      "sha256": "a34496f03ed094125ff5fac2290c145c61760ec9202c28723aa278db3c8994b3"
+    },
+    {
+      "bytes": 4529,
+      "path": "vendor/aris/skills/skills-codex/README_CN.md",
+      "sha256": "5b33ddd79235a1673af7e04d9b17cc033e278a32608f17fedd8babf3dde5088e"
+    },
+    {
+      "bytes": 5416,
+      "path": "vendor/aris/skills/skills-codex/ablation-planner/SKILL.md",
+      "sha256": "8383bc55d53adb29a36e07cc7da560337ddb32140e268fe737d4c36f94110e7b"
+    },
+    {
+      "bytes": 8809,
+      "path": "vendor/aris/skills/skills-codex/alphaxiv/SKILL.md",
+      "sha256": "65d74ca93c42a7b16e7446b41b7eb133d46fdfa5b65d4a3d8f0327857039db3a"
+    },
+    {
+      "bytes": 1568,
+      "path": "vendor/aris/skills/skills-codex/analyze-results/SKILL.md",
+      "sha256": "1a5f798558018fe6c8faa8b9997ac4cd1076aceb73cfb5bdc261e5de5727f7e2"
+    },
+    {
+      "bytes": 7808,
+      "path": "vendor/aris/skills/skills-codex/arxiv/SKILL.md",
+      "sha256": "f984dc04545e7cab0781fc518e9bc7ed5121175cac15a53707e8fc5bbd97c95f"
+    },
+    {
+      "bytes": 36548,
+      "path": "vendor/aris/skills/skills-codex/auto-paper-improvement-loop/SKILL.md",
+      "sha256": "6bbab2de5fc0a2afed58201e14f21457e8578c39cba4d1038a3c3810c4c6e6cc"
+    },
+    {
+      "bytes": 8324,
+      "path": "vendor/aris/skills/skills-codex/auto-review-loop-llm/SKILL.md",
+      "sha256": "5adc29b505c1180bc6db143fc1ed1a7454c22d034cfadca5237eed8488b5ec8f"
+    },
+    {
+      "bytes": 12132,
+      "path": "vendor/aris/skills/skills-codex/auto-review-loop-minimax/SKILL.md",
+      "sha256": "a6f768b079f1ef3f9531167c4557a09cef64aae69518ee557317263fd2c8bc33"
+    },
+    {
+      "bytes": 32654,
+      "path": "vendor/aris/skills/skills-codex/auto-review-loop/SKILL.md",
+      "sha256": "1ddf0c256958151ed330852044c0cf2d4595fa8842ef79ff71dfc7ac590402ec"
+    },
+    {
+      "bytes": 31886,
+      "path": "vendor/aris/skills/skills-codex/citation-audit/SKILL.md",
+      "sha256": "3f140b0fd75152b239c4fc2ec88c12828efab5da0fc8cbcd1710bafafbe36385"
+    },
+    {
+      "bytes": 38756,
+      "path": "vendor/aris/skills/skills-codex/citation-crosscheck/SKILL.md",
+      "sha256": "f842667d385bd59fdc991d0f0d03be5eee001abcfbe41c4f867ea5266ab4e489"
+    },
+    {
+      "bytes": 84510,
+      "path": "vendor/aris/skills/skills-codex/citation-crosscheck/scripts/cx_verify.py",
+      "sha256": "ae731cb5bfbc26bfa12f007516e4b0b8591c9384d4512d1d5c4d74737d3f250f"
+    },
+    {
+      "bytes": 11641,
+      "path": "vendor/aris/skills/skills-codex/claims-drafting/SKILL.md",
+      "sha256": "ec96a2366808b01d8fef9b91724204c2db0ce27119bf1a45291ee3efb9464ff1"
+    },
+    {
+      "bytes": 9037,
+      "path": "vendor/aris/skills/skills-codex/comm-lit-review/SKILL.md",
+      "sha256": "f8f46536c2e0b3e34fa633b617cb407ded580dcc3ee29f8f14daef21e92f1909"
+    },
+    {
+      "bytes": 1479,
+      "path": "vendor/aris/skills/skills-codex/comm-lit-review/references/domain-taxonomy.md",
+      "sha256": "fe60f6da0a53df9cfe24a9490967c0fe501852601c41db1e44ac3b5170a2cbc8"
+    },
+    {
+      "bytes": 983,
+      "path": "vendor/aris/skills/skills-codex/comm-lit-review/references/output-template.md",
+      "sha256": "a189d60a9c5f439d995a7a6ee9a2ea9989096e98fe6cac61fc49bedcb560c864"
+    },
+    {
+      "bytes": 3116,
+      "path": "vendor/aris/skills/skills-codex/comm-lit-review/references/source-policy.md",
+      "sha256": "36db0b748275c7a1e1502a1de7f1ad6f4d08889891467811f63684bc92026f20"
+    },
+    {
+      "bytes": 3095,
+      "path": "vendor/aris/skills/skills-codex/comm-lit-review/references/venue-tiering.md",
+      "sha256": "44568b391ceb668f5eb425f6f9ee631ac6f6b99ea27c2d59e2a84a76a98e608a"
+    },
+    {
+      "bytes": 5508,
+      "path": "vendor/aris/skills/skills-codex/deepxiv/SKILL.md",
+      "sha256": "a249c058513dfda7424e601edff1a19adaa27192124b152f8c45eed8c7ab64a1"
+    },
+    {
+      "bytes": 13588,
+      "path": "vendor/aris/skills/skills-codex/dse-loop/SKILL.md",
+      "sha256": "daf99d22d3fd955ca197cfc79bc3dc999e6283018f84be8887fe2f3465f74f68"
+    },
+    {
+      "bytes": 6732,
+      "path": "vendor/aris/skills/skills-codex/embodiment-description/SKILL.md",
+      "sha256": "8833b4569435077554d51ac59f79c8b4ceca64b777f129b1e8eaa328be9bb9a2"
+    },
+    {
+      "bytes": 7961,
+      "path": "vendor/aris/skills/skills-codex/exa-search/SKILL.md",
+      "sha256": "bb3ec11445ad13e897f891bf0873fa634ced9532de01e4542c342dc2c4ba4edb"
+    },
+    {
+      "bytes": 12226,
+      "path": "vendor/aris/skills/skills-codex/experiment-audit/SKILL.md",
+      "sha256": "355a22aa16bbd08ca78cd3e83784d77606fe4405790969273426f5cfdfec0da3"
+    },
+    {
+      "bytes": 17645,
+      "path": "vendor/aris/skills/skills-codex/experiment-bridge/SKILL.md",
+      "sha256": "2b7aaab38753f3aeb8a85d2e6bd77d8eeeb29a8850dc0637102567fd0ed0c1e5"
+    },
+    {
+      "bytes": 9665,
+      "path": "vendor/aris/skills/skills-codex/experiment-plan/SKILL.md",
+      "sha256": "61812df053fd8717cccb248fcabec3863f930eaedba03463bc059294dcc3863a"
+    },
+    {
+      "bytes": 16375,
+      "path": "vendor/aris/skills/skills-codex/experiment-queue/SKILL.md",
+      "sha256": "3a66fbd5f7684d3279bb91eb5d4ec64245f86da3ba507a7b60e357c7d8dfd00f"
+    },
+    {
+      "bytes": 6087,
+      "path": "vendor/aris/skills/skills-codex/feishu-notify/SKILL.md",
+      "sha256": "12ba4c282e594a269c4cb28e89a6202a128370ca7bb016a396f3feb118492e4d"
+    },
+    {
+      "bytes": 5000,
+      "path": "vendor/aris/skills/skills-codex/figure-description/SKILL.md",
+      "sha256": "4c69bc650a67d1688f44c909c49be98ffe74ea427b3859edb3c3357ec5730136"
+    },
+    {
+      "bytes": 12057,
+      "path": "vendor/aris/skills/skills-codex/figure-spec/SKILL.md",
+      "sha256": "16f75e4ec3789cd9fbdea633f4a0a9340b05d2f316ae0c03998d24f8f9eef2a3"
+    },
+    {
+      "bytes": 11168,
+      "path": "vendor/aris/skills/skills-codex/firecrawl-search/SKILL.md",
+      "sha256": "4bf34843db39b59f7b15db86338a285cc7329c3ff333d6b6889e09980d251288"
+    },
+    {
+      "bytes": 9527,
+      "path": "vendor/aris/skills/skills-codex/formula-derivation/SKILL.md",
+      "sha256": "1958b1fe25459c36ab937ea41650c743d829d83539d23c6bd19382e436cb5d8e"
+    },
+    {
+      "bytes": 8660,
+      "path": "vendor/aris/skills/skills-codex/gemini-search/SKILL.md",
+      "sha256": "7672efc2601561fb0c08410bb1d82a2e27461e070aaa93c3cde9eb57be95f4d7"
+    },
+    {
+      "bytes": 31592,
+      "path": "vendor/aris/skills/skills-codex/grant-proposal/SKILL.md",
+      "sha256": "c361e78f98ffbf54eeabf816828e5d06fd2bc0f7edc4561492b14184150dd422"
+    },
+    {
+      "bytes": 25599,
+      "path": "vendor/aris/skills/skills-codex/idea-creator/SKILL.md",
+      "sha256": "fa0786816e85ac117471fed346f2f9fd433214058ed0f4fe117b2f272c573ef5"
+    },
+    {
+      "bytes": 15898,
+      "path": "vendor/aris/skills/skills-codex/idea-discovery-robot/SKILL.md",
+      "sha256": "34cac6ec8a44fa6ef203c29eb22d84468f6e1aaa13a8860f890855b7aea1e3d5"
+    },
+    {
+      "bytes": 22951,
+      "path": "vendor/aris/skills/skills-codex/idea-discovery/SKILL.md",
+      "sha256": "a23e8980f40a3d7580e85cec11fa6f198f05d221c34a1ea843833e763f9a19ab"
+    },
+    {
+      "bytes": 6184,
+      "path": "vendor/aris/skills/skills-codex/integrity-forensics/SKILL.md",
+      "sha256": "2bf8330a81956e3afdc2e8dff722e310c6255cf68fdd6285de6e8b32344ceda7"
+    },
+    {
+      "bytes": 14557,
+      "path": "vendor/aris/skills/skills-codex/interview-cheatsheet/SKILL.md",
+      "sha256": "bf7ea8de6a345a0e9e549314bd1be292bdd84e47dcabd31bca399a1b891bfd13"
+    },
+    {
+      "bytes": 7909,
+      "path": "vendor/aris/skills/skills-codex/invention-structuring/SKILL.md",
+      "sha256": "1053541abe5dae9f50fcf2e858b236512e25ed4a33d2178f6fbcab9b4a18bdf8"
+    },
+    {
+      "bytes": 6816,
+      "path": "vendor/aris/skills/skills-codex/jurisdiction-format/SKILL.md",
+      "sha256": "7683f58c4ad6465b4c4dd4f360876b12b0132777ca4ba40c1e48b777f4b40bb9"
+    },
+    {
+      "bytes": 6559,
+      "path": "vendor/aris/skills/skills-codex/keenable-search/SKILL.md",
+      "sha256": "0f30c1b1dc35e9e5a7fc30aa220dcaae033526bf2c9c6d4b7f2960c2f3e73690"
+    },
+    {
+      "bytes": 23623,
+      "path": "vendor/aris/skills/skills-codex/kill-argument/SKILL.md",
+      "sha256": "daa82cfa7089f234e0e54f399a55e23e80fa18bd68d080c9b875bb1029e63ec4"
+    },
+    {
+      "bytes": 22343,
+      "path": "vendor/aris/skills/skills-codex/lean-formalize/SKILL.md",
+      "sha256": "462e896dc108e909c073d6ce567508a282fcec376ac0b5ea524fc2082aa44efb"
+    },
+    {
+      "bytes": 261,
+      "path": "vendor/aris/skills/skills-codex/lean-formalize/agents/openai.yaml",
+      "sha256": "39ced7d021fe62266c01ff3a6120bfdbd70ff4dca62d41b313ac1d7355671098"
+    },
+    {
+      "bytes": 14165,
+      "path": "vendor/aris/skills/skills-codex/lean-formalize/references/adversarial-review.md",
+      "sha256": "258e718bb63b96a8d169ef6914f637d53e59949481f3d95932c652793a1636ce"
+    },
+    {
+      "bytes": 10625,
+      "path": "vendor/aris/skills/skills-codex/lean-formalize/references/lean-working-loop.md",
+      "sha256": "33368e31eb1dc748deffa51e9ecde2040f885a87503f4569baf7c518f543ba0a"
+    },
+    {
+      "bytes": 6332,
+      "path": "vendor/aris/skills/skills-codex/lean-formalize/references/verification-and-handoff.md",
+      "sha256": "13c498361096ebeacfbf80e9bb51b8324599ac415e699f40befb948f97492a48"
+    },
+    {
+      "bytes": 12163,
+      "path": "vendor/aris/skills/skills-codex/mermaid-diagram/SKILL.md",
+      "sha256": "6476810ed42334da342f763651f988450488db5c94de37e2f8ead9c99544b766"
+    },
+    {
+      "bytes": 9561,
+      "path": "vendor/aris/skills/skills-codex/meta-apply/SKILL.md",
+      "sha256": "0a4d09147307413215330a223b556ca9bb11efd139e9324ca1a8b57501ca4839"
+    },
+    {
+      "bytes": 18401,
+      "path": "vendor/aris/skills/skills-codex/meta-optimize/SKILL.md",
+      "sha256": "c2619caa6fcc9370c87e20159d33cdaf625a280f416029b25375e6218e522b50"
+    },
+    {
+      "bytes": 3378,
+      "path": "vendor/aris/skills/skills-codex/monitor-experiment/SKILL.md",
+      "sha256": "66a42b21a7ec5a9c4ee2d4da6babfd533764d6c4188dcc178d5bcbd1d8a31072"
+    },
+    {
+      "bytes": 6817,
+      "path": "vendor/aris/skills/skills-codex/novelty-check/SKILL.md",
+      "sha256": "65e1684942c2de5f9791f6e2b1025b320a8a4d7b41032a1991b73bb91719082f"
+    },
+    {
+      "bytes": 9619,
+      "path": "vendor/aris/skills/skills-codex/openalex/SKILL.md",
+      "sha256": "6af90a676a2e3a27b896258f2855931c2bf31ca259d135d45dc61ab1cea05dd6"
+    },
+    {
+      "bytes": 11115,
+      "path": "vendor/aris/skills/skills-codex/overleaf-sync/SKILL.md",
+      "sha256": "15644b418d9d043ac1f66e03242a9f8ecebc63569fc0a43f913252f3bfb2abe7"
+    },
+    {
+      "bytes": 15164,
+      "path": "vendor/aris/skills/skills-codex/paper-claim-audit/SKILL.md",
+      "sha256": "583f275e2ed1d4c2f1d6fe4cb7e9733322f2b2c11c8948aa8d2fa66cfe910af2"
+    },
+    {
+      "bytes": 9381,
+      "path": "vendor/aris/skills/skills-codex/paper-compile/SKILL.md",
+      "sha256": "c2467ad7b4c915d6e3d51b975d60d2626cc1da58f3b202fc03b753907f737b0c"
+    },
+    {
+      "bytes": 14383,
+      "path": "vendor/aris/skills/skills-codex/paper-figure/SKILL.md",
+      "sha256": "a153b73a5df67c48190371254045d848af262f67e55813c54ada3461787250db"
+    },
+    {
+      "bytes": 19813,
+      "path": "vendor/aris/skills/skills-codex/paper-illustration-image2/SKILL.md",
+      "sha256": "b259aef1df0780f95c9103c4739d80829b52bcc8d5ad581c46f66749c289912f"
+    },
+    {
+      "bytes": 8745,
+      "path": "vendor/aris/skills/skills-codex/paper-illustration-image2/scripts/paper_illustration_image2.py",
+      "sha256": "bc97f5b1ae14ffaff10c24240b6e93f3c1282ffd340d4756ea80477649f32890"
+    },
+    {
+      "bytes": 30036,
+      "path": "vendor/aris/skills/skills-codex/paper-illustration/SKILL.md",
+      "sha256": "1c876e39d880781bc5d6f51c616e02f4e5858750867f027968d5b91564179643"
+    },
+    {
+      "bytes": 13400,
+      "path": "vendor/aris/skills/skills-codex/paper-plan/SKILL.md",
+      "sha256": "52fe5632eed977ede5abe2a10c484f0477c7cf7d60afe218bfc7807a3e2ad337"
+    },
+    {
+      "bytes": 22113,
+      "path": "vendor/aris/skills/skills-codex/paper-poster-html/SKILL.md",
+      "sha256": "7b05cbaa334e59bb9ac3ea290d91e2ccc96eef3f1deb3e8f70fcc310be4a6d13"
+    },
+    {
+      "bytes": 841,
+      "path": "vendor/aris/skills/skills-codex/paper-poster/SKILL.md",
+      "sha256": "fea8d7e3f4a07d0be9b43d4e7964b989074a26e858d11027e8ed34f8c3be70cb"
+    },
+    {
+      "bytes": 20320,
+      "path": "vendor/aris/skills/skills-codex/paper-slides/SKILL.md",
+      "sha256": "e5b47c9adc0c9300765a814e0949196b8c94aff7654674c421ca0348850fe80a"
+    },
+    {
+      "bytes": 21740,
+      "path": "vendor/aris/skills/skills-codex/paper-talk/SKILL.md",
+      "sha256": "92010297a6bf7295c6128b8fc17a10390eada5c23de3721a50cd3c05aa61e69c"
+    },
+    {
+      "bytes": 27883,
+      "path": "vendor/aris/skills/skills-codex/paper-write/SKILL.md",
+      "sha256": "8c9dfda633c72d276c1a6d7c0066f582cf93d2df88575a4bb035e4743a888f61"
+    },
+    {
+      "bytes": 57748,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/IEEEtran.bst",
+      "sha256": "314f0ece704568faf827011bac498650691b2b5ee06320720830e782416d5a5f"
+    },
+    {
+      "bytes": 281957,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/IEEEtran.cls",
+      "sha256": "da751920a317ed318b7b5cd7fa585a6cc7d28502d457856382e9be24b10a3bd7"
+    },
+    {
+      "bytes": 30207,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/aaai2026.bst",
+      "sha256": "ac26e2c66047435c0ed25f21ae36ad42d731cf3d794c4a8b5f05a62141a27294"
+    },
+    {
+      "bytes": 11802,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/aaai2026.sty",
+      "sha256": "a39f1866a04dd1e2603613c876fa446aaea2c2f3e34d02be868fd21520bfade5"
+    },
+    {
+      "bytes": 63140,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/aaai2026.tex",
+      "sha256": "bed12c50b5e027fd88097d238ec4e7ebf1ae7b450cb06d6df7c8ae126a620aea"
+    },
+    {
+      "bytes": 11615,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/acl.sty",
+      "sha256": "19dfeddc2c0e448f3926a0bef048a9db3f3611b46265b760caabd7ada4f361de"
+    },
+    {
+      "bytes": 14533,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/acl2026.tex",
+      "sha256": "339c9ee9705c1767d44ef24b85365c0bb8619ecc3fcf66172bf1356292389614"
+    },
+    {
+      "bytes": 45186,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/acl_natbib.bst",
+      "sha256": "e332fd51dcea48e2a8a89754892c3cb99674a1cd70b527b661e9aaffc235e83c"
+    },
+    {
+      "bytes": 90333,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/acm.bst",
+      "sha256": "ecbc9bfbf595d820dcc271d1bada20448c6eb5a6cf4d57de8dc4ed2608d5f23f"
+    },
+    {
+      "bytes": 5802,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/acm_mm2026.tex",
+      "sha256": "c350a3f470e8f356f8697040f204fb28d168b671aed67465a71a938f844d1ce0"
+    },
+    {
+      "bytes": 116554,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/acmart.cls",
+      "sha256": "560afeefdb1834d8b04556ec52e3abe60e7f23eed501b5b751c7b8215b626d34"
+    },
+    {
+      "bytes": 26900,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/cvpr.bst",
+      "sha256": "e38e6166bd7b1e6d23a1b79dcdb55c656e4fcdbe91bdf6b50d827e6b5d1aacfc"
+    },
+    {
+      "bytes": 17969,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/cvpr.sty",
+      "sha256": "2602473285d1a7df2a445ac89b76e1afa0acab78e056f0369d19770245190153"
+    },
+    {
+      "bytes": 2116,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/cvpr2026.tex",
+      "sha256": "251329b8a7ea25f1ba0f5a769f652235e13bc1f43b3e8b1d892e16a005b361f0"
+    },
+    {
+      "bytes": 1924,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/iclr2026.tex",
+      "sha256": "1e4c20b3c5b7445966194151d33c3e2023e828e621be8baf7ffb234b987cfc23"
+    },
+    {
+      "bytes": 26973,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/iclr2026_conference.bst",
+      "sha256": "2d67552db7ed38ccfccb5957b52f95656e25c249724761d3cf5f7922ad1844c5"
+    },
+    {
+      "bytes": 9025,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/iclr2026_conference.sty",
+      "sha256": "a4852f68e080d6c5245057ca2039100b409e31727898aa93c03d78ddb84374a3"
+    },
+    {
+      "bytes": 27344,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/icml2026.sty",
+      "sha256": "7cdcf90f6a59c5219e7f15c88f7ed09fcaf598dad91e6cdddc4dc3cb0e397a95"
+    },
+    {
+      "bytes": 29714,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/icml2026.tex",
+      "sha256": "c2ca8140bf255d1ff77d1278eb3eefed4018b4b1e71065b8e1ccbc68b74c8acf"
+    },
+    {
+      "bytes": 2124,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/ieee_conference.tex",
+      "sha256": "a3dc3a175a7dd1512f4a2fdb844a0a482a9e919162e37dc27373d501fbafafbc"
+    },
+    {
+      "bytes": 2557,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/ieee_journal.tex",
+      "sha256": "bdff7ff0aa376d8a46675bdb6e96c4dd715463360735706aa5fbaa5f834b7604"
+    },
+    {
+      "bytes": 1279,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/math_commands.tex",
+      "sha256": "3efe4556b2c33b4a93c1b6e86b99b9a3ecbd9c9565ccc06bf8a1f51293470dc6"
+    },
+    {
+      "bytes": 19076,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/neurips2026.tex",
+      "sha256": "d436d14ee70d6a1ee821f6239d2d45a544059fbd186d2431c69d0cbddcf0790d"
+    },
+    {
+      "bytes": 13462,
+      "path": "vendor/aris/skills/skills-codex/paper-write/templates/neurips_2026.sty",
+      "sha256": "0c1ad36961fcd9198dcc2558cf2793e1df39973bde8264fd701f5e7970672757"
+    },
+    {
+      "bytes": 37284,
+      "path": "vendor/aris/skills/skills-codex/paper-writing/SKILL.md",
+      "sha256": "4047eb78599af9e368cca83fee32347d418b72b5397629a72bb240c47d2d1bcc"
+    },
+    {
+      "bytes": 6931,
+      "path": "vendor/aris/skills/skills-codex/patent-novelty-check/SKILL.md",
+      "sha256": "54dbc7784c7da955857ebe9cbe14344c7fa41f8c8566daa59cd3771708a44c64"
+    },
+    {
+      "bytes": 15268,
+      "path": "vendor/aris/skills/skills-codex/patent-pipeline/SKILL.md",
+      "sha256": "fde7da9a5763e689fe83c252b8acac30140de4e4540aac651baeb18a6c92b069"
+    },
+    {
+      "bytes": 7785,
+      "path": "vendor/aris/skills/skills-codex/patent-review/SKILL.md",
+      "sha256": "5393be3c333fbc0e22f6aa8d2259af23a41309ae39ff346ba06f4d5da492575f"
+    },
+    {
+      "bytes": 5596,
+      "path": "vendor/aris/skills/skills-codex/pixel-art/SKILL.md",
+      "sha256": "96ccea96d27140be68dd934e6af1d0d576450226152e1d20df6f9d3dc5b0ef23"
+    },
+    {
+      "bytes": 5538,
+      "path": "vendor/aris/skills/skills-codex/prior-art-search/SKILL.md",
+      "sha256": "8793fb26c522de4c44a64b68df81e5d12718a99866c639658261cea680bd58b2"
+    },
+    {
+      "bytes": 32049,
+      "path": "vendor/aris/skills/skills-codex/proof-checker/SKILL.md",
+      "sha256": "716a86370b1768b616943d449ab106b901fa55e239ab76ef9f5eebb9779ba39e"
+    },
+    {
+      "bytes": 19099,
+      "path": "vendor/aris/skills/skills-codex/proof-orchestrator/SKILL.md",
+      "sha256": "d4c06928e9281ad7208c7402f69611cf813e16353b85bf7fe432ad0b6666fcde"
+    },
+    {
+      "bytes": 4503,
+      "path": "vendor/aris/skills/skills-codex/proof-orchestrator/references/audit-output-contract.md",
+      "sha256": "cff8da1ef42794c64aba244decb19895b97ae912651e023c5c0b54a110e3eb7e"
+    },
+    {
+      "bytes": 3590,
+      "path": "vendor/aris/skills/skills-codex/proof-orchestrator/references/deepseek-routing.md",
+      "sha256": "829b21541445f85703704506764512579a1b54cc290ae5b9ddbf7670382d291f"
+    },
+    {
+      "bytes": 7823,
+      "path": "vendor/aris/skills/skills-codex/proof-orchestrator/references/dispatch-prompts.md",
+      "sha256": "21f0f279dd24f98cf9eaa5ce21754299f88cdc8eac77874c2bfe6b12a8f6c7eb"
+    },
+    {
+      "bytes": 5327,
+      "path": "vendor/aris/skills/skills-codex/proof-orchestrator/references/notation-audit.md",
+      "sha256": "8db3079a9209d9c71b977d448cff1abe33c5cf6414b1923735c813c9fc56e757"
+    },
+    {
+      "bytes": 4430,
+      "path": "vendor/aris/skills/skills-codex/proof-orchestrator/references/proof-audit-rubric.md",
+      "sha256": "fb962314da5291f5376da55f502f94a9337f380b481cf12208d6b586341b86bf"
+    },
+    {
+      "bytes": 1812,
+      "path": "vendor/aris/skills/skills-codex/proof-orchestrator/references/stress-tests.md",
+      "sha256": "93c4c054f14dfe6acce9f1d1f2d5a70a71a2b32ac96d1988f6136d557e01067a"
+    },
+    {
+      "bytes": 8297,
+      "path": "vendor/aris/skills/skills-codex/proof-writer/SKILL.md",
+      "sha256": "9791fd55d8bedaedcca21b660cf6e4ce92da77f1acfe0d8678d535d150e217d4"
+    },
+    {
+      "bytes": 7947,
+      "path": "vendor/aris/skills/skills-codex/qzcli/SKILL.md",
+      "sha256": "328953e6e4a21f8a38e979f9729818721af387724b799cb7cc96e072d0012d2f"
+    },
+    {
+      "bytes": 16670,
+      "path": "vendor/aris/skills/skills-codex/rebuttal/SKILL.md",
+      "sha256": "a8af829f6c45cb62a65df327bec2afda83642849b79346a0d0bfe031f2a7a0b5"
+    },
+    {
+      "bytes": 21134,
+      "path": "vendor/aris/skills/skills-codex/render-html/SKILL.md",
+      "sha256": "13b96aee8d05acd637d32b6806a83c93392ea198d7eb338419afcb54cd02610b"
+    },
+    {
+      "bytes": 37028,
+      "path": "vendor/aris/skills/skills-codex/render-html/scripts/render_html.py",
+      "sha256": "25d04ffbb1c2d4de61c4016578390477080168275a093d3569a43e14758e5694"
+    },
+    {
+      "bytes": 8651,
+      "path": "vendor/aris/skills/skills-codex/render-html/scripts/templates/academic.html",
+      "sha256": "0ce224f68f320252e05696bc865050b3794d8e8c6f7163f17c663b4e6814a545"
+    },
+    {
+      "bytes": 8371,
+      "path": "vendor/aris/skills/skills-codex/render-html/scripts/templates/dashboard.html",
+      "sha256": "156e0825a131279debe55d1b91d7aa7c5f85e755458414932110687c9c3b3779"
+    },
+    {
+      "bytes": 22626,
+      "path": "vendor/aris/skills/skills-codex/research-implement-feature/SKILL.md",
+      "sha256": "33605606e3b04940b6b262e88a1a729a6a0c81f6a831c3a734c57ab75c57acf8"
+    },
+    {
+      "bytes": 29972,
+      "path": "vendor/aris/skills/skills-codex/research-lit/SKILL.md",
+      "sha256": "87844f4afb7b71a4cdd71b4073b11c0aee3d22e5cfa4f00db1b84c2469059fd4"
+    },
+    {
+      "bytes": 21121,
+      "path": "vendor/aris/skills/skills-codex/research-pipeline/SKILL.md",
+      "sha256": "8caec65ac3988cd619dcdada3f0e72069536e01c94bf91fe853bf799567eca9d"
+    },
+    {
+      "bytes": 6930,
+      "path": "vendor/aris/skills/skills-codex/research-refine-pipeline/SKILL.md",
+      "sha256": "65538a42c2f697c627b8e209d9c5aafcec338dbe12f8f22e82cb2a707d719262"
+    },
+    {
+      "bytes": 31895,
+      "path": "vendor/aris/skills/skills-codex/research-refine/SKILL.md",
+      "sha256": "0bd57b339f0badf257df1cb5325a4ee8a69e7eab2f7ab4c8babdaafcbc56a798"
+    },
+    {
+      "bytes": 9163,
+      "path": "vendor/aris/skills/skills-codex/research-review/SKILL.md",
+      "sha256": "17505d5982c82e821124de898b0beb7de4a98ecc4c1cd173b8687b74ace9d4c5"
+    },
+    {
+      "bytes": 17991,
+      "path": "vendor/aris/skills/skills-codex/research-wiki/SKILL.md",
+      "sha256": "bd0af95ccab3a92f13c4a7b6db3fce0b1beaa7643e2e245b0044b8f6b4edfb6c"
+    },
+    {
+      "bytes": 33998,
+      "path": "vendor/aris/skills/skills-codex/resubmit-pipeline/SKILL.md",
+      "sha256": "11137004644537951fe76ce7935dcdd25c25ada6420aa7dc3059b334014911ac"
+    },
+    {
+      "bytes": 13324,
+      "path": "vendor/aris/skills/skills-codex/result-to-claim/SKILL.md",
+      "sha256": "2e67d8bc7eb178aba18f3a3b646b59d3ca25836a42154acabe35dfa705f9f0ec"
+    },
+    {
+      "bytes": 8909,
+      "path": "vendor/aris/skills/skills-codex/run-experiment/SKILL.md",
+      "sha256": "8325128eab14c7f82213d44c8e78e98f44ca680baa9c78f3bee8766f8e9f464a"
+    },
+    {
+      "bytes": 10438,
+      "path": "vendor/aris/skills/skills-codex/semantic-scholar/SKILL.md",
+      "sha256": "7e91ddfecb979562dd49797d2244cd03f796049fb116a418d12dbad70dca34bb"
+    },
+    {
+      "bytes": 13169,
+      "path": "vendor/aris/skills/skills-codex/serverless-modal/SKILL.md",
+      "sha256": "a57ba889e70f4108f1b1427e1b352ca892918f6216eb2678289b3d829a9d7325"
+    },
+    {
+      "bytes": 19333,
+      "path": "vendor/aris/skills/skills-codex/shared-references/acceptance-gate.md",
+      "sha256": "0d1ef8b2d60932b9c9739bdaf955ae4c614b62d659d357440e2606433affdb0a"
+    },
+    {
+      "bytes": 7707,
+      "path": "vendor/aris/skills/skills-codex/shared-references/assurance-contract.md",
+      "sha256": "05dfc6d1d68b6c79c6aaaebc910b27efa5d15a540ea3b8806f3c993176419f93"
+    },
+    {
+      "bytes": 5259,
+      "path": "vendor/aris/skills/skills-codex/shared-references/capture-antipatterns.md",
+      "sha256": "0339dc801cd1cf93d7d1e284c3b7034f49af83c7f06473cf1e922a9614de5e5e"
+    },
+    {
+      "bytes": 13918,
+      "path": "vendor/aris/skills/skills-codex/shared-references/citation-discipline.md",
+      "sha256": "1c51dc936bbc3dbb17580148767734e0c642ad59516a861d9503b9767ca7043c"
+    },
+    {
+      "bytes": 10577,
+      "path": "vendor/aris/skills/skills-codex/shared-references/compute-env-contract.md",
+      "sha256": "27aee2eee75a705a7d3ed72086b05ae2aa499104489376596ecb5b683807eeb5"
+    },
+    {
+      "bytes": 5999,
+      "path": "vendor/aris/skills/skills-codex/shared-references/effort-contract.md",
+      "sha256": "d4a53faf13d19d5d7f844d279b46ad5528de6572b07531cee4d49f4f405873e5"
+    },
+    {
+      "bytes": 4058,
+      "path": "vendor/aris/skills/skills-codex/shared-references/evidence-precheck.md",
+      "sha256": "5114b5a6c5e4efe733c572fab8aaee90d60f95d69b2926e2a297fa6eecac3993"
+    },
+    {
+      "bytes": 2355,
+      "path": "vendor/aris/skills/skills-codex/shared-references/experiment-integrity.md",
+      "sha256": "22150fbdc5867e7790c88f968bccb367079c2db4c190ddce980709aea7e76f60"
+    },
+    {
+      "bytes": 20174,
+      "path": "vendor/aris/skills/skills-codex/shared-references/external-cadence.md",
+      "sha256": "ff987d02df9347b6514ffbb45742efadc7ad9f97fce2c127bf8715ad778874e5"
+    },
+    {
+      "bytes": 23134,
+      "path": "vendor/aris/skills/skills-codex/shared-references/fan-out-pattern.md",
+      "sha256": "b35410403fbf2d951427e73a8681de1febc0165184f3594d3cdd36f672bab4c0"
+    },
+    {
+      "bytes": 8044,
+      "path": "vendor/aris/skills/skills-codex/shared-references/injection-hygiene.md",
+      "sha256": "c5a96d7b004bd1c1ae2ffb874bec8027b0f849cc1b8581c69fa6e2a9c078b7d8"
+    },
+    {
+      "bytes": 19930,
+      "path": "vendor/aris/skills/skills-codex/shared-references/integration-contract.md",
+      "sha256": "0d6ec981e51b85da6d3c24d8fef4bbeb64c27fef87a57e1129413aff59f2ddd1"
+    },
+    {
+      "bytes": 5293,
+      "path": "vendor/aris/skills/skills-codex/shared-references/output-composition.md",
+      "sha256": "79a72c7ea02102c460ae3ad55853c21a4054b9df93f377c29dd34555e6d3c3a7"
+    },
+    {
+      "bytes": 2215,
+      "path": "vendor/aris/skills/skills-codex/shared-references/output-language.md",
+      "sha256": "0f1447579bd7a2195fd4a074be70ae6345b5c368f1a70d327e89748bf5a378f9"
+    },
+    {
+      "bytes": 1753,
+      "path": "vendor/aris/skills/skills-codex/shared-references/output-manifest.md",
+      "sha256": "e767083e0ef97a7adf7a4e8a574090067a59c0655d5aca422a3747cd32b6afde"
+    },
+    {
+      "bytes": 4828,
+      "path": "vendor/aris/skills/skills-codex/shared-references/output-versioning.md",
+      "sha256": "de8e7ac23069de6c5d0c482d4cef117dd5a543e00b57e2dc6c62560a457290c5"
+    },
+    {
+      "bytes": 9352,
+      "path": "vendor/aris/skills/skills-codex/shared-references/patent-format-cn.md",
+      "sha256": "e5be6c2c6fab3c84c795b53ca419198192b95f2c1ccd63833b5d0510a8f93c1f"
+    },
+    {
+      "bytes": 6542,
+      "path": "vendor/aris/skills/skills-codex/shared-references/patent-format-ep.md",
+      "sha256": "8cf58ac775fe524c230cd7f371abd0ce25eb774029129bc336f884026c58ba23"
+    },
+    {
+      "bytes": 6151,
+      "path": "vendor/aris/skills/skills-codex/shared-references/patent-format-us.md",
+      "sha256": "13f179cc70fc8664f356d5258bdaa52a4cc577496e385e5ac5cdd421a12f4f65"
+    },
+    {
+      "bytes": 9032,
+      "path": "vendor/aris/skills/skills-codex/shared-references/patent-writing-principles.md",
+      "sha256": "8c8dc8250948bd0741b792d350e3afdc686ed194a1bf02359fb0e55b81468d1d"
+    },
+    {
+      "bytes": 5455,
+      "path": "vendor/aris/skills/skills-codex/shared-references/prior-art-databases.md",
+      "sha256": "8225843987fbabb5f11788c19ed8a739f10691319865485d5cb876e7bc2a3cb7"
+    },
+    {
+      "bytes": 8134,
+      "path": "vendor/aris/skills/skills-codex/shared-references/resumable-runs.md",
+      "sha256": "60cb895918c0ff394a46a27f69140b84578b1bc7457d8e95c2f5c20c06ca42d2"
+    },
+    {
+      "bytes": 4174,
+      "path": "vendor/aris/skills/skills-codex/shared-references/review-scope-limits.md",
+      "sha256": "e383dbaa57aed6f8fd2c2bb6bcaefc6806648126d11b21cb6c39eeeec76100f6"
+    },
+    {
+      "bytes": 9517,
+      "path": "vendor/aris/skills/skills-codex/shared-references/review-tracing.md",
+      "sha256": "fd1e524d1d78dd2dfb6cc51e404a303f98aabc40849bc16149676c8904814fa4"
+    },
+    {
+      "bytes": 9712,
+      "path": "vendor/aris/skills/skills-codex/shared-references/reviewer-backends.md",
+      "sha256": "e0aea16315faaec6ea468272aed7bf9d4a1b1d5261302a8ba357a9dce7bd9c33"
+    },
+    {
+      "bytes": 1809,
+      "path": "vendor/aris/skills/skills-codex/shared-references/reviewer-independence.md",
+      "sha256": "326a2ed68aa25dd5ff7fbb74b34fcce7a595eb27cd0daf565890c208076206db"
+    },
+    {
+      "bytes": 8348,
+      "path": "vendor/aris/skills/skills-codex/shared-references/reviewer-routing.md",
+      "sha256": "b0ce923454caf49e22742ae4de0bd9847e6f0a4d3c9ca95a1b48288cc1ea6619"
+    },
+    {
+      "bytes": 7344,
+      "path": "vendor/aris/skills/skills-codex/shared-references/skill-governance.md",
+      "sha256": "896f58cfbf31795a1e3bf4f4ee487ba903c0d8a85dcdaceae3853ee6e466ceb1"
+    },
+    {
+      "bytes": 4819,
+      "path": "vendor/aris/skills/skills-codex/shared-references/taste-calibration.md",
+      "sha256": "ab5880c4989e2d05ab58212d46e4bd4e215b1cee87b430e7d94d31bc431b947d"
+    },
+    {
+      "bytes": 2939,
+      "path": "vendor/aris/skills/skills-codex/shared-references/venue-checklists.md",
+      "sha256": "aef7a0c396078747a5723b93b289c379aa1dda3f08540eca6d2d321264ed0ec8"
+    },
+    {
+      "bytes": 2933,
+      "path": "vendor/aris/skills/skills-codex/shared-references/wiki-helper-resolution.md",
+      "sha256": "c39a9712178b481aac6bc5d118cb9bc3dee7ea8abf4b95ae535ad28ef8cab84e"
+    },
+    {
+      "bytes": 14939,
+      "path": "vendor/aris/skills/skills-codex/shared-references/writing-principles.md",
+      "sha256": "25c71f6b76fad1a198b47b4eae9b1d101561578cc0a8767e91706957829f0abe"
+    },
+    {
+      "bytes": 29646,
+      "path": "vendor/aris/skills/skills-codex/slides-polish/SKILL.md",
+      "sha256": "e496783d0ba09233ffccf9cce4bb933f62523989746120a52861078d7f453b8d"
+    },
+    {
+      "bytes": 9699,
+      "path": "vendor/aris/skills/skills-codex/specification-writing/SKILL.md",
+      "sha256": "e6de83cdf45ddba8fe70da36aac09c677d9afcb33efcbc941ce5320b90f48601"
+    },
+    {
+      "bytes": 4473,
+      "path": "vendor/aris/skills/skills-codex/system-profile/SKILL.md",
+      "sha256": "9d31e32d2a63cf2f27a843e171c652327596c3f9e911c265660618d4ba27c48e"
+    },
+    {
+      "bytes": 5617,
+      "path": "vendor/aris/skills/skills-codex/training-check/SKILL.md",
+      "sha256": "94bcb09c9b2eae90f2bcfeb98d652dd72dbe00d42be47486650397ad5be69c44"
+    },
+    {
+      "bytes": 15737,
+      "path": "vendor/aris/skills/skills-codex/vast-gpu/SKILL.md",
+      "sha256": "38e0f7c622e85bc96978ffb945c3f07a779f4f8e931cac917e51f8be8e8624d4"
+    },
+    {
+      "bytes": 15068,
+      "path": "vendor/aris/skills/skills-codex/web-debug-search/SKILL.md",
+      "sha256": "ffb5f3ccf61c45d90c41901c251263f945c67baba0f91cb300cc1d53dcd63d01"
+    },
+    {
+      "bytes": 16776,
+      "path": "vendor/aris/skills/skills-codex/wiki-enrich/SKILL.md",
+      "sha256": "3c4eca73f46432b0a2b47caa6e8fc91bd779e73c86826d2cd0a8c18797b83817"
+    },
+    {
+      "bytes": 6859,
+      "path": "vendor/aris/skills/skills-codex/writing-systems-papers/SKILL.md",
+      "sha256": "14a79a6b44b8e0723be097f3c120f0d787bef1a9d0f16ff1e1511c6ec1e765f1"
+    },
+    {
+      "bytes": 29720,
+      "path": "vendor/aris/skills/slides-polish/SKILL.md",
+      "sha256": "9923835442e44df2bfe46fad78b44162b89c14a9fb14dfc060aa69fc43b02a46"
+    },
+    {
+      "bytes": 9722,
+      "path": "vendor/aris/skills/specification-writing/SKILL.md",
+      "sha256": "368118a472a1aca83539e86eefd6c537d2fd2cf4ec26107d00d63eadc7f05071"
+    },
+    {
+      "bytes": 4473,
+      "path": "vendor/aris/skills/system-profile/SKILL.md",
+      "sha256": "9d31e32d2a63cf2f27a843e171c652327596c3f9e911c265660618d4ba27c48e"
+    },
+    {
+      "bytes": 6871,
+      "path": "vendor/aris/skills/training-check/SKILL.md",
+      "sha256": "d7330941a9c178b0681d32675cbff1187517dee807f3ad2f7c7dad175953df6e"
+    },
+    {
+      "bytes": 15737,
+      "path": "vendor/aris/skills/vast-gpu/SKILL.md",
+      "sha256": "69aabce36540fd6fce55bf47b6f043166fc118fd708d03efddb57d168a99f4e5"
+    },
+    {
+      "bytes": 15068,
+      "path": "vendor/aris/skills/web-debug-search/SKILL.md",
+      "sha256": "ffb5f3ccf61c45d90c41901c251263f945c67baba0f91cb300cc1d53dcd63d01"
+    },
+    {
+      "bytes": 16628,
+      "path": "vendor/aris/skills/wiki-enrich/SKILL.md",
+      "sha256": "dcffa0cd4f0bc4afbc9d986fd9270be9ae8e7d7f71bb52f09dab71e0e769d8c0"
+    },
+    {
+      "bytes": 6903,
+      "path": "vendor/aris/skills/writing-systems-papers/SKILL.md",
+      "sha256": "385fcf41742514b4aa9ecf93a0582a1bfd3452cacd12a54c87cf5bd82adccf7f"
+    },
+    {
+      "bytes": 884,
+      "path": "vendor/aris/templates/CLAUDE_MD_TEMPLATE.md",
+      "sha256": "b0676223a52aa3c651ba31210615d9e110f4ea6670e638e27ab1c1b12c239880"
+    },
+    {
+      "bytes": 1670,
+      "path": "vendor/aris/templates/EXPERIMENT_LOG_TEMPLATE.md",
+      "sha256": "32126068df3cf2168d0a7d24f8658d7e97890df506155746dbe570302f12b59f"
+    },
+    {
+      "bytes": 1926,
+      "path": "vendor/aris/templates/EXPERIMENT_PLAN_TEMPLATE.md",
+      "sha256": "a28f0795f4c8e203216be6b5d91b4d9def60f5af7cdbfcc7ed0a2ebf205abb67"
+    },
+    {
+      "bytes": 1947,
+      "path": "vendor/aris/templates/EXPERIMENT_PLAN_TEMPLATE_CN.md",
+      "sha256": "bec2b65c78f95902040bc7a2f2a728be42c82a8d0242a9c265602400e29da34f"
+    },
+    {
+      "bytes": 2579,
+      "path": "vendor/aris/templates/FINDINGS_TEMPLATE.md",
+      "sha256": "c3d98f53f780a5c91988d785e6cbb118c9e2b6d1ac819db8943639e17d55255f"
+    },
+    {
+      "bytes": 1812,
+      "path": "vendor/aris/templates/IDEA_CANDIDATES_TEMPLATE.md",
+      "sha256": "832bf7ac924894982cf73fae8f2d026b76111cf952f14f6ca3e3b130ee14e984"
+    },
+    {
+      "bytes": 1840,
+      "path": "vendor/aris/templates/IDEA_CANDIDATES_TEMPLATE_CN.md",
+      "sha256": "b57f0086f8fcbe9159aa611ad866c39fcc5faf3149d75529e02bc7cbd06a8fbf"
+    },
+    {
+      "bytes": 3187,
+      "path": "vendor/aris/templates/INVENTION_BRIEF_TEMPLATE.md",
+      "sha256": "9fd8c4ca0912bfd5e449dcb6b034196dfad05c11f44abe04e5c177de5d6357f9"
+    },
+    {
+      "bytes": 338,
+      "path": "vendor/aris/templates/MANIFEST_TEMPLATE.md",
+      "sha256": "513bc08b2744b20825bb00063e77e22d536293e428fb419ca0c7b0ed9f7ea6d2"
+    },
+    {
+      "bytes": 1098,
+      "path": "vendor/aris/templates/NARRATIVE_REPORT_TEMPLATE.md",
+      "sha256": "108481c051e96976b432f038c3903968d89d9d3556cc6bbef45c3947198713b6"
+    },
+    {
+      "bytes": 1172,
+      "path": "vendor/aris/templates/PAPER_PLAN_TEMPLATE.md",
+      "sha256": "0c323fa0e65c0d9e13100e7de1d6d7ea9f4857706b9e32e81afe9d632adf981d"
+    },
+    {
+      "bytes": 2733,
+      "path": "vendor/aris/templates/PATENT_CLAIMS_TEMPLATE.md",
+      "sha256": "cbcfcb9715e951087e6a1a5f0937db04f9f9f123048dc6d3f9edb9d87a2927b3"
+    },
+    {
+      "bytes": 2130,
+      "path": "vendor/aris/templates/PATENT_SPECIFICATION_TEMPLATE.md",
+      "sha256": "8a058790ac4b97ae0a9d95d2c65026eca76194be98841b1e16f8037a47849fa0"
+    },
+    {
+      "bytes": 3064,
+      "path": "vendor/aris/templates/README.md",
+      "sha256": "334aac9654abd110dd1201f0e56915f11a3e1e47304079856ce0db66c25dc635"
+    },
+    {
+      "bytes": 1382,
+      "path": "vendor/aris/templates/RESEARCH_BRIEF_TEMPLATE.md",
+      "sha256": "f3aae6dcb26028a4115994aeb5a37b3fe408aa6cca18743bac693cfc1ad08688"
+    },
+    {
+      "bytes": 1287,
+      "path": "vendor/aris/templates/RESEARCH_BRIEF_TEMPLATE_CN.md",
+      "sha256": "4e341cc84147061bc67a1fa15379b54ba3ea11e1ad0917150333471686b2d4dc"
+    },
+    {
+      "bytes": 2374,
+      "path": "vendor/aris/templates/RESEARCH_CONTRACT_TEMPLATE.md",
+      "sha256": "e71ee594951a50aaa93b1644318c28a705d6fcf9780ca1f61030b1c1bb44696a"
+    },
+    {
+      "bytes": 837,
+      "path": "vendor/aris/templates/claude-hooks/corpus_write_guard.json",
+      "sha256": "b32a2d9200be0d70a55ea3d14e199db04a42b0cc5aab243afeee354329ccc363"
+    },
+    {
+      "bytes": 4307,
+      "path": "vendor/aris/templates/claude-hooks/corpus_write_guard.py",
+      "sha256": "9005bc1bc94378952237439096d9c2c05f1ff6243456878da5c9fc94efdd5893"
+    },
+    {
+      "bytes": 1753,
+      "path": "vendor/aris/templates/claude-hooks/meta_logging.json",
+      "sha256": "4162f4d902e6ba6740a377b0a7d01d85f15f7a36bda2645b6181bb51636aa303"
+    },
+    {
+      "bytes": 160,
+      "path": "vendor/aris/templates/gitignore-trace.txt",
+      "sha256": "9fbc968ad5c3f249200c96ddb115324ac95991ddaea9dbc2af493e7c2983166d"
+    },
+    {
+      "bytes": 0,
+      "path": "vendor/aris/tests/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2303,
+      "path": "vendor/aris/tests/_feishu_bridge_helpers.py",
+      "sha256": "1d4fec96e1542f3b1a5a5f00f99d48c7b1ebb8ddb9d4ed608e4bb8793a7749b7"
+    },
+    {
+      "bytes": 5876,
+      "path": "vendor/aris/tests/_llm_chat_helpers.py",
+      "sha256": "01c6564d4e49f67960dc4aacb3f84b6425685d9cd7a32a5f5732c10a1aec80bc"
+    },
+    {
+      "bytes": 6265,
+      "path": "vendor/aris/tests/_minimax_helpers.py",
+      "sha256": "c9533d8c54c7103c3f143952021caf1d7e43324fb6e9689c305b613c503fb375"
+    },
+    {
+      "bytes": 579,
+      "path": "vendor/aris/tests/conftest.py",
+      "sha256": "99e5946ceadde6e0e8cb1d3b2b0d7e83d5b535ac87260c146bf6e13010c9921f"
+    },
+    {
+      "bytes": 10677,
+      "path": "vendor/aris/tests/test_antigravity_exec_bridge.py",
+      "sha256": "f64b96436300efa413398e624eda0e4087933341b309bfb6ad6f4287ac4fcd14"
+    },
+    {
+      "bytes": 8270,
+      "path": "vendor/aris/tests/test_argument_hint_lint.py",
+      "sha256": "036529c7a0b1d71bf9f018a4e289520154cb2351afd90591c8d0c5650b980b40"
+    },
+    {
+      "bytes": 9205,
+      "path": "vendor/aris/tests/test_arxiv_fetch.py",
+      "sha256": "641c6cded1db971aea199ebff9eb32fce7cfd304f793a37c5f120906eb3e1ef0"
+    },
+    {
+      "bytes": 4552,
+      "path": "vendor/aris/tests/test_audit_codex_invocation.py",
+      "sha256": "29dc2976235ae2665f216e4203176fe0e3ed70be24204cd6b239879535a6444d"
+    },
+    {
+      "bytes": 4079,
+      "path": "vendor/aris/tests/test_auto_proceed_contract.py",
+      "sha256": "e6b5877ad22963996e9c072a49f758117309f29af537e9aad94220ac1dfcf59e"
+    },
+    {
+      "bytes": 10062,
+      "path": "vendor/aris/tests/test_bounded_fanout_contract.py",
+      "sha256": "c2892fc903681fb2646fbaa71066bc3bb155b276439f4811ffff083b2a1300e4"
+    },
+    {
+      "bytes": 4126,
+      "path": "vendor/aris/tests/test_capture_filter.py",
+      "sha256": "5f97b6f9660aec2f25cd60ad3058f4e158025adfb9c2830c50a4cf2316811a2d"
+    },
+    {
+      "bytes": 10301,
+      "path": "vendor/aris/tests/test_citation_crosscheck_gate.py",
+      "sha256": "eb77b8356b2b1c1492202d2d3f5d3e1dfea8639c476464307b87cd6a41353cb5"
+    },
+    {
+      "bytes": 8138,
+      "path": "vendor/aris/tests/test_claude_review_artifact_tools.py",
+      "sha256": "020de09f7531eafc20c9edaed33ad9f26bf421ad13d9f0cccc77d019dad86e93"
+    },
+    {
+      "bytes": 1786,
+      "path": "vendor/aris/tests/test_claude_review_generator.py",
+      "sha256": "92161ecfd57ef2e1994e58747f272895539468b0af58888ab617124718b981fa"
+    },
+    {
+      "bytes": 2431,
+      "path": "vendor/aris/tests/test_claude_review_overlay.py",
+      "sha256": "eaaa8fa197788b28f4b5ce5366e679bb0a98d1cd12841c094ef0bf2a9553b51d"
+    },
+    {
+      "bytes": 18515,
+      "path": "vendor/aris/tests/test_claude_review_parse.py",
+      "sha256": "4ae2d7909a8a24ff49394e1195cacd2ab69e74ee4087d81ef5cd26843b0863ea"
+    },
+    {
+      "bytes": 15611,
+      "path": "vendor/aris/tests/test_codex_exec_bridge.py",
+      "sha256": "9b644b2232ba2e81b461417c475bcb7c70a716804519f0b9ecc5730b570e14b3"
+    },
+    {
+      "bytes": 15860,
+      "path": "vendor/aris/tests/test_codex_image2_server.py",
+      "sha256": "9499ddde8399d09fc15a66b50ae154567b3fe408fca6dfaa9f022bd43db84ede"
+    },
+    {
+      "bytes": 16455,
+      "path": "vendor/aris/tests/test_codex_install_update.py",
+      "sha256": "9ea83746b102a9f7f4f680f88ca1f475ed211c51a466f072c159c396e73880b1"
+    },
+    {
+      "bytes": 21523,
+      "path": "vendor/aris/tests/test_codex_skill_mirror.py",
+      "sha256": "0bf2601f48197d86ab6626d421620690404b208a04adf1de7777e1a7c2d353b5"
+    },
+    {
+      "bytes": 44611,
+      "path": "vendor/aris/tests/test_copilot_install.py",
+      "sha256": "77d4ae91cf3e396d867b99776b95a93deb16e8f4a496aa1f06172f53178a2832"
+    },
+    {
+      "bytes": 19572,
+      "path": "vendor/aris/tests/test_copilot_native_evidence.py",
+      "sha256": "de510f97c73bee5144d93d1c93e38b62e511aa065940e71b69de7c7db6510c5a"
+    },
+    {
+      "bytes": 3120,
+      "path": "vendor/aris/tests/test_corpus_write_guard.py",
+      "sha256": "dd889d1e480dc2e0b7f06182d685cd9249ce21e075aec4bc4e2be0b51f62ec46"
+    },
+    {
+      "bytes": 5436,
+      "path": "vendor/aris/tests/test_deepxiv_fetch.py",
+      "sha256": "a5b177b234297cd9fb7cc7e5941c72bd40a24e2b2e68242688512595a9061066"
+    },
+    {
+      "bytes": 9996,
+      "path": "vendor/aris/tests/test_evidence_check.py",
+      "sha256": "cc182ce17a3b91b1a3ca6534aa05931cc4f9a14fa1eb6b6281a17b47201a832d"
+    },
+    {
+      "bytes": 6258,
+      "path": "vendor/aris/tests/test_exa_search.py",
+      "sha256": "601b5e2cba56fb53d32445bd31e737a484569e6955c9e2881db7213bb7738e88"
+    },
+    {
+      "bytes": 10522,
+      "path": "vendor/aris/tests/test_feishu_bridge_server.py",
+      "sha256": "0c1fd55d68ae99566cde4e039f34991afc19394471b44c7b2204ab5e31dabb9e"
+    },
+    {
+      "bytes": 22909,
+      "path": "vendor/aris/tests/test_firecrawl_search.py",
+      "sha256": "aa2cc6b39c6fcce1931aa936b9d6d454d7489120e32edd7e118caacba0ecfedc"
+    },
+    {
+      "bytes": 29823,
+      "path": "vendor/aris/tests/test_forensics_gate.py",
+      "sha256": "fa0659ace414b2c92de6f671c2b3e4f465548fcdd88cf9c072bb66177f12c670"
+    },
+    {
+      "bytes": 10280,
+      "path": "vendor/aris/tests/test_grok_exec_bridge.py",
+      "sha256": "3c4884867fdb53eaf8a69e649ea67f730dbfe3bf135f807a00327ca482ea908d"
+    },
+    {
+      "bytes": 1772,
+      "path": "vendor/aris/tests/test_http_reviewer_fallback_contract.py",
+      "sha256": "376a73c8c232ad6076fafaa82054b2d1d1372cc0f263debf78b8bf923fa56098"
+    },
+    {
+      "bytes": 883,
+      "path": "vendor/aris/tests/test_http_reviewer_provenance_alignment.py",
+      "sha256": "5e80327e33a99250326aa2fed50b9d6b37ea0ccc8577ba4818c2529f23ab5920"
+    },
+    {
+      "bytes": 3349,
+      "path": "vendor/aris/tests/test_http_reviewer_review_gate.py",
+      "sha256": "b41221b28ee1060cf65cada470fe665439d5cdded2029b6b5c1a9cbc72c1df59"
+    },
+    {
+      "bytes": 8773,
+      "path": "vendor/aris/tests/test_idea_creator_query_pack_scan.py",
+      "sha256": "7e945c66c992f9d7710eee3bfcb4a1db77f6b4b5b1424c93f2b0d1eded053f96"
+    },
+    {
+      "bytes": 14601,
+      "path": "vendor/aris/tests/test_idea_discovery_gate.py",
+      "sha256": "bf21b5977a4ca114f92b46487735a535a7ae0ed3a744a90bd12522f7056423a5"
+    },
+    {
+      "bytes": 4511,
+      "path": "vendor/aris/tests/test_install_aris_agent_profiles.py",
+      "sha256": "21df1f46efc3c3389ce835012942bdf345d1a373ce2faaed370f6332c827839c"
+    },
+    {
+      "bytes": 33120,
+      "path": "vendor/aris/tests/test_install_aris_ps1.py",
+      "sha256": "2097def39674bfb30a6462802b759ba198ac84df9f7a9b63180945be1c066a80"
+    },
+    {
+      "bytes": 5157,
+      "path": "vendor/aris/tests/test_install_aris_replace_link.py",
+      "sha256": "c3e5ec1ab3b8099bee70876e8ebf9933fa9ac6498c65d92c7470b68e69be4083"
+    },
+    {
+      "bytes": 24995,
+      "path": "vendor/aris/tests/test_install_aris_selective.py",
+      "sha256": "74ffb7d1fc5d4d5d4270ee95a4f80b98114d3e1b290e2231ef10ef44223e2311"
+    },
+    {
+      "bytes": 14590,
+      "path": "vendor/aris/tests/test_install_aris_tools_symlink.py",
+      "sha256": "68bc9063a551ae02cbc432e00e14546a06936c5706bf8ffdabfa123e79aeb679"
+    },
+    {
+      "bytes": 3771,
+      "path": "vendor/aris/tests/test_iteration_log.py",
+      "sha256": "8605261d4433a0511b9960301d70873659a13c9579dff1a4681eb4d77833c74f"
+    },
+    {
+      "bytes": 11651,
+      "path": "vendor/aris/tests/test_keenable_search.py",
+      "sha256": "32a9ab9a0bdf12e3a97c931fe1d5df48b9636e66378d3f612198b0a7e968f2ae"
+    },
+    {
+      "bytes": 2022,
+      "path": "vendor/aris/tests/test_llm_chat_converter.py",
+      "sha256": "7a95ddf18d566c15f6cc089c5830b2ac82c4445b51a089366f8e77fffc969e30"
+    },
+    {
+      "bytes": 13618,
+      "path": "vendor/aris/tests/test_llm_chat_request_compatibility.py",
+      "sha256": "e21443a34d50cf4bab479fd907e8b44651a57062c54cabbb90fdf2857d512c71"
+    },
+    {
+      "bytes": 17005,
+      "path": "vendor/aris/tests/test_llm_chat_review_fallback.py",
+      "sha256": "80dadfa6852ad1f57635c12f5e78abe5a4dc0a7796cdd379cac8664b6b71250b"
+    },
+    {
+      "bytes": 18477,
+      "path": "vendor/aris/tests/test_llm_chat_server.py",
+      "sha256": "940877fb95249255d7270c64aa216b4d1a1f6f72e0894da65caa264e928c7878"
+    },
+    {
+      "bytes": 2513,
+      "path": "vendor/aris/tests/test_mainline_large_payload_prompts.py",
+      "sha256": "c177a59906b6443beaf591409de9eace68539bc598647acbe30c1993969a61eb"
+    },
+    {
+      "bytes": 30352,
+      "path": "vendor/aris/tests/test_manual_review.py",
+      "sha256": "eff3f0b291de97d327266942e04ae3e6bb9aa8719df76f2d67d04ff9e7feff41"
+    },
+    {
+      "bytes": 12299,
+      "path": "vendor/aris/tests/test_manual_review_integration.py",
+      "sha256": "14c5305a4c480ea7ec073b2094e81997a803f726a47dfce52ecc40d985bc7f8a"
+    },
+    {
+      "bytes": 20422,
+      "path": "vendor/aris/tests/test_minimax_chat_server.py",
+      "sha256": "9753dbf4651c6913a2a0708269460db1497fbbf766db2bd9f423f9470e6012ff"
+    },
+    {
+      "bytes": 9280,
+      "path": "vendor/aris/tests/test_minimax_integration.py",
+      "sha256": "c25e0fa359de04f71c4cabb8a3dd26402e17e173241e8120a2ada1eba7412ab8"
+    },
+    {
+      "bytes": 6447,
+      "path": "vendor/aris/tests/test_openalex_fetch.py",
+      "sha256": "ba6040f0c0a4e76bab40b57e73d14fc3032df6bcac655dbd1e5e990137a71f4b"
+    },
+    {
+      "bytes": 1709,
+      "path": "vendor/aris/tests/test_plugin_manifest.py",
+      "sha256": "eb60d7293ac1efe7fe38770631f0432765999de80fd9095b3afa3bafc51a77a6"
+    },
+    {
+      "bytes": 1764,
+      "path": "vendor/aris/tests/test_probe_codex_invocation.py",
+      "sha256": "176387c109ecb3df29e98c5a436e1abfe28eb85b68aa736864d74d025149e79b"
+    },
+    {
+      "bytes": 2350,
+      "path": "vendor/aris/tests/test_proof_suite_integration.py",
+      "sha256": "d622eb8ccf8b430755f8e8559424f37a77ffad93c9b143b68a81c60e814ffdcb"
+    },
+    {
+      "bytes": 12325,
+      "path": "vendor/aris/tests/test_provenance.py",
+      "sha256": "13d1fdcc576bf9fdcf0e4de5770864e31fe7b9b5d047cf683f760a85a987f292"
+    },
+    {
+      "bytes": 1463,
+      "path": "vendor/aris/tests/test_readme_navigation.py",
+      "sha256": "47634ebc4f5fc0c56994fb7a3b71157b7f514bd3217d5be570deede1997db16e"
+    },
+    {
+      "bytes": 4152,
+      "path": "vendor/aris/tests/test_research_wiki_claims.py",
+      "sha256": "7ff0301af6a717223f2ed2fe0003215ff6c3338cbb12e0758364ee05d275f825"
+    },
+    {
+      "bytes": 3057,
+      "path": "vendor/aris/tests/test_research_wiki_encoding.py",
+      "sha256": "6353a57011964f5548dc541435be3ee50f4a178d76fda3b2bc1e5e215839de72"
+    },
+    {
+      "bytes": 3798,
+      "path": "vendor/aris/tests/test_research_wiki_experiments.py",
+      "sha256": "2ebd24e15085d8949dfc07bf4ad8a5119e29a896312cfc0c6a8f09bde30fe2b6"
+    },
+    {
+      "bytes": 7414,
+      "path": "vendor/aris/tests/test_research_wiki_fetch_arxiv_metadata.py",
+      "sha256": "e954ae41169a634f7de52d7a3cde1338ec4c89f97e37058ad3d584efe9683e47"
+    },
+    {
+      "bytes": 11571,
+      "path": "vendor/aris/tests/test_research_wiki_helper_resolution.py",
+      "sha256": "91fd121539954758a215dba34e772c8e2431121d9d3631090075f4d0a615b31b"
+    },
+    {
+      "bytes": 5432,
+      "path": "vendor/aris/tests/test_research_wiki_ideas.py",
+      "sha256": "de40712d7d2a1bbecbff37e4117329597b80187b5a081b53c92070f2799ff365"
+    },
+    {
+      "bytes": 14851,
+      "path": "vendor/aris/tests/test_review_gate.py",
+      "sha256": "27d6db7fd9f44a709b164715da64edf04b3a06c895c3d5ac8595512b6e09de32"
+    },
+    {
+      "bytes": 3430,
+      "path": "vendor/aris/tests/test_reviewer_pins.py",
+      "sha256": "fbde1037fe4217376137b182bf3a2d96496c003225b24d108e8ba42cc60db986"
+    },
+    {
+      "bytes": 6366,
+      "path": "vendor/aris/tests/test_reviewer_route.py",
+      "sha256": "202574e99d47e2eccae3d5ef098bbc26a3fe6fc2f916504464d54d62e082b869"
+    },
+    {
+      "bytes": 11438,
+      "path": "vendor/aris/tests/test_reviewer_trace.py",
+      "sha256": "200dd8117b225a1afdb634d46fe7aa89533d3a5e9ac1e1e8e24812600336b38b"
+    },
+    {
+      "bytes": 12548,
+      "path": "vendor/aris/tests/test_run_state.py",
+      "sha256": "13249453e06805395caff797603d531bdad93e363ac1460e815fc0ce269b755c"
+    },
+    {
+      "bytes": 4306,
+      "path": "vendor/aris/tests/test_skill_groups.py",
+      "sha256": "9988232082ec54099acd5b7b39edfae48506cec9fca0684d3f089123203e4cef"
+    },
+    {
+      "bytes": 7620,
+      "path": "vendor/aris/tests/test_skill_picker.py",
+      "sha256": "5aba46f5f34e34e694c65888c94f38667e989465f2029d1b1d862f9a32dc85ef"
+    },
+    {
+      "bytes": 1508,
+      "path": "vendor/aris/tests/test_skills_inventory_allowed_tools.py",
+      "sha256": "c576c7dc1fa8953256a5d166605229e12ed2cd6729fe09942a5a89f1cb7131c5"
+    },
+    {
+      "bytes": 7126,
+      "path": "vendor/aris/tests/test_threat_scan.py",
+      "sha256": "32dadeab5eaba600791851da4c53d84c267c93bfdd254946dbf2964cbf7c61a7"
+    },
+    {
+      "bytes": 7362,
+      "path": "vendor/aris/tests/test_trigger_eval.py",
+      "sha256": "442612a876f5378796f4f436a21487fe3ac9540ea7928e1a3459e1345640f2d7"
+    },
+    {
+      "bytes": 11880,
+      "path": "vendor/aris/tests/test_verify_paper_audits.py",
+      "sha256": "2aaeeaf65edd8d70a4d40ae1e993dc5b199e997e89ddbd2bf6828d5ad386964b"
+    },
+    {
+      "bytes": 6349,
+      "path": "vendor/aris/tests/test_verify_papers.py",
+      "sha256": "88a7e8787f7f885bf8ee0b14a29429ad27afdd724e478472681ccdfbb0877568"
+    },
+    {
+      "bytes": 3850,
+      "path": "vendor/aris/tests/test_verify_papers_s2.py",
+      "sha256": "1bbd75cef79abd29b6e5981d7592b6e97e220837b7374a7664d290d3b7c103e6"
+    },
+    {
+      "bytes": 19951,
+      "path": "vendor/aris/tests/test_watchdog.py",
+      "sha256": "c6448f08f2edbb75e69a20d3ce0d7aba0a4e38de733646c40f662f619f30ed3e"
+    },
+    {
+      "bytes": 6860,
+      "path": "vendor/aris/tests/test_watchdog_loop.py",
+      "sha256": "d1230c6edcc2019b9881d9c6ef1a32deb3a8b9348560b8bd579380e3a9e3d2d0"
+    },
+    {
+      "bytes": 6363,
+      "path": "vendor/aris/tests/test_web_debug_search.py",
+      "sha256": "38fda5c9e1969c6559e19ccb98896869fb2a2424f21745158124088ac7502cc9"
+    },
+    {
+      "bytes": 11762,
+      "path": "vendor/aris/tools/arxiv_fetch.py",
+      "sha256": "30446596ca9aeb66a0a2f20fc0919d5f473fbee34dd611fee5c3613fadf5e7fa"
+    },
+    {
+      "bytes": 4741,
+      "path": "vendor/aris/tools/audit_codex_invocation.py",
+      "sha256": "e74cf36e47a691c6b95ff7b09068455c8115c21ca87f69ed1326d259a0a6cb49"
+    },
+    {
+      "bytes": 6080,
+      "path": "vendor/aris/tools/capture_filter.py",
+      "sha256": "04cf93f079612fa1454e424101cef3069bb29c79dad11488e659b40bb1c118d0"
+    },
+    {
+      "bytes": 14608,
+      "path": "vendor/aris/tools/check_skills_inventory.py",
+      "sha256": "024275dfbb7e9e661d50a3d71bf1a55616ac19d48a80a0ced2f923f8faf80665"
+    },
+    {
+      "bytes": 11355,
+      "path": "vendor/aris/tools/convert_skills_to_llm_chat.py",
+      "sha256": "01281b10e0ce02b88a69eb4919cdc811075b839771c97841cf4ecfd7ad573bfe"
+    },
+    {
+      "bytes": 37184,
+      "path": "vendor/aris/tools/copilot_native_evidence.py",
+      "sha256": "f8137fccba9874b7d04e0ddbbee5755d2d036509415680da760910959d7aff02"
+    },
+    {
+      "bytes": 6222,
+      "path": "vendor/aris/tools/deepxiv_fetch.py",
+      "sha256": "764ef7a4bb87a25df1e92c6fc51060d4b92615df7f1306df71faf0fb6020630f"
+    },
+    {
+      "bytes": 9970,
+      "path": "vendor/aris/tools/evidence_check.py",
+      "sha256": "2edbd901d760d22e7e43a14e8e88ab0e089303f489055cd9b5e9d1f4dce50382"
+    },
+    {
+      "bytes": 14437,
+      "path": "vendor/aris/tools/exa_search.py",
+      "sha256": "f29f9950d476fdf66b1f7bf8ccdcd7a827ae069060c5980d86b3b6f580b437b1"
+    },
+    {
+      "bytes": 4238,
+      "path": "vendor/aris/tools/experiment_queue/README.md",
+      "sha256": "df7757d1b2cec27a52fd655a233948c5a031b846ea93e2167811a668877924b3"
+    },
+    {
+      "bytes": 1542,
+      "path": "vendor/aris/tools/experiment_queue/build_manifest.py",
+      "sha256": "e1daa4116e24a36f970e5fddf6d1493e6a7396933c4e21468c85593ca35d4a25"
+    },
+    {
+      "bytes": 1574,
+      "path": "vendor/aris/tools/experiment_queue/queue_manager.py",
+      "sha256": "eac75a1285c81eb1683906cc979486f14bbba612c7cf434c753dfacec1f79dda"
+    },
+    {
+      "bytes": 22693,
+      "path": "vendor/aris/tools/extract_paper_style.py",
+      "sha256": "020baeed072f7ab8ac0f4bc0b341609b2498f82121b6dd6d4e3961f0669eb1f2"
+    },
+    {
+      "bytes": 2582,
+      "path": "vendor/aris/tools/figure_renderer.py",
+      "sha256": "88f667eb398d491fc49f5f4d24c6ee06de27862d1e9187c2a23f8ff3079b165c"
+    },
+    {
+      "bytes": 15149,
+      "path": "vendor/aris/tools/firecrawl_search.py",
+      "sha256": "ab004a8b96c47fefdbcc11f9a50707e2174dafa3765f35cee4ee29adbfe0425f"
+    },
+    {
+      "bytes": 32705,
+      "path": "vendor/aris/tools/forensics_gate.py",
+      "sha256": "6b702cffb656aada0290b7d06f218a96c2cc47d2cef924838b4b53f79233f80b"
+    },
+    {
+      "bytes": 18934,
+      "path": "vendor/aris/tools/generate_codex_claude_review_overrides.py",
+      "sha256": "b74d11e95662c47be81e379fdcc64aeacebca336857c3b5c58304f1d1adf6e7f"
+    },
+    {
+      "bytes": 10111,
+      "path": "vendor/aris/tools/idea_discovery_gate.py",
+      "sha256": "129662358d7d38bdc9cb3d20d0bb9d7e2e8bf75aad45d0228766e9637475133e"
+    },
+    {
+      "bytes": 72113,
+      "path": "vendor/aris/tools/install_aris.ps1",
+      "sha256": "c76394c6f4900d2b7c0c87b53b06022e7be4eb4bd4a9c16ba270d462cbfc31aa"
+    },
+    {
+      "bytes": 80107,
+      "path": "vendor/aris/tools/install_aris.sh",
+      "sha256": "e396cc774750b9b56526dfcafae21629e6b70eba6c6b1d19aa4a17c78e852a0e"
+    },
+    {
+      "bytes": 41387,
+      "path": "vendor/aris/tools/install_aris_codex.sh",
+      "sha256": "f9df60648bf057481c9b11ce59ab0943b678d77677a145f247484c92d24fa88a"
+    },
+    {
+      "bytes": 43223,
+      "path": "vendor/aris/tools/install_aris_copilot.sh",
+      "sha256": "2b9ff14c6143583625d4bbf1399d8622664965ddbc885c39425975535031f229"
+    },
+    {
+      "bytes": 5588,
+      "path": "vendor/aris/tools/iteration_log.py",
+      "sha256": "819c22ba20bb270e0a514edb2626e7e3a1c4bade36f809e3ee9571cc076f7cb0"
+    },
+    {
+      "bytes": 11367,
+      "path": "vendor/aris/tools/keenable_search.py",
+      "sha256": "94f72414f4394f45e93d49b25e8d2a1afb0770cc1baa30b850b8d56a789df91c"
+    },
+    {
+      "bytes": 3518,
+      "path": "vendor/aris/tools/lint_skills_helpers.sh",
+      "sha256": "1e73d9ec6f77d85defc68a190093b471d2edb3c250a97e402f776b0c00994666"
+    },
+    {
+      "bytes": 3449,
+      "path": "vendor/aris/tools/meta_opt/check_ready.sh",
+      "sha256": "6c581e592893db7fb288c91bb8b4a7f94c34c13bb8e4d5fe11f6f5205f841fc6"
+    },
+    {
+      "bytes": 3166,
+      "path": "vendor/aris/tools/meta_opt/log_event.sh",
+      "sha256": "9bf323361b0f0613e70c3d88d44600b8608f647433ca288cc8eda2411cdefce1"
+    },
+    {
+      "bytes": 13384,
+      "path": "vendor/aris/tools/meta_opt/trigger_eval.py",
+      "sha256": "ec0dfb8b08de96c97b751968dd9b8e08bf323828cbf727e757a8bf2fc2d6ed76"
+    },
+    {
+      "bytes": 1570,
+      "path": "vendor/aris/tools/meta_opt/trigger_evals.sample.json",
+      "sha256": "20db057ba06ac3c7d1cd89e1297b80449c38462c1bf010531e053f368139f7f7"
+    },
+    {
+      "bytes": 12106,
+      "path": "vendor/aris/tools/openalex_fetch.py",
+      "sha256": "83a097cc925c321d6dbf74e72bd5c6e1fdcdb82840323d3cf246bb25c005d530"
+    },
+    {
+      "bytes": 3516,
+      "path": "vendor/aris/tools/overleaf_audit.sh",
+      "sha256": "2d4bcaa33d541a74166bd83bf2262f0d92ad9600c502b5f88c80190aa6ed9274"
+    },
+    {
+      "bytes": 6412,
+      "path": "vendor/aris/tools/overleaf_setup.sh",
+      "sha256": "f2274ad4da248d590ef9b861551886aa7175bff26a003b87362996a9e92a076f"
+    },
+    {
+      "bytes": 2205,
+      "path": "vendor/aris/tools/paper_illustration_image2.py",
+      "sha256": "f7c6221f70d00b113646f1c3d481a37a1b04a5bcef2f0e055b3d9b22d8b9c01f"
+    },
+    {
+      "bytes": 3831,
+      "path": "vendor/aris/tools/probe_codex_invocation.py",
+      "sha256": "c60fc2ff1227fd3d699ab68067d7d35dfe5d09cadfa6568df0f92bae35cb6ff2"
+    },
+    {
+      "bytes": 13754,
+      "path": "vendor/aris/tools/provenance.py",
+      "sha256": "355bcd4ef02903d4686460fa6142badc57bb34ea62b369e5239f673a4f615a1e"
+    },
+    {
+      "bytes": 13,
+      "path": "vendor/aris/tools/requirements-codex-policy-audit.txt",
+      "sha256": "865bbefc83398c2d53d4d494e8c0ad2302c93e657b78b860a1eba3ac71044309"
+    },
+    {
+      "bytes": 78927,
+      "path": "vendor/aris/tools/research_wiki.py",
+      "sha256": "5836740a1fcb6e15d6cf2dc87847ddb2abb23c0dd6a69a2b9cf0cd5b3a0ac0bb"
+    },
+    {
+      "bytes": 20528,
+      "path": "vendor/aris/tools/review_gate.py",
+      "sha256": "3f9b89c97bd271be815dc2da176b236314ba4e52344d8b890516e03fcc7c43f9"
+    },
+    {
+      "bytes": 6265,
+      "path": "vendor/aris/tools/reviewer_route.py",
+      "sha256": "3df7598694b3ddc6c2b502d517e41e4b6b2e5489af83610d5f85fb5989eda4b9"
+    },
+    {
+      "bytes": 18500,
+      "path": "vendor/aris/tools/run_state.py",
+      "sha256": "5fc466462e2d4c26c6de078dcb04100bafa3a9c56df9a0dc4e38f316a33df5b5"
+    },
+    {
+      "bytes": 26386,
+      "path": "vendor/aris/tools/save_trace.sh",
+      "sha256": "0aa7199d3a4d16cf005bfa41a01c6c696dfadbd65c60fad9f9f4b64f75b5ded6"
+    },
+    {
+      "bytes": 14381,
+      "path": "vendor/aris/tools/semantic_scholar_fetch.py",
+      "sha256": "2b8b2f5164b886eb0f9d73ea5495e43991e9b52fc84631de87e941bc3e3ccb7c"
+    },
+    {
+      "bytes": 9410,
+      "path": "vendor/aris/tools/skill-groups.tsv",
+      "sha256": "b9d0d67b4053436af7d3d7d7f66830b23cee4f82f859e40ee574f232c4b26d8e"
+    },
+    {
+      "bytes": 8880,
+      "path": "vendor/aris/tools/skill_picker.py",
+      "sha256": "3d08bbf141abfc65e5b348735f10c9fe56fa92afc33bdd6ae7edae85a17cac14"
+    },
+    {
+      "bytes": 22648,
+      "path": "vendor/aris/tools/smart_update.ps1",
+      "sha256": "16ed12f54305e23268a3ced533734c78ed39cf3ba1e7125c9919b861660f4590"
+    },
+    {
+      "bytes": 22932,
+      "path": "vendor/aris/tools/smart_update.sh",
+      "sha256": "40ffbfba8b52ddafd87fb11642382877cbd0a4d93a3576fce7cae5fe5ab4ef87"
+    },
+    {
+      "bytes": 15054,
+      "path": "vendor/aris/tools/smart_update_codex.sh",
+      "sha256": "d8f659a7d453bea7816bbaa200a0bc9312853cec46551c156101730b80759d75"
+    },
+    {
+      "bytes": 23718,
+      "path": "vendor/aris/tools/smart_update_copilot.sh",
+      "sha256": "586d6fae1202ac180c0d6a68c13ff798302e7fcad5a91aa4b709f8f8b5c9e955"
+    },
+    {
+      "bytes": 12166,
+      "path": "vendor/aris/tools/threat_scan.py",
+      "sha256": "fe0f6d4ec38baa09b58a9dbdb4bde3039b9863a3e52dc79ada33d79f3c84e268"
+    },
+    {
+      "bytes": 21578,
+      "path": "vendor/aris/tools/verify_paper_audits.sh",
+      "sha256": "fb9de42c52b2acc64ad0e6f7e1abae4453a8c2c21580a36da0f6d1b8433540a0"
+    },
+    {
+      "bytes": 29634,
+      "path": "vendor/aris/tools/verify_papers.py",
+      "sha256": "ccf214f490d15554e17cc43856318dcee1ecd32361299c994b20983de2bc8d1e"
+    },
+    {
+      "bytes": 6766,
+      "path": "vendor/aris/tools/verify_wiki_coverage.sh",
+      "sha256": "cdc619caacc680fef77f25def48aa7e4ad72ca2e0cb7842da5dfdfa8cbb8a709"
+    },
+    {
+      "bytes": 19054,
+      "path": "vendor/aris/tools/watchdog.py",
+      "sha256": "9c6522a7676d9bfac291e74ab462bf72f53180453ba4f6fc148075d334f3ae18"
+    },
+    {
+      "bytes": 3227,
+      "path": "vendor/aris/xhs_post.md",
+      "sha256": "0050c3118925b20c32b84fb919ea4acc940cfa6ac123217c3179eaaefa2e9032"
+    }
+  ],
+  "frozen_protocol": {
+    "frozen_at": "2026-10-30T08:39:21.979856+00:00",
+    "path": "contracts/baseline/v1.yaml",
+    "sha256": "41ff4f96121093c32e66caa395c902eeddfbc3bc224f3690910e566ac17c879e"
+  },
+  "frozen_protocols": [
+    {
+      "frozen_at": "2026-10-30T08:39:21.979856+00:00",
+      "idea_id": "baseline",
+      "kind": "real",
+      "path": "contracts/baseline/v1.yaml",
+      "sha256": "41ff4f96121093c32e66caa395c902eeddfbc3bc224f3690910e566ac17c879e",
+      "version": 1
+    },
+    {
+      "frozen_at": "2026-10-30T09:44:27.888098+00:00",
+      "idea_id": "baseline",
+      "kind": "real",
+      "path": "contracts/baseline/v2.yaml",
+      "sha256": "9882ba4ce1d605535c55b15c7921fb6b24064297b5fa8f713735a8d81854a333",
+      "version": 2
+    }
+  ],
+  "inventory_scope": "All committed payload files except EXPORT_MANIFEST.json itself; Git metadata excluded.",
+  "paper": {
+    "path": "reports/imported-icl/source/literature/robot-icl/sources/step35-root/contextflow.txt",
+    "sha256": "1152159e626fa4a0f68a639b5f2b22708e2a20c402676ab7fb4275ec9518d223"
+  },
+  "path_audit": {
+    "pinned_vendor_generic_example_exemptions": [
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "433a5c706174685c746f5c796f75722d636f6465782d70726f6a656374202d506c6174666f726d20636f646578",
+          "433a5c706174685c746f5c796f75722d70617065722d70726f6a656374202d506c6174666f726d20636c61756465"
+        ],
+        "path": "vendor/aris/README.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "5732c5aaf8fb48d570cc31a932445e1b1a3edd75e2d10efac5d911290aee02c1"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "433a5c706174685c746f5c796f75722d70617065722d70726f6a656374"
+        ],
+        "path": "vendor/aris/README_CN.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "3d2c4ad94807d6f6769cdd510fe9c4382fb27583f4b0acee88b197a8efdee311"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f6578706572696d656e74732f"
+        ],
+        "path": "vendor/aris/SETUP_GUIDE.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "50a9d67d000462806d20b3192c2f89416039b1968696270c3dc69554ef947ae6"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f6578706572696d656e74732f"
+        ],
+        "path": "vendor/aris/SETUP_GUIDE_CN.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "feeb7337c913d946f67ba2125b9d9e082f4e5a376118297692b905f0a3ac45a1"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f6578706572696d656e74732f"
+        ],
+        "path": "vendor/aris/docs/ANTIGRAVITY_ADAPTATION.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "67270bdf40aef363ba9e2f35f60250bc641019db80148e720f4d34993879a4ce"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f6578706572696d656e74732f"
+        ],
+        "path": "vendor/aris/docs/ANTIGRAVITY_ADAPTATION_CN.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "583f3ffe392c77d1ec3a78911343bf5c48662e7d40e8edcb7127160516976dfe"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f2e2e2e"
+        ],
+        "path": "vendor/aris/docs/ARIS_INTRO.review.json",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "938d79b1f68285935121fe3ea300d27ebae0840e624baab39e07ee34bf320c04"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f6578706572696d656e74732f"
+        ],
+        "path": "vendor/aris/docs/COPILOT_CLI_ADAPTATION.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "8d37cd574d52d46ed1d0bd7acb067235ea9e5a58401c35e704bf8feeea196e53"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f594f55525f555345524e414d452f594f55525f434f44455f4449524543544f52592f",
+          "2f686f6d652f757365722f6578706572696d656e74732f"
+        ],
+        "path": "vendor/aris/docs/GPU_SETUP.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "457d59650b09e2080943b3dd49d27e47c38257dd5787e522dd0d3ed62c5f2681"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f594f55525f555345524e414d452f594f55525f434f44455f4449524543544f52592f",
+          "2f686f6d652f757365722f6578706572696d656e74732f"
+        ],
+        "path": "vendor/aris/docs/GPU_SETUP_CN.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "f0328a4a2919bfa5661b45e48af53feec36ecd74afc0ef2d32ad4c5c34c5b142"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f796f75726e616d652f2e636c617564652f6d63702d736572766572732f6c6c6d2d636861742f7365727665722e7079"
+        ],
+        "path": "vendor/aris/docs/LLM_API_MIX_MATCH_GUIDE.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "476d849c55c7339a5fd686a1a4817727ab183e9c10d88c1f62519fd508dc2802"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732fe4bda0e79a84e794a8e688b7e5908d2f2e636c617564652f6d63702d736572766572732f6d696e696d61782d636861742f7365727665722e7079"
+        ],
+        "path": "vendor/aris/docs/MINIMAX_MCP_GUIDE.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "02496ac78351d0d43a5cd95d198e35299479b38caeee2c7a1d47ddf0cc2ed9fb"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365726e616d65"
+        ],
+        "path": "vendor/aris/docs/OPENROUTER_GUIDE.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "fce8766f3c127e41ffe63c8c8bfc8969bae4d9b525789bd598610816ef38b9ce"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365726e616d65"
+        ],
+        "path": "vendor/aris/docs/OPENROUTER_GUIDE_CN.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "5f5e1c51ee1a97e96fd4621c463bcf6f8a0799a2253a272d94764f7fafa6eb32"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "443a5c706174685c746f5c4175746f2d636c617564652d636f64652d72657365617263682d696e2d736c656570"
+        ],
+        "path": "vendor/aris/docs/TRAE_ARIS_RUNBOOK_CN.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "f97aad017836867fdfff74e0bfa92ec436b90e0a4a85f41d1671563f81802539"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "433a5c706174685c746f5c4175746f2d636c617564652d636f64652d72657365617263682d696e2d736c6565705c736b696c6c73",
+          "443a5c706174685c746f5c4175746f2d636c617564652d636f64652d72657365617263682d696e2d736c656570"
+        ],
+        "path": "vendor/aris/docs/TRAE_ARIS_RUNBOOK_EN.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "8b5747d64804e8736de75ef58f63b59f356dcda93dc200111fc8f5ad0fc6489d"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f796f75726e616d652f2e636c617564652f6d63702d736572766572732f6c6c6d2d636861742f7365727665722e7079"
+        ],
+        "path": "vendor/aris/skills/auto-review-loop-llm/SKILL.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "1659cd8dccc2edf8a68124d34daa7cce8a54658918cb90e7cdc9c93d3124b98a"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f796f75725f70726f6a656374"
+        ],
+        "path": "vendor/aris/skills/experiment-queue/SKILL.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "6da32285f905d77664334bba7f7bbc2c069814ff5c3bc266ecc00f6c77d77208"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f796f75725f70726f6a656374"
+        ],
+        "path": "vendor/aris/skills/experiment-queue/scripts/build_manifest.py",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "2fe0d13d2bba863e9bbde65f8a746f1c0f46b7e2c08e16107786fad6980a5820"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f2e2e2e"
+        ],
+        "path": "vendor/aris/skills/interview-cheatsheet/SKILL.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "b2151195b67458b5cf33f79c3db274ad1d19da7183f3a07e8bcdf1ae362366bd"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f"
+        ],
+        "path": "vendor/aris/skills/render-html/scripts/render_html.py",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "f563872737d1fafbc38ea6a6de85451063daa196b219e163dcb32c3abeb6d58f"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f6578706572696d656e74732f"
+        ],
+        "path": "vendor/aris/skills/run-experiment/SKILL.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "4d481ce95d8bcadb93b095c3dd9bda51d68b6edea6b710316d6c0c74bb5bcfa8"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f6d652f70726f6a6563742f726573756c74732f72756e2e6a736f6e",
+          "2f55736572732f6d652f70726f6a6563742f726573756c74732f72756e5f323032365f30345f31392e6a736f6e"
+        ],
+        "path": "vendor/aris/skills/shared-references/assurance-contract.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "4320cc8f8614f95914a1b8594759a8e0264f9e8ba02b7dca8305acab0c43b282"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f796f75726e616d652f2e636f6465782f6d63702d736572766572732f6c6c6d2d636861742f7365727665722e7079"
+        ],
+        "path": "vendor/aris/skills/skills-codex/auto-review-loop-llm/SKILL.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "5adc29b505c1180bc6db143fc1ed1a7454c22d034cfadca5237eed8488b5ec8f"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f796f75725f70726f6a656374"
+        ],
+        "path": "vendor/aris/skills/skills-codex/experiment-queue/SKILL.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "3a66fbd5f7684d3279bb91eb5d4ec64245f86da3ba507a7b60e357c7d8dfd00f"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f2e2e2e"
+        ],
+        "path": "vendor/aris/skills/skills-codex/interview-cheatsheet/SKILL.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "bf7ea8de6a345a0e9e549314bd1be292bdd84e47dcabd31bca399a1b891bfd13"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f"
+        ],
+        "path": "vendor/aris/skills/skills-codex/render-html/scripts/render_html.py",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "25d04ffbb1c2d4de61c4016578390477080168275a093d3569a43e14758e5694"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f6578706572696d656e74732f"
+        ],
+        "path": "vendor/aris/skills/skills-codex/run-experiment/SKILL.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "8325128eab14c7f82213d44c8e78e98f44ca680baa9c78f3bee8766f8e9f464a"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f752f2e636c617564652f736b696c6c732f72657365617263682d6c69742f534b494c4c2e6d64"
+        ],
+        "path": "vendor/aris/tests/test_trigger_eval.py",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "442612a876f5378796f4f436a21487fe3ac9540ea7928e1a3459e1345640f2d7"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f686f6d652f757365722f796f75725f70726f6a656374"
+        ],
+        "path": "vendor/aris/tools/experiment_queue/README.md",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "df7757d1b2cec27a52fd655a233948c5a031b846ea93e2167811a668877924b3"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f"
+        ],
+        "path": "vendor/aris/tools/smart_update.ps1",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "16ed12f54305e23268a3ced533734c78ed39cf3ba1e7125c9919b861660f4590"
+      },
+      {
+        "example_encoding": "hex preserves exact matched example bytes without embedding a forbidden path in this project manifest",
+        "matched_examples_hex": [
+          "2f55736572732f"
+        ],
+        "path": "vendor/aris/tools/smart_update.sh",
+        "reason": "generic example path in byte-verified pinned vendor; concrete host paths remain forbidden",
+        "sha256": "40ffbfba8b52ddafd87fb11642382877cbd0a4d93a3576fce7cae5fe5ab4ef87"
+      }
+    ],
+    "scope": "every committed payload file; concrete host paths never exempt"
+  },
+  "phase": 1,
+  "protocol": {
+    "frozen_at": "2026-10-30T09:44:27.888098+00:00",
+    "path": "contracts/baseline/v2.yaml",
+    "sha256": "9882ba4ce1d605535c55b15c7921fb6b24064297b5fa8f713735a8d81854a333",
+    "status": "frozen"
+  },
+  "sanitizations": [
+    {
+      "changes": "Retain three server names and stdio structure; replace interpreter/CLI/bridge/state/log paths with portable values; discard all unrecognized settings/env fields. init generates local routes.",
+      "path": ".mcp.json",
+      "source_sha256": "d62d0e73c6edcc015cdbe19086dea8ae5861b08a178f90250e107c42918df684"
+    },
+    {
+      "changes": "Keep budget structure and toy/global limits; disable real execution and zero real limits for operator authorization.",
+      "path": "configs/budget.json",
+      "source_sha256": "2e9e143aadd495f2b34faf769b2696813889c5ce6b0c026c0793dcebf9a8aed2"
+    },
+    {
+      "changes": "Omit optional owner-specific scout/workflow skills and their installation registrations; native init defaults suffice for the baseline CLI. Research gate and model-review policies unchanged.",
+      "path": "configs/local-overrides.json",
+      "source_sha256": "b8f41eb8727ea733890c5ad2f9dc01eabf5ca1eda116d6e87ce4a8630cc52ff6"
+    },
+    {
+      "changes": "Keep question/setting/benchmarks and baseline paper/repo/commit; remove superseded_direction, legacy_import and unrelated baselines deployment history; clear selected idea and historical status; replace checkout/preflight paths and synchronize resource IDs with seed jobs. Operator supplies genuine preflight evidence.",
+      "path": "configs/research.json",
+      "source_sha256": "c55007d3fb7b1c9a1ac081a1e5c780b7db393b6a01ac2211de558de30579e5ea"
+    },
+    {
+      "changes": "Replace all machine resource registrations with four empty groups.",
+      "path": "configs/resources.json",
+      "source_sha256": "5ce365798ebb6fdb77a46eb1f7b1a2c4ed9667fe402bf23c849fdfcacf2296c2"
+    },
+    {
+      "changes": "Filter registry to selected already-frozen protocols; each protocol's original bytes and registration are preserved.",
+      "path": "contracts/.registry.json",
+      "source_sha256": "4e5e0ef2d6568a7d46497f487bd9cde99d95263bd612124578e3c400a2ce9985"
+    },
+    {
+      "changes": "Replace historical/general setup instructions with standalone baseline-v2 configuration and operator-guide link.",
+      "path": "docs/configuration.md",
+      "source_sha256": "0d17f5744c35412332049bec8a4369a378d941ea3e4644329548b0e478c8ee05"
+    }
+  ],
+  "schema_version": 1
+}

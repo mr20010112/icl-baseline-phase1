@@ -1,0 +1,23 @@
+{
+  "kind": "real",
+  "baseline_commit": null,
+  "checks": {
+    "data": {
+      "status": "pending",
+      "evidence_file": null
+    },
+    "environment": {
+      "status": "pending",
+      "evidence_file": null
+    },
+    "evaluation": {
+      "status": "pending",
+      "evidence_file": null
+    }
+  },
+  "reproduction": {
+    "run_ids": [],
+    "analysis_file": null,
+    "result_review_receipt": null
+  }
+}

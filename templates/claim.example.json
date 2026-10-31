@@ -1,0 +1,15 @@
+{
+  "id": null,
+  "type": "empirical",
+  "kind": "real",
+  "text": null,
+  "hypothesis": null,
+  "contract": null,
+  "runs": [],
+  "analysis_file": null,
+  "metrics": [],
+  "baseline_value_source": null,
+  "baseline_label": null,
+  "signal_ids": [],
+  "result_review_receipt": null
+}

@@ -1,0 +1,19 @@
+{
+  "idea_id": null,
+  "question": null,
+  "hypothesis": null,
+  "description": null,
+  "novelty_evidence": [],
+  "compatibility": null,
+  "implementation_cost": null,
+  "expected_signal": null,
+  "risks": [],
+  "proposer_identity": {
+    "provider": null,
+    "model": null,
+    "model_family": null,
+    "identity_source": null
+  },
+  "decision": "pending",
+  "decision_reason": null
+}

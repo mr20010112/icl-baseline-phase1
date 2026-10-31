@@ -1,0 +1,12 @@
+{
+  "require_frozen_protocol": true,
+  "require_code_review_for_training": true,
+  "require_baseline_before_idea_pilot": true,
+  "require_raw_metrics": true,
+  "no_toy_in_paper": true,
+  "review_unavailable": "BLOCKED",
+  "execution_status_is_scientific_acceptance": false,
+  "local_backend": "Linux POSIX only",
+  "offline_dependencies": "Python >=3.10, bash, git; no pip installation",
+  "tolerances": "Set per frozen protocol before any training; include metric,atol,rtol,statistical_rule,seed aggregation and hardware scope"
+}

@@ -1,0 +1,107 @@
+{
+  "idea_id": "toy-linear",
+  "version": 1,
+  "kind": "toy",
+  "question": "Can the engineering chain preserve a seeded CPU calculation and its evidence?",
+  "hypothesis": "A seeded one-dimensional full-batch gradient-descent linear regressor learns the synthetic relation; this tests infrastructure only.",
+  "method": {
+    "description": "Pure Python full-batch gradient descent minimizes squared error on synthetic y=2*x+1+noise; held-out synthetic MSE is recomputed from predictions.",
+    "implementation": [
+      "examples/toy/train.py"
+    ]
+  },
+  "metrics": {
+    "primary": {
+      "name": "mse",
+      "direction": "minimize",
+      "definition": "mean squared held-out prediction error"
+    },
+    "secondary": [
+      {
+        "name": "train_mse",
+        "direction": "minimize"
+      }
+    ]
+  },
+  "data": {
+    "dataset_id": "toy-generator",
+    "version": "synthetic-v1",
+    "split": "fixed synthetic train/test generator"
+  },
+  "baseline": {
+    "type": "toy-only",
+    "comparison": "untrained predictor; not a published baseline",
+    "reported_metrics": []
+  },
+  "hyperparameters": {
+    "n_train": 64,
+    "n_test": 64,
+    "epochs": 120,
+    "learning_rate": 0.15,
+    "noise_std": 0.02
+  },
+  "seeds": [
+    7
+  ],
+  "success_signals": [
+    {
+      "interpretation": "engineering sanity only",
+      "id": "fit-test-mse",
+      "rule": "mse < 0.02",
+      "metrics": [
+        "mse"
+      ]
+    }
+  ],
+  "failure_signals": [
+    {
+      "interpretation": "numerical or implementation fault independent of target MSE",
+      "id": "numeric-divergence",
+      "rule": "nonfinite predictions or nondecreasing optimization loss",
+      "metrics": [
+        "mse",
+        "train_mse"
+      ]
+    }
+  ],
+  "inconclusive_signals": [
+    {
+      "interpretation": "no scientific or engineering success conclusion",
+      "id": "insufficient-evidence",
+      "rule": "missing output, interrupted run, or insufficient records",
+      "metrics": [
+        "mse"
+      ]
+    }
+  ],
+  "ablations": [
+    {
+      "name": "epochs=0",
+      "expected": "higher MSE",
+      "status": "not executed; separate protocol required before run"
+    }
+  ],
+  "budget": {
+    "max_cpu_seconds": 60,
+    "max_gpu_hours": 0,
+    "max_cost_usd": 0,
+    "max_attempts": 2
+  },
+  "stopping": {
+    "timeout_seconds": 20,
+    "stall_seconds": 10,
+    "max_rounds": 1,
+    "rule": "stop after a completed smoke or any failed check"
+  },
+  "statistics": {
+    "atol": 1e-09,
+    "rtol": 1e-06,
+    "rule": "MSE recomputation from CSV matches within tolerance; no claim of bitwise hardware reproducibility",
+    "seeds": "single seed engineering demonstration only"
+  },
+  "provenance": {
+    "mode": "preregistered",
+    "observed_runs": [],
+    "hypothesis_basis_runs": []
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "mcpServers": {
+    "antigravity": {
+      "args": [
+        "vendor/aris/mcp-servers/antigravity-exec/server.py"
+      ],
+      "command": "python3",
+      "env": {
+        "AGY_BIN": "agy"
+      },
+      "type": "stdio"
+    },
+    "claude-review": {
+      "args": [
+        "vendor/aris/mcp-servers/claude-review/server.py"
+      ],
+      "command": "python3",
+      "env": {
+        "CLAUDE_BIN": "claude",
+        "CLAUDE_REVIEW_DEBUG_LOG": ".aris/project-runtime/claude-review-debug.log",
+        "CLAUDE_REVIEW_STATE_DIR": ".aris/project-runtime/claude-review",
+        "CLAUDE_REVIEW_TOOLS": "Read,Grep,Glob"
+      },
+      "type": "stdio"
+    },
+    "codex": {
+      "args": [
+        "vendor/aris/mcp-servers/codex-exec/server.py"
+      ],
+      "command": "python3",
+      "env": {
+        "CODEX_BIN": "codex"
+      },
+      "type": "stdio"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+# Generated evidence and operator resources; the bound paper remains tracked.
+/runs/*
+!/runs/.gitkeep
+/reports/
+/data/
+/weights/
+/checkpoints/
+**/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+.env*
+!*.example
+*.private.json
+.aris/
+.claude/
+.agents/
+.github/
+research-wiki/
+contracts/.registry.lock
+reviews/.import.lock
+*.pt
+*.pth
+*.ckpt

@@ -1,0 +1,101 @@
+{
+  "roles": {
+    "architect": {
+      "preferred_product": "Claude Code",
+      "provider": null,
+      "model_id": null,
+      "model_family": null,
+      "mode": "host",
+      "command": [],
+      "availability": "unverified",
+      "backend": "claude-code",
+      "server": null,
+      "requested_model": null
+    },
+    "scout": {
+      "preferred_product": "Antigravity",
+      "provider": null,
+      "model_id": null,
+      "model_family": null,
+      "mode": "mcp",
+      "command": [],
+      "availability": "unverified",
+      "backend": "antigravity",
+      "server": "antigravity",
+      "requested_model": null
+    },
+    "idea_proposer": {
+      "preferred_product": "Antigravity",
+      "provider": null,
+      "model_id": null,
+      "model_family": null,
+      "mode": "mcp",
+      "command": [],
+      "availability": "unverified",
+      "backend": "antigravity",
+      "server": "antigravity",
+      "requested_model": null
+    },
+    "independent_reviewer": {
+      "preferred_product": "Claude Code",
+      "provider": null,
+      "model_id": null,
+      "model_family": null,
+      "mode": "mcp",
+      "command": [],
+      "availability": "unverified",
+      "backend": "claude-code",
+      "server": "claude-review",
+      "requested_model": null
+    },
+    "implementer": {
+      "preferred_product": "Codex",
+      "provider": null,
+      "model_id": null,
+      "model_family": null,
+      "mode": "mcp",
+      "command": [],
+      "availability": "unverified",
+      "backend": "codex",
+      "server": "codex",
+      "requested_model": null
+    },
+    "analyst": {
+      "preferred_product": "GPT Pro / Ultra",
+      "provider": null,
+      "model_id": null,
+      "model_family": null,
+      "mode": "manual",
+      "command": [],
+      "availability": "unverified",
+      "backend": "manual",
+      "server": null,
+      "requested_model": null
+    },
+    "writer": {
+      "preferred_product": "Codex",
+      "provider": null,
+      "model_id": null,
+      "model_family": null,
+      "mode": "mcp",
+      "command": [],
+      "availability": "unverified",
+      "backend": "codex",
+      "server": "codex",
+      "requested_model": null
+    }
+  },
+  "policy": {
+    "require_cross_family": true,
+    "accept_human_reviews": true,
+    "max_review_rounds": 2,
+    "max_review_calls": null,
+    "max_model_cost_usd": 0,
+    "max_model_wall_seconds": 1800,
+    "stop_on": "critical input missing, budget exhausted, scope rejected, or 2 rounds reached; architect records go/revise/kill",
+    "identity_rule": "Record actual returned identity and source; product labels are not API model IDs",
+    "workflow_skill": "project-research",
+    "role_source": "docs/agent-rules.md"
+  },
+  "schema_version": 2
+}

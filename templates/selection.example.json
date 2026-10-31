@@ -1,0 +1,12 @@
+{
+  "pool_id": "replace-pool-id",
+  "candidate_count": 10,
+  "candidates": [{"idea_id": "replace-idea", "idea_sha256": null, "review_receipt": null, "review_history": []}],
+  "ranking": [],
+  "selected_idea": null,
+  "architect_identity": {"actor_type": "model", "provider": null, "model": null, "model_family": null, "identity_source": null},
+  "decision": "pending",
+  "reason": null,
+  "tie_break_reason": null,
+  "revision_resolutions": []
+}

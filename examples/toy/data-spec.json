@@ -1,0 +1,7 @@
+{
+  "kind": "toy",
+  "generator": "linear synthetic: y=2*x+1+seeded Gaussian noise",
+  "version": "synthetic-v1",
+  "split": "fixed synthetic train/test generator",
+  "scientific_use": false
+}

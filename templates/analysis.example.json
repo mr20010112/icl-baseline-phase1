@@ -1,0 +1,28 @@
+{
+  "kind": "real",
+  "contract": null,
+  "runs": [],
+  "outcome": null,
+  "decision": null,
+  "limitations": [],
+  "analyst_identity": {
+    "actor_type": "model",
+    "provider": null,
+    "model": null,
+    "model_family": null,
+    "identity_source": null
+  },
+  "signal_results": [
+    {
+      "signal_id": null,
+      "status": null,
+      "reason": null,
+      "evidence": []
+    }
+  ],
+  "observations": [],
+  "competing_explanations": [],
+  "next_experiment": null,
+  "cost": null,
+  "stopping_conditions": null
+}

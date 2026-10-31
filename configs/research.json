@@ -1,0 +1,113 @@
+{
+  "baseline": {
+    "commit": "c6dee891f0afd520aec5a8869891e9b06b99f856",
+    "paper_source": "reports/imported-icl/source/literature/robot-icl/sources/step35-root/contextflow.txt",
+    "repo": "https://github.com/dingjiansw101/ContextFlow.git",
+    "repo_path": "<OPERATOR_CONTEXTFLOW_CHECKOUT>",
+    "reported_metrics": [],
+    "reproduction_status": "pending",
+    "role_note": "gate schema field: shared platform code identity (ContextFlow/π0) used by protocol commit checks; not a ranking — all baselines in `baselines` are equal",
+    "validation_record": "reports/third-party/baseline-preflight.json"
+  },
+  "benchmarks": {
+    "combination": [
+      "LIBERO-Gen",
+      "DrawAnything",
+      "LIBERO (RoboSSM ICL split)"
+    ],
+    "decided_by": "user 2026-10-30 (final: LIBERO-Gen + DrawAnything + LIBERO/RoboSSM split; RoboCasa-DC dropped)",
+    "history": [
+      "2026-10-30 LIBERO-Gen + DrawAnything + LIBERO/RoboSSM",
+      "2026-10-30 replaced by RoboCasa-DC",
+      "2026-10-30 reverted to LIBERO/RoboSSM"
+    ],
+    "items": [
+      {
+        "id": "libero-gen",
+        "source": "BPP repo real-stanford/behavior_prompting 3471dcf: configs liberogen_goal_chain, liberogen_spatial_combination",
+        "status": "code present in deployed bpp env; data not downloaded"
+      },
+      {
+        "id": "drawanything",
+        "source": "BPP repo: behavior_prompting/train_network/env/draw/draw_env.py, draw_policy_*.yaml",
+        "status": "code present in deployed bpp env; sim/real variant to be fixed in protocol; data not downloaded"
+      },
+      {
+        "eval_paper": "20 rollouts/task, up to 200 steps (code max_steps 300), mean over 6 seeds; front+wrist RGB + joint/gripper; context excludes actions and language",
+        "id": "libero-robossm-split",
+        "record": "idea-stage/literature/robossm-libero-split.md",
+        "source": "RoboSSM arXiv 2509.19658 v2 (IROS 2026); code github.com/youngjuY/RoboSSM @07df6df",
+        "status": "train split from RoboSSM code @07df6df; test tasks selected by project rule; see idea-stage/literature/robossm-libero-split.md",
+        "test_task_selection": "architect rule (same scene family, same template as train, not in train, lowest two indices), decided 2026-10-30 before any result; label as RoboSSM-style split",
+        "test_tasks": {
+          "kitchen": "libero_90 [24,41]",
+          "living_room": "libero_90 [60,61]",
+          "object": "libero_object [8,9]",
+          "study": "libero_90 [79,81]"
+        },
+        "train_tasks": {
+          "kitchen": "libero_90 [2,10,15,25,26,29,31,32]",
+          "living_room": "libero_90 [46..59]",
+          "object": "libero_object [0..7]",
+          "study": "libero_90 [73,74,75,77,78,80,82,83]"
+        }
+      }
+    ],
+    "note": "Benchmark choice only; exact test tasks, k, episodes, seeds and statistics go into a frozen protocol."
+  },
+  "candidate_count": 10,
+  "data_id": "libero-hf-a4336d58",
+  "environment_id": "THIRD_PARTY_CONTEXTFLOW_PY311",
+  "environment_policy": {
+    "decided_by": "user 2026-10-30 (option C)",
+    "details": "idea-stage/docs/comparison-matrix-draft.md",
+    "evaluation": "one shared evaluation environment for all phase-2 methods: LIBERO upstream 8f1084e3 + BPP 3471dcf LIBERO-Gen/DrawAnything; robosuite/MuJoCo pinned via resolver dry-run; same init states, trials, max steps, success check, demo-selection policy; methods plug in via policy servers",
+    "phase1": "ContextFlow reproduction keeps the official environment (paper comparison)",
+    "shared_eval": {
+      "architect_defaults_pending_v2": [
+        "10 settling no-op steps for all methods",
+        "success = env task predicate at any policy step, timeout recorded separately",
+        "gym 4-tuple handled once in client",
+        "LIBERO-Gen subset from BPP data with HDF5"
+      ],
+      "decided_by": "user 2026-10-30 (version, max steps, demo selection, Draw metric)",
+      "demo_selection": "cross-demo sampling: seeded round-robin over allowed demos per trial, chosen by the shared client, logged per trial, identical across methods",
+      "draw_metric": "BPP continuous: max (negative) drawing-distance reward per rollout",
+      "lock_candidate": "reports/shared-eval-env-20261030/suite-api-py310.txt + SOURCE_PINS.json",
+      "max_policy_steps": {
+        "drawanything": 400,
+        "libero_10": 550,
+        "libero_90_robossm": 450,
+        "libero_goal": 400,
+        "libero_object": 300,
+        "libero_spatial": 300,
+        "liberogen": 550
+      },
+      "mujoco": "3.2.3",
+      "python": "3.10",
+      "robosuite": "1.4.0",
+      "status": "built: env sibling icl-baselines/envs/shared-eval-py310 is outside this repo; 86 pkgs from the hash lock incl. approved termcolor 3.3.0 and easydict 1.9; client eval/shared_client; GPU smoke 12/12 PASS (reports/shared-client-build-20261030/gpu-smoke-rerun); per-method server adapters not built; Draw aggregation OPEN"
+    },
+    "training": "each method in its own official environment; differences recorded per run and disclosed"
+  },
+  "language": "zh-CN",
+  "question": "在具身ICL（π0/ContextFlow，LIBERO闭环）中，（R1）压缩示范，或（R2）从示范中检索对当前决策关键的信息，能否在同backbone、同数据、同训练步数下提高训练效率（GPU-h、显存、吞吐、context token数）或任务成功率？两条路线同步推进。",
+  "resource_id": "THIRD_PARTY_LOCAL_SINGLE_GPU",
+  "routes": {
+    "R1": "demo compression",
+    "R2": "retrieve decision-relevant information from demos"
+  },
+  "schema_version": 1,
+  "selected_idea": null,
+  "setting": "平台：π0初始化的原生ContextFlow（commit c6dee891）与本地LIBERO数据；闭环成功率为主指标，训练/推理成本为并列指标。两条路线各取多条地位平等的 baseline（无主 baseline），清单见 baselines 字段。仅考虑已开源方法。详见 idea-stage/literature/BASELINES_two-routes.md、SCOUT_CROSSCHECK_two-routes.md。协议、seed、统计方案未冻结。",
+  "status": "baseline_pending_operator_configuration",
+  "target_venue": null,
+  "third_party_package": {
+    "built_by": "Codex via tools/export_third_party.py; verified by architect in a fresh clone",
+    "commit": "c85c8159f8bf5e153008b534ad577e6f2421295d",
+    "path": "sibling directory icl-baseline-runner (location recorded in idea-stage/docs/research_contract.md; kept out of this file so the exporter can ship it)",
+    "protocol": "contracts/baseline/v2.yaml (frozen 2026-10-30T09:44Z; v1 frozen, superseded before any run)",
+    "status": "built and verified locally; not pushed (user pushes)",
+    "tracked_files": 846
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "kind": "real",
+  "dataset_id": "libero-hf-a4336d58",
+  "split": "ContextFlow official split: train on all physical-intelligence/libero episodes except the 8 tasks in LIBERO_UNSEEN_TASKS (config_libero.py @c6dee891); evaluate only the 4 LIBERO-Spatial/Object unseen configurations listed in metrics.primary.definition",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "hyperparameters": {
+    "train_config": "ContextFlow (src/openpi/training/config_libero.py @c6dee891), used unchanged",
+    "num_train_steps": 20000,
+    "batch_size": 32,
+    "lr_schedule": "cosine, peak 2.5e-5, min 2.5e-6, warmup 1000 (official config)",
+    "init_weights": "s3://openpi-assets/checkpoints/pi0_base/params (official, downloaded by the third party; per-file sha256 recorded in the run)",
+    "context_sampling": "sample_frames=8, sample_actions=128, random_select=True, seed_base=1 (official)",
+    "eval_checkpoint_step": 19999,
+    "eval_trials_per_task": 50,
+    "eval_inference_dtype": "float32 with JAX_DEFAULT_MATMUL_PRECISION=float32 (official README recommendation)",
+    "eval_flow_steps": "official default (10 Euler steps)",
+    "tuning_budget": "none; no hyperparameter is tuned, any deviation from the official config invalidates the run for this protocol",
+    "seed_override": "official CLI: scripts/train.py ContextFlow --seed N",
+    "eval_passes": {
+      "unseen": "official client, unseen_only=true, 50 trials per task (unchanged from v1); source of all signal metrics",
+      "all_tasks": "official client, unseen_only=false, 20 trials per task; only the seen-task rows feed seen_avg_success; its unseen rows are reported separately and never mixed into the primary metric"
+    },
+    "checkpoints": "Official training writes checkpoints to an operator scratch directory outside the run dir. After training, the runner copies step 19999 params/ and assets/ into the run dir and evaluates from that copy, so the evaluated weights are hashed in the artifact index and returned to the project. Other steps and the optimizer state stay on the operator's scratch disk.",
+    "diagnostics_recorded": "Per trial: task, success, steps, failure step, the demonstration episode index(es) used as context, per-request inference latency; saved videos (official). Stored in details.json and eval/ inside the run dir."
+  }
+}

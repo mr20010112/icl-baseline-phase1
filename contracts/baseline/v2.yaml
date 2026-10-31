@@ -1,0 +1,251 @@
+{
+  "idea_id": "baseline",
+  "version": 2,
+  "kind": "real",
+  "question": "Does re-training the official ContextFlow (dingjiansw101/ContextFlow c6dee891, train config `ContextFlow`) from the pi0 base checkpoint reproduce the paper's LIBERO unseen-task success rate (ContextFlow ECCV 2026, Table 1)?",
+  "hypothesis": "Across 3 training seeds, the mean unseen-task success rate (4 unseen task configurations: LIBERO-Spatial S1/S2 and LIBERO-Object O1/O2, 50 trials each) lies within 0.10 absolute of the paper-reported 0.735. A mean at or below 0.535 would falsify reproduction under this setting.",
+  "method": {
+    "description": "Official ContextFlow training and evaluation, unchanged: perceiver-style context compressors (32 learnable queries per modality; image 4 layers, state/action 2 layers), context expert randomly initialised, SigLIP and action expert initialised from pi0_base, LoRA rank 32 on the action expert. Training excludes the 8 tasks in LIBERO_UNSEEN_TASKS (config_libero.py). Evaluation uses the official server/client (scripts/serve_policy.py + examples/libero/main_incontext.py) on the 4 unseen Spatial/Object configurations, 50 trials per task, float32 inference. The project wrapper only launches the official commands, verifies inputs, and writes metrics.json; it must not modify the model, loss, sampler, data pipeline or evaluation logic. v2 adds observation-only instrumentation, approved by the user on 2026-10-30: (1) a server-side wrapper that times each policy inference request and records which demonstration episode(s) the official policy selected as context; (2) per-episode step counts and the failure step, recorded by the client or derived from official outputs; (3) a second evaluation pass over all 10 tasks of each suite at 20 trials per task, used only for the seen-task success rate. The instrumentation reads inputs and outputs; it must not change actions, demo selection, random streams or success detection. If any hook would alter behaviour, the run is invalid for this protocol.",
+    "implementation": [
+      "baseline/runner/contextflow_repro.py",
+      "baseline/runner/README.md"
+    ]
+  },
+  "metrics": {
+    "primary": {
+      "name": "unseen_avg_success",
+      "direction": "higher_is_better",
+      "definition": "Per training seed: mean over the 4 unseen task configurations (S1 'pick up the black bowl on the cookie box and place it on the plate', S2 'pick up the black bowl next to the plate and place it on the plate', O1 'pick up the milk and place it in the basket', O2 'pick up the tomato sauce and place it in the basket') of the fraction of 50 evaluation trials that succeed, using the step-19999 checkpoint. Unit: fraction in [0,1]. Aggregated across seeds by mean."
+    },
+    "secondary": [
+      {
+        "name": "spatial_avg_success",
+        "direction": "higher_is_better",
+        "definition": "Mean of S1 and S2 success fractions per seed."
+      },
+      {
+        "name": "object_avg_success",
+        "direction": "higher_is_better",
+        "definition": "Mean of O1 and O2 success fractions per seed."
+      },
+      {
+        "name": "success_S1",
+        "direction": "higher_is_better",
+        "definition": "Success fraction over 50 trials, S1."
+      },
+      {
+        "name": "success_S2",
+        "direction": "higher_is_better",
+        "definition": "Success fraction over 50 trials, S2."
+      },
+      {
+        "name": "success_O1",
+        "direction": "higher_is_better",
+        "definition": "Success fraction over 50 trials, O1."
+      },
+      {
+        "name": "success_O2",
+        "direction": "higher_is_better",
+        "definition": "Success fraction over 50 trials, O2."
+      },
+      {
+        "name": "train_gpu_hours",
+        "direction": "lower_is_better",
+        "definition": "Wall-clock training hours multiplied by number of GPUs used, from the run log."
+      },
+      {
+        "name": "train_peak_gpu_mem_gb",
+        "direction": "lower_is_better",
+        "definition": "Peak device memory during training reported by the runner (GB)."
+      },
+      {
+        "name": "seen_avg_success",
+        "direction": "higher_is_better",
+        "definition": "Mean success fraction over the 16 seen tasks (8 LIBERO-Spatial + 8 LIBERO-Object; training tasks), taken from the second evaluation pass with 20 trials per task. Descriptive generalisation-gap measure; not used by any signal."
+      },
+      {
+        "name": "infer_latency_ms_median",
+        "direction": "lower_is_better",
+        "definition": "Median wall-clock latency in ms of server-side policy inference requests (one request = one action chunk) during the unseen 50-trial pass, measured inside the policy server process, excluding network transfer."
+      },
+      {
+        "name": "infer_latency_ms_p95",
+        "direction": "lower_is_better",
+        "definition": "95th percentile of the same latencies."
+      },
+      {
+        "name": "unseen_mean_steps_success",
+        "direction": "lower_is_better",
+        "definition": "Mean number of environment steps in successful unseen-pass episodes (all 4 tasks pooled). If there are no successes, report -1 and flag it in details.json."
+      }
+    ]
+  },
+  "data": {
+    "dataset_id": "libero-hf-a4336d58",
+    "version": "a4336d589d589045d1c56423ffdf3b88a0e19b1f",
+    "fingerprint": "4ea70de6b864de0ce221abda7b403225aaa5a3cd1b45532af16dc701cced4c56",
+    "split": "ContextFlow official split: train on all physical-intelligence/libero episodes except the 8 tasks in LIBERO_UNSEEN_TASKS (config_libero.py @c6dee891); evaluate only the 4 LIBERO-Spatial/Object unseen configurations listed in metrics.primary.definition",
+    "source": "https://huggingface.co/datasets/physical-intelligence/libero at revision a4336d589d589045d1c56423ffdf3b88a0e19b1f (CC-BY-4.0); file manifest baseline/data/libero-hf-manifest.json (1699 files, 34938927454 bytes)",
+    "preprocessing": "None beyond the official config (compute_norm_stats for config ContextFlow). The registered directory must contain exactly the 1699 manifest files, with no .cache/ or extra files, so that tools/gates.py digest() equals the frozen fingerprint.",
+    "leakage_check": "The runner must confirm that no training episode's task string is in LIBERO_UNSEEN_TASKS (log the kept/removed episode counts) before training."
+  },
+  "baseline": {
+    "paper_source": "reports/imported-icl/source/literature/robot-icl/sources/step35-root/contextflow.txt",
+    "commit": "c6dee891f0afd520aec5a8869891e9b06b99f856",
+    "reported_metrics": [
+      {
+        "metric": "unseen_avg_success",
+        "value": 0.735,
+        "source": "ContextFlow arXiv 2609.06852v1 Table 1, row 'ContextFlow (Ours)', column Avg.",
+        "source_sha256": "1152159e626fa4a0f68a639b5f2b22708e2a20c402676ab7fb4275ec9518d223"
+      },
+      {
+        "metric": "spatial_avg_success",
+        "value": 0.64,
+        "source": "Table 1, ContextFlow, LIBERO-Spatial Avg.",
+        "source_sha256": "1152159e626fa4a0f68a639b5f2b22708e2a20c402676ab7fb4275ec9518d223"
+      },
+      {
+        "metric": "object_avg_success",
+        "value": 0.83,
+        "source": "Table 1, ContextFlow, LIBERO-Object Avg.",
+        "source_sha256": "1152159e626fa4a0f68a639b5f2b22708e2a20c402676ab7fb4275ec9518d223"
+      },
+      {
+        "metric": "success_S1",
+        "value": 0.86,
+        "source": "Table 1, ContextFlow, S1",
+        "source_sha256": "1152159e626fa4a0f68a639b5f2b22708e2a20c402676ab7fb4275ec9518d223"
+      },
+      {
+        "metric": "success_S2",
+        "value": 0.42,
+        "source": "Table 1, ContextFlow, S2",
+        "source_sha256": "1152159e626fa4a0f68a639b5f2b22708e2a20c402676ab7fb4275ec9518d223"
+      },
+      {
+        "metric": "success_O1",
+        "value": 0.76,
+        "source": "Table 1, ContextFlow, O1",
+        "source_sha256": "1152159e626fa4a0f68a639b5f2b22708e2a20c402676ab7fb4275ec9518d223"
+      },
+      {
+        "metric": "success_O2",
+        "value": 0.9,
+        "source": "Table 1, ContextFlow, O2",
+        "source_sha256": "1152159e626fa4a0f68a639b5f2b22708e2a20c402676ab7fb4275ec9518d223"
+      }
+    ]
+  },
+  "hyperparameters": {
+    "train_config": "ContextFlow (src/openpi/training/config_libero.py @c6dee891), used unchanged",
+    "num_train_steps": 20000,
+    "batch_size": 32,
+    "lr_schedule": "cosine, peak 2.5e-5, min 2.5e-6, warmup 1000 (official config)",
+    "init_weights": "s3://openpi-assets/checkpoints/pi0_base/params (official, downloaded by the third party; per-file sha256 recorded in the run)",
+    "context_sampling": "sample_frames=8, sample_actions=128, random_select=True, seed_base=1 (official)",
+    "eval_checkpoint_step": 19999,
+    "eval_trials_per_task": 50,
+    "eval_inference_dtype": "float32 with JAX_DEFAULT_MATMUL_PRECISION=float32 (official README recommendation)",
+    "eval_flow_steps": "official default (10 Euler steps)",
+    "tuning_budget": "none; no hyperparameter is tuned, any deviation from the official config invalidates the run for this protocol",
+    "seed_override": "official CLI: scripts/train.py ContextFlow --seed N",
+    "eval_passes": {
+      "unseen": "official client, unseen_only=true, 50 trials per task (unchanged from v1); source of all signal metrics",
+      "all_tasks": "official client, unseen_only=false, 20 trials per task; only the seen-task rows feed seen_avg_success; its unseen rows are reported separately and never mixed into the primary metric"
+    },
+    "checkpoints": "Official training writes checkpoints to an operator scratch directory outside the run dir. After training, the runner copies step 19999 params/ and assets/ into the run dir and evaluates from that copy, so the evaluated weights are hashed in the artifact index and returned to the project. Other steps and the optimizer state stay on the operator's scratch disk.",
+    "diagnostics_recorded": "Per trial: task, success, steps, failure step, the demonstration episode index(es) used as context, per-request inference latency; saved videos (official). Stored in details.json and eval/ inside the run dir."
+  },
+  "seeds": {
+    "values": [
+      42,
+      43,
+      44
+    ],
+    "meaning": "TrainConfig.seed (42 is the official default). Evaluation uses the official client defaults for each run.",
+    "variance": "Report per-seed values and the across-seed mean, min, max; per-task binomial standard error sqrt(p(1-p)/50).",
+    "missing_seed_rule": "A seed that fails or lacks metrics is retried once with a new task_id and retry_of; if still missing, the analysis is inconclusive (I-missing-seed). No seed is dropped or replaced by another value."
+  },
+  "success_signals": [
+    {
+      "id": "S-repro-overall",
+      "rule": "abs(mean over seeds 42,43,44 of unseen_avg_success - 0.735) <= 0.10",
+      "metrics": [
+        "unseen_avg_success"
+      ]
+    }
+  ],
+  "failure_signals": [
+    {
+      "id": "F-repro-below",
+      "rule": "mean over seeds 42,43,44 of unseen_avg_success <= 0.535 (at least 0.20 below the paper), with all 3 seeds complete",
+      "metrics": [
+        "unseen_avg_success"
+      ]
+    }
+  ],
+  "inconclusive_signals": [
+    {
+      "id": "I-missing-seed",
+      "rule": "fewer than 3 completed seeds with all 4 tasks x 50 trials evaluated after the single allowed retry",
+      "metrics": [
+        "unseen_avg_success"
+      ]
+    },
+    {
+      "id": "I-gap",
+      "rule": "all 3 seeds complete and the mean is neither within 0.10 of 0.735 nor at or below 0.535 (i.e. 0.535 < mean < 0.635, or mean > 0.835)",
+      "metrics": [
+        "unseen_avg_success"
+      ]
+    },
+    {
+      "id": "I-seed-spread",
+      "rule": "max minus min of unseen_avg_success across the 3 seeds exceeds 0.25; reported alongside any other signal",
+      "metrics": [
+        "unseen_avg_success"
+      ]
+    }
+  ],
+  "ablations": [
+    {
+      "id": "none-in-v1",
+      "reason": "v1 only reproduces the reference ContextFlow to anchor the baseline gate. ContextFlow-Plain and all R1/R2 comparison baselines belong to a separate comparison protocol frozen after this reproduction is accepted (user decision 2026-10-30)."
+    }
+  ],
+  "statistics": {
+    "metric": "unseen_avg_success",
+    "aggregation": "mean",
+    "atol": 0.1,
+    "rtol": 0.0,
+    "statistical_rule": "Reproduced = arithmetic mean over seeds 42,43,44 of per-seed unseen_avg_success; pass iff abs(reproduced - 0.735) <= atol. Per-seed and per-task values with binomial SE are reported descriptively; no significance test.",
+    "hardware_scope": "One NVIDIA GPU with >= 40 GB memory per job, supported by the official JAX stack (e.g. A100 80GB, H100). Multi-GPU jobs are outside v1 (budget reservation assumes gpus=1). Bitwise equality across hardware is not expected."
+  },
+  "budget": {
+    "max_cpu_seconds": 1296000,
+    "max_gpu_hours": 360,
+    "max_cost_usd": 0,
+    "max_attempts": 6,
+    "note": "1 GPU per job; launcher reserves timeout x GPUs without refund: 6 attempts x 60 h = 360 GPU-hours. v1's 48 h per job is extended to 60 h for the extra 20-trial all-task pass (400 more trials per seed). Third-party compute cost is outside this ledger."
+  },
+  "stopping": {
+    "timeout_seconds": 216000,
+    "stall_seconds": 7200,
+    "max_rounds": 1,
+    "rule": "Per run: hard timeout 60 h on 1 GPU, stall if no log or metric progress for 2 h. Stop the stage after all 3 seeds complete, or after one retry per seed; do not add seeds or change settings after seeing results."
+  },
+  "provenance": {
+    "mode": "preregistered",
+    "observed_runs": [],
+    "hypothesis_basis_runs": [],
+    "background": "Historical runs imported from the source project (CF20k/CF80k with modified H10 settings, see contracts/legacy-icl/index.json) are not ARIS runs, used a different action horizon and protocol, and did not inform the tolerance chosen here; they are disclosed as background only."
+  },
+  "amendment": {
+    "previous": "contracts/baseline/v1.yaml",
+    "reason": "User-approved (2026-10-30) diagnostic additions before any run: seen-task evaluation pass, per-trial demo identity, step counts, server-side latency, and returning the evaluated step-19999 checkpoint for later checkpoint-level analyses. Hypothesis, primary metric, tolerance and all signal rules are unchanged.",
+    "created_at": "2026-10-30T09:31:22+00:00",
+    "seen_results": [],
+    "impact": "No runs exist under v1, so nothing is invalidated. Jobs must reference v2. Per-run cost increases about 25% (extra evaluation pass), so timeout and budget rise accordingly."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "task_id": "toy-linear-seed7",
+  "kind": "toy",
+  "stage": "sanity",
+  "idea_id": "toy-linear",
+  "contract": "contracts/toy-linear/v1.yaml",
+  "command": [
+    "{python}",
+    "{root}/examples/toy/train.py",
+    "--config",
+    "{config}",
+    "--seed",
+    "7"
+  ],
+  "config": "examples/toy/config.json",
+  "seed": 7,
+  "dataset_id": "toy-generator",
+  "environment_id": "toy-python",
+  "resource_id": "toy-cpu",
+  "cpus": 1,
+  "gpus": 0,
+  "estimated": {
+    "cpu_seconds": 20,
+    "gpu_hours": 0,
+    "cost_usd": 0
+  },
+  "timeout_seconds": 20,
+  "stall_seconds": 10,
+  "required_metrics": [
+    "mse",
+    "train_mse"
+  ],
+  "code_paths": [
+    "examples/toy/train.py"
+  ]
+}

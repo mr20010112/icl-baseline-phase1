@@ -1,0 +1,25 @@
+{
+  "accounting": "Conservative hard-timeout reservation; all failed/retried/pilot/baseline/analysis attempts count. No automatic refunds. Model calls handled by manual/ARIS dispatch budget, not this local compute ledger.",
+  "max_attempts": 12,
+  "max_cost_usd": 0,
+  "max_cpu_seconds": 300,
+  "max_gpu_hours": 0,
+  "max_retries": 1,
+  "real_enabled": false,
+  "scopes": {
+    "real": {
+      "max_attempts": 0,
+      "max_cost_usd": 0,
+      "max_cpu_seconds": 0,
+      "max_gpu_hours": 0,
+      "max_retries": 0
+    },
+    "toy": {
+      "max_attempts": 12,
+      "max_cost_usd": 0,
+      "max_cpu_seconds": 300,
+      "max_gpu_hours": 0,
+      "max_retries": 1
+    }
+  }
+}

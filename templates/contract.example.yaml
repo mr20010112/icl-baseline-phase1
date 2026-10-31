@@ -1,0 +1,93 @@
+{
+  "idea_id": null,
+  "version": 1,
+  "kind": "real",
+  "question": null,
+  "hypothesis": null,
+  "method": {
+    "description": null,
+    "implementation": []
+  },
+  "metrics": {
+    "primary": {
+      "name": null,
+      "direction": null,
+      "definition": null
+    },
+    "secondary": []
+  },
+  "data": {
+    "dataset_id": null,
+    "version": null,
+    "fingerprint": null,
+    "split": null
+  },
+  "baseline": {
+    "paper_source": null,
+    "commit": null,
+    "reported_metrics": [
+      {
+        "metric": null,
+        "value": null,
+        "source": null,
+        "source_sha256": null
+      }
+    ]
+  },
+  "hyperparameters": {},
+  "seeds": [],
+  "success_signals": [
+    {
+      "id": null,
+      "rule": null,
+      "metrics": []
+    }
+  ],
+  "failure_signals": [
+    {
+      "id": null,
+      "rule": null,
+      "metrics": []
+    }
+  ],
+  "inconclusive_signals": [
+    {
+      "id": null,
+      "rule": null,
+      "metrics": []
+    }
+  ],
+  "ablations": [],
+  "statistics": {
+    "aggregation": null,
+    "atol": null,
+    "rtol": null,
+    "statistical_rule": null,
+    "hardware_scope": null,
+    "metric": null
+  },
+  "budget": {
+    "max_cpu_seconds": null,
+    "max_gpu_hours": null,
+    "max_cost_usd": null,
+    "max_attempts": null
+  },
+  "stopping": {
+    "timeout_seconds": null,
+    "stall_seconds": null,
+    "max_rounds": null,
+    "rule": null
+  },
+  "provenance": {
+    "mode": "preregistered",
+    "observed_runs": [],
+    "hypothesis_basis_runs": []
+  },
+  "amendment": {
+    "previous": null,
+    "reason": null,
+    "created_at": null,
+    "seen_results": [],
+    "impact": null
+  }
+}

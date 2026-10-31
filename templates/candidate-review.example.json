@@ -1,0 +1,6 @@
+{
+  "scores": {"novelty": 0, "feasibility": 0, "compatibility": 0, "complexity": 0, "expected_gain": 0},
+  "recommendation": "revise",
+  "reasons": ["Replace with independently assessed reasons; all dimensions are higher-is-better, complexity means controllability."],
+  "revision_requests": [{"id": "clarify-control", "text": "Replace with concrete requested correction."}]
+}

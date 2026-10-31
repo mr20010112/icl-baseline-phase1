@@ -1,0 +1,19 @@
+{
+  "contracts": {
+    "contracts/baseline/v1.yaml": {
+      "frozen_at": "2026-10-30T08:39:21.979856+00:00",
+      "idea_id": "baseline",
+      "kind": "real",
+      "sha256": "41ff4f96121093c32e66caa395c902eeddfbc3bc224f3690910e566ac17c879e",
+      "version": 1
+    },
+    "contracts/baseline/v2.yaml": {
+      "frozen_at": "2026-10-30T09:44:27.888098+00:00",
+      "idea_id": "baseline",
+      "kind": "real",
+      "sha256": "9882ba4ce1d605535c55b15c7921fb6b24064297b5fa8f713735a8d81854a333",
+      "version": 2
+    }
+  },
+  "schema_version": 1
+}

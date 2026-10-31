@@ -1,0 +1,63 @@
+{
+  "task_id": "baseline-contextflow-seed44-v2",
+  "kind": "real",
+  "stage": "baseline",
+  "idea_id": "baseline",
+  "contract": "contracts/baseline/v2.yaml",
+  "command": [
+    "{python}",
+    "baseline/runner/contextflow_repro.py",
+    "--seed",
+    "44"
+  ],
+  "config": "experiments/baseline-config.json",
+  "seed": 44,
+  "dataset_id": "libero-hf-a4336d58",
+  "environment_id": "THIRD_PARTY_CONTEXTFLOW_PY311",
+  "resource_id": "THIRD_PARTY_LOCAL_SINGLE_GPU",
+  "weight_ids": [
+    "pi0-base-params"
+  ],
+  "cpus": 1,
+  "gpus": 1,
+  "estimated": {
+    "cpu_seconds": 216000,
+    "gpu_hours": 60,
+    "cost_usd": 0
+  },
+  "cost_per_hour": 0,
+  "timeout_seconds": 216000,
+  "stall_seconds": 7200,
+  "required_metrics": [
+    "unseen_avg_success",
+    "spatial_avg_success",
+    "object_avg_success",
+    "success_S1",
+    "success_S2",
+    "success_O1",
+    "success_O2",
+    "train_gpu_hours",
+    "train_peak_gpu_mem_gb",
+    "seen_avg_success",
+    "infer_latency_ms_median",
+    "infer_latency_ms_p95",
+    "unseen_mean_steps_success"
+  ],
+  "code_paths": [
+    "baseline/runner/contextflow_repro.py",
+    "baseline/runner/eval_with_probe.py",
+    "baseline/runner/serve_with_probe.py",
+    "baseline/runner/verify_libero_data.py",
+    "baseline/runner/README.md",
+    "baseline/data/libero-hf-manifest.json",
+    "tools/gates.py",
+    "tools/contracts.py"
+  ],
+  "code_review_receipt": null,
+  "executor_identity": {
+    "provider": "OpenAI",
+    "model": null,
+    "model_family": null,
+    "identity_source": null
+  }
+}
